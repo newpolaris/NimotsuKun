@@ -9,18 +9,15 @@ struct point;
 class state
 {
 private:
-    typedef map_info map_type;
-	const Image game_obj_image;
-    Array2D<map_type> map;
-
 	enum ImageID {
 		IMAGE_ID_PLAYER,
 		IMAGE_ID_WALL,
 		IMAGE_ID_BLOCK,
-		IMAGE_ID_BLOCK_ON_GOAL,
 		IMAGE_ID_GOAL,
-		IMAGE_ID_PLAYER_ON_GOAL,
-		IMAGE_ID_SPACE
+		IMAGE_ID_SPACE,
+            //
+		IMAGE_ID_BLOCK_ON_GOAL,
+		IMAGE_ID_PLAYER_ON_GOAL
 	};
 
 	point player_position;
@@ -28,22 +25,22 @@ private:
 	std::vector<point> goal_position;
 	bool bPlayerWantToQuit;
 
+	const Image game_obj_image;
+    Array2D<map_info> map;
+
 public:
     static state* initalize_state();
-	// initailize game status using game map
+	void draw() const;
+	bool update(int ch);
+	bool is_finished() const;
+
+private:
 	state(unsigned* map_data, unsigned x, unsigned y);
 	ImageID id(int x, int y) const;
 	point convert(int ch);
+
 	void drawCell(int x, int y, ImageID id) const;
-	void draw() const;
-	bool update(int ch);
-	point get_src_pos(ImageID id) const;
     int num_of_finished_box() const;
-	bool is_finished() const
-	{
-		return goal_position.size() == num_of_finished_box()
-			|| bPlayerWantToQuit;
-	}
 };
 
 

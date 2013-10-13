@@ -62,7 +62,7 @@ state::state(unsigned* map_data, unsigned x, unsigned y)
     }
 
     for (int y = 0; y < map.size_y; y++)
-        for (int x = 0; x < map.size_y; x++)
+		for (int x = 0; x < map.size_x; x++)
         {
             if (map(x,y).player)
                 player_position = point(x,y);
@@ -150,39 +150,15 @@ bool state::update(int ch)
 	return true;
 }
 
-point state::get_src_pos(ImageID id) const
-{
-	switch (id)
-	{
-	case IMAGE_ID_BLOCK:
-		return point(2,0);
-	case IMAGE_ID_BLOCK_ON_GOAL:
-		return point(5,0);
-	case IMAGE_ID_GOAL:
-		return point(3,0);
-	case IMAGE_ID_PLAYER:
-		return point(0,0);
-	case IMAGE_ID_PLAYER_ON_GOAL:
-		return point(4,0);
-	case IMAGE_ID_SPACE:
-		return point(4,0);
-	case IMAGE_ID_WALL:
-		return point(1,0);
-	default:
-		return point(0,0);
-	}
-}
-
 void state::drawCell(int dst_x, int dst_y, ImageID id) const
 {
 	static const size_t cell_size = 32;
 
 	unsigned imageWidth = game_obj_image.width();
 
-	unsigned src_x = get_src_pos(id).x;
-	unsigned src_y = get_src_pos(id).y; 
-
-    game_obj_image.draw(cell_size*dst_x, cell_size*dst_y, cell_size*src_x, cell_size*src_y, cell_size, cell_size);
+    game_obj_image.draw(cell_size*dst_x, cell_size*dst_y,
+                        cell_size*id, 0,
+                        cell_size, cell_size);
 }
 
 void state::draw() const
@@ -247,4 +223,10 @@ state::ImageID state::id(int x, int y) const
 		else
 			return IMAGE_ID_SPACE;
 	}
+}
+
+bool state::is_finished() const
+{
+    return goal_position.size() == num_of_finished_box()
+        || bPlayerWantToQuit;
 }
