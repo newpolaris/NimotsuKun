@@ -4,6 +4,7 @@
 
 struct Image
 {
+public:
 	typedef unsigned value_type;
 	typedef std::vector<value_type> container_type;
 
@@ -22,6 +23,8 @@ struct Image
 	{
 		return m_image[ y * m_width + x ];
 	}
+
+	void draw(int dstX, int dstY, int srcX, int srcY, int srcW, int srcH) const; 
 
 	unsigned m_width;
 	unsigned m_height;
