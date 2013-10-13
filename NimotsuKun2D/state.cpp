@@ -42,69 +42,39 @@ state::state(unsigned* map_data, unsigned x, unsigned y)
       , bPlayerWantToQuit(false)
       , game_obj_image("nimotsuKunImage2.dds")
 {
-    for (int i=0; i < map.size(); i++)
-    {
-        switch (map_data[i])
-        {
-            case '#':
-                map[i].set_wall();
-                break;
-            case 'P':
-                map[i].set_player();
-                break;
-            case '.':
-                map[i].set_goal();
-                break;
-            case 'B':
-                map[i].set_block();
-                break;
+    for (int i=0; i < map.size(); i++) {
+        switch (map_data[i]) {
+            case '#': map[i].set_wall(); break;
+            case 'P': map[i].set_player(); break;
+            case '.': map[i].set_goal(); break;
+            case 'B': map[i].set_block(); break;
         }
     }
 
     for (int y = 0; y < map.size_y; y++)
-		for (int x = 0; x < map.size_x; x++)
-        {
-            if (map(x,y).player)
-                player_position = point(x,y);
-
-            if (map(x,y).block)
-                block_position.push_back(point(x,y));
-
-            if (map(x,y).goal)
-                goal_position.push_back(point(x,y));
-        }
-}
-
-point state::convert(int ch)
-{
-    switch(ch)
+	for (int x = 0; x < map.size_x; x++)
     {
-        case 'w':
-            return point(0,-1);
-        case 'a':
-            return point(-1,0);
-        case 's':
-            return point(0,+1);
-        case 'd':
-            return point(+1,0);
-        default:
-            return point(0,0);
-    }
-}
+        if (map(x,y).player)
+            player_position = point(x,y);
 
-int state::num_of_finished_box() const
-{
-    int count = 0;
-    for (auto it = goal_position.begin(); it != goal_position.end(); ++it)
-    {
-        if (map(*it).block) 
-            count++;
+        if (map(x,y).goal)
+            goal_position.push_back(point(x,y));
     }
-    return count;
 }
 
 bool state::update(int ch)
 {
+	auto convert = [](char ch)->point {
+		switch(ch)
+		{
+		case 'w': return point(0,-1);
+		case 'a': return point(-1,0);
+		case 's': return point(0,+1);
+		case 'd': return point(+1,0);
+		default: return point(0,0);
+		}
+	};
+
 	if (ch == 'q')
 	{
 		bPlayerWantToQuit = true;
@@ -153,9 +123,6 @@ bool state::update(int ch)
 void state::drawCell(int dst_x, int dst_y, ImageID id) const
 {
 	static const size_t cell_size = 32;
-
-	unsigned imageWidth = game_obj_image.width();
-
     game_obj_image.draw(cell_size*dst_x, cell_size*dst_y,
                         cell_size*id, 0,
                         cell_size, cell_size);
@@ -163,66 +130,29 @@ void state::drawCell(int dst_x, int dst_y, ImageID id) const
 
 void state::draw() const
 {
-    for (int y=0; y < map.size_y; y++)
-    for (int x=0; x < map.size_x; x++)
+    for (int y=0; y < map.size_y; y++) 
+    for (int x=0; x < map.size_x; x++) 
 	{
-		ImageID image_id = id(x,y);
+        const map_info& info = map(x,y);
 
-		if (image_id == IMAGE_ID_WALL) 
+		if (info.wall) {
 			drawCell(x, y, IMAGE_ID_WALL);
-		else
-		{
+        } else {
 			drawCell(x, y, IMAGE_ID_SPACE);
-			if (image_id == IMAGE_ID_BLOCK_ON_GOAL)
-			{
-				drawCell(x, y, IMAGE_ID_GOAL);
-				drawCell(x, y, IMAGE_ID_BLOCK);
-			}
-			else if (image_id == IMAGE_ID_PLAYER_ON_GOAL)
-			{
-				drawCell(x, y, IMAGE_ID_GOAL);
-				drawCell(x, y, IMAGE_ID_PLAYER);
-			}
-			else if (image_id != IMAGE_ID_SPACE)
-			{
-				drawCell(x, y, image_id);
-			}
+
+            if (info.goal)  drawCell(x, y, IMAGE_ID_GOAL);
+            if (info.block) drawCell(x, y, IMAGE_ID_BLOCK);
+			if (info.player) drawCell(x, y, IMAGE_ID_PLAYER);
 		}
 	}
 }
 
-state::ImageID state::id(int x, int y) const
+int state::num_of_finished_box() const
 {
-	assert(x >= 0 || x < map.size_x);
-	assert(y >= 0 || y < map.size_y);
-
-	const map_info& info = map(x, y);
-
-	if (info.wall)
-	{
-		return IMAGE_ID_WALL;
-	}
-	else if (info.block)
-	{
-		if (info.goal)
-			return IMAGE_ID_BLOCK_ON_GOAL;
-		else 
-			return IMAGE_ID_BLOCK;
-	}
-	else if (info.player)
-	{
-		if (info.goal)
-			return IMAGE_ID_PLAYER_ON_GOAL;
-		else
-			return IMAGE_ID_PLAYER;
-	}
-	else
-	{
-		if (info.goal)
-			return IMAGE_ID_GOAL;
-		else
-			return IMAGE_ID_SPACE;
-	}
+    int count = 0;
+    for (auto it = goal_position.begin(); it != goal_position.end(); ++it)
+        if (map(*it).block) count++;
+    return count;
 }
 
 bool state::is_finished() const

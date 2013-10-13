@@ -15,7 +15,6 @@ char getInput()
 namespace GameLib {
     void Framework::update() {
         static std::shared_ptr<state> status(state::initalize_state());
-
         status->update(getInput());
         if (status->is_finished())
             requestEnd();

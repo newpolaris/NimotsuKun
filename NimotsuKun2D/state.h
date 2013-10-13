@@ -15,13 +15,9 @@ private:
 		IMAGE_ID_BLOCK,
 		IMAGE_ID_GOAL,
 		IMAGE_ID_SPACE,
-            //
-		IMAGE_ID_BLOCK_ON_GOAL,
-		IMAGE_ID_PLAYER_ON_GOAL
 	};
 
 	point player_position;
-	std::vector<point> block_position;
 	std::vector<point> goal_position;
 	bool bPlayerWantToQuit;
 
@@ -36,7 +32,6 @@ public:
 
 private:
 	state(unsigned* map_data, unsigned x, unsigned y);
-	ImageID id(int x, int y) const;
 	point convert(int ch);
 
 	void drawCell(int x, int y, ImageID id) const;
