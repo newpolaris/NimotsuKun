@@ -57,12 +57,4 @@
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="bar.dds">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="Hello.dds">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

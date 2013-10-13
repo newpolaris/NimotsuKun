@@ -19,6 +19,6 @@ namespace GameLib {
         status->update(getInput());
         if (status->is_finished())
             requestEnd();
-        status->stage.draw();
+        status->draw();
     }
 }
