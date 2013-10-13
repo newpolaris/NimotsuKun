@@ -4,9 +4,12 @@
 #include "point.h"
 #include "image.h"
 #include "Array2D.h"
+#include "map_info.h"
 
 struct stage 
 {
+    typedef map_info map_type;
+
 	static const int MAP_SIZE_X = 8;
 	static const int MAP_SIZE_Y = 5;
 
@@ -22,13 +25,13 @@ struct stage
 
     stage(BYTE* map_data);
 
-    map_info& operator()(point p) 
+    map_type& operator()(point p) 
     {   return map(p.x, p.y); }
 
-    const map_info& operator()(point p) const
+    const map_type& operator()(point p) const
     {   return map(p.x, p.y); }
 
-    const map_info& operator()(int x, int y) const
+    const map_type& operator()(int x, int y) const
     {    return map(x, y); }
 
 	ImageID id(int x, int y) const;
@@ -36,6 +39,6 @@ struct stage
 	void draw() const;
 
 	const Image game_obj_image;
-    Array2D map;
+    Array2D<map_type> map;
 };
 

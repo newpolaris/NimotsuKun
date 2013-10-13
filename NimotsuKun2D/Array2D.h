@@ -1,14 +1,17 @@
 #pragma once
 
 #include <vector>
-#include "map_info.h"
 
+template <typename T>
 class Array2D
 {
+public:
+    typedef T value_type; 
+
 private:
     const unsigned size_x;
     const unsigned size_y;
-    std::vector<map_info> map; 
+    std::vector<T> map; 
 
 public:
     Array2D(unsigned x, unsigned y) 
@@ -19,29 +22,28 @@ public:
 
     unsigned size() const { return map.size(); }
 
-    map_info& operator[](int idx)
+    T& operator[](int idx)
     {
         return map[idx];
     }
 
-	const map_info& operator()(int x, int y) const
+	const T& operator()(int x, int y) const
 	{
 		return map[y*size_x+x];
 	}
 
-	map_info& operator()(int x, int y) 
+	T& operator()(int x, int y) 
 	{
 		return map[y*size_x+x];
 	}
 
-	map_info& operator()(const point& po) 
+	T& operator()(const point& po) 
 	{
 		return operator()(po.x, po.y);
 	}
 
-	const map_info& operator()(const point& po) const
+	const T& operator()(const point& po) const
 	{
 		return operator()(po.x, po.y);
 	}
-
 };
