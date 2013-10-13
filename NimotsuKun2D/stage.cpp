@@ -5,7 +5,7 @@
 #include "GameLib\Framework.h"
 
 stage::stage(BYTE* map_data)
-    : map(MAP_SIZE_X*MAP_SIZE_Y)
+    : map(MAP_SIZE_X, MAP_SIZE_Y)
     , game_obj_image("nimotsuKunImage2.dds")
 {
     for (int i=0; i < map.size(); i++)
@@ -129,7 +129,7 @@ stage::ImageID stage::id(int x, int y) const
 	assert(x >= 0 || x < MAP_SIZE_X);
 	assert(y >= 0 || y < MAP_SIZE_Y);
 
-	const map_info& info = operator()(x, y);
+	const map_info& info = map(x, y);
 
 	if (info.wall)
 	{

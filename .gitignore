@@ -1,19 +1,9 @@
 *.opensdf
 
-/NimotsuKun2D/Debug/*.tlog
-
-/NimotsuKun2D/Release/*.tlog
+/ipch/nimotsukun2d-ac66d731/*.ipch
+/NimotsuKun2D.sdf
 
 /NimotsuKun2D/*.swp
+/NimotsuKun2D/Release/*
+/NimotsuKun2D/Debug/*
 
-/ipch/nimotsukun2d-ac66d731/*.ipch
-
-/NimotsuKun2D.sdf
-/NimotsuKun2D/Debug/NimotsuKun2D.exe.embed.manifest
-/NimotsuKun2D/Debug/NimotsuKun2D.exe.embed.manifest.res
-/NimotsuKun2D/Debug/NimotsuKun2D.lastbuildstate
-/NimotsuKun2D/Debug/NimotsuKun2D.unsuccessfulbuild
-/NimotsuKun2D/Debug/NimotsuKun2D_manifest.rc
-/NimotsuKun2D/Debug/vc100.idb
-/NimotsuKun2D/Release/NimotsuKun2D.exe.intermediate.manifest
-/NimotsuKun2D/Release/NimotsuKun2D.lastbuildstate
