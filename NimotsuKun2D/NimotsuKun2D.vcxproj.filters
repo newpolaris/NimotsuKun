@@ -24,10 +24,10 @@
     <ClCompile Include="file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="status.cpp">
+    <ClCompile Include="stage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stage.cpp">
+    <ClCompile Include="status.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,13 +35,7 @@
     <ClInclude Include="file.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="status.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="image.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stage.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="map_info.h">
@@ -51,6 +45,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="types.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Array2D.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stage.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="status.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

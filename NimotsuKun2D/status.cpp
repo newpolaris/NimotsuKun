@@ -79,15 +79,3 @@ bool game_status::update(int ch)
 
 	return true;
 }
-
-
-void printImage(const Image& image)
-{
-	unsigned* vram = GameLib::Framework::instance().videoMemory();
-	const unsigned screen_width  = GameLib::Framework::instance().width();
-	const unsigned screen_height = GameLib::Framework::instance().height();
-	
-	for (int y = 0; y < image.m_height; ++y) 
-	for (int x = 0; x < image.m_width;  ++x)
-		vram[ y * screen_width + x ] = image(x,y);
-}

@@ -109,6 +109,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Array2D.h" />
     <ClInclude Include="file.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="map_info.h" />
