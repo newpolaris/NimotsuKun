@@ -1,7 +1,7 @@
 #include <vector>
 
 #include "GameLib/Framework.h"
-#include "status.h"
+#include "state.h"
 
 char getInput()
 {
@@ -14,7 +14,7 @@ char getInput()
 
 namespace GameLib {
     void Framework::update() {
-        static std::shared_ptr<game_status> status(game_status::initalize_game_status());
+        static std::shared_ptr<state> status(state::initalize_state());
 
         status->update(getInput());
         if (status->is_finished())

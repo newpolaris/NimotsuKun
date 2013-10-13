@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "point.h"
 
 template <typename T>
 class Array2D

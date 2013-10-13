@@ -24,7 +24,7 @@
     <ClCompile Include="file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="status.cpp">
+    <ClCompile Include="state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="Array2D.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="status.h">
+    <ClInclude Include="state.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

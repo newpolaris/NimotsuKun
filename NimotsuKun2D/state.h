@@ -1,12 +1,13 @@
 #include <vector>
 
-#include "point.h"
 #include "map_info.h"
 #include "Array2D.h"
 #include "image.h"
 #include "types.h"
 
-class game_status
+struct point;
+
+class state
 {
 private:
     typedef map_info map_type;
@@ -29,9 +30,9 @@ private:
 	bool bPlayerWantToQuit;
 
 public:
-    static game_status* initalize_game_status();
+    static state* initalize_state();
 	// initailize game status using game map
-	game_status(BYTE* map_data, unsigned x, unsigned y);
+	state(BYTE* map_data, unsigned x, unsigned y);
 	ImageID id(int x, int y) const;
 	point convert(int ch);
 	void drawCell(int x, int y, ImageID id) const;

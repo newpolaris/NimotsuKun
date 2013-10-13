@@ -2,17 +2,18 @@
 #include <fstream>
 #include <cassert>
 
-#include "status.h"
+#include "state.h"
+#include "point.h"
 #include "image.h"
 #include "GameLib\Framework.h"
 
-game_status* game_status::initalize_game_status()
+state* state::initalize_state()
 {
 	static const int MAP_SIZE_X = 8;
 	static const int MAP_SIZE_Y = 5;
 
 	// load initial game status
-	static BYTE game_status_map[MAP_SIZE_Y*MAP_SIZE_X] = { 
+	static BYTE state_map[MAP_SIZE_Y*MAP_SIZE_X] = { 
 		'#','#','#','#','#','#','#','#',
 		'#',' ','.','.',' ','P',' ','#',
 		'#',' ','B','B',' ',' ',' ','#',
@@ -23,7 +24,7 @@ game_status* game_status::initalize_game_status()
     using GameLib::endl;
 
     try {
-        return new game_status(game_status_map, MAP_SIZE_X, MAP_SIZE_Y);
+        return new state(state_map, MAP_SIZE_X, MAP_SIZE_Y);
     }
     catch (std::ifstream::failure e) {
         cout << "File Read Failure" << endl; 
@@ -37,7 +38,7 @@ game_status* game_status::initalize_game_status()
     }
 }
 
-game_status::game_status(BYTE* map_data, unsigned x, unsigned y)
+state::state(BYTE* map_data, unsigned x, unsigned y)
     : map(x, y)
       , bPlayerWantToQuit(false)
       , game_obj_image("nimotsuKunImage2.dds")
@@ -75,7 +76,7 @@ game_status::game_status(BYTE* map_data, unsigned x, unsigned y)
         }
 }
 
-point game_status::convert(int ch)
+point state::convert(int ch)
 {
     switch(ch)
     {
@@ -92,7 +93,7 @@ point game_status::convert(int ch)
     }
 }
 
-int game_status::num_of_finished_box() const
+int state::num_of_finished_box() const
 {
     int count = 0;
     for (auto it = goal_position.begin(); it != goal_position.end(); ++it)
@@ -103,7 +104,7 @@ int game_status::num_of_finished_box() const
     return count;
 }
 
-bool game_status::update(int ch)
+bool state::update(int ch)
 {
 	if (ch == 'q')
 	{
@@ -150,7 +151,7 @@ bool game_status::update(int ch)
 	return true;
 }
 
-point game_status::get_src_pos(ImageID id) const
+point state::get_src_pos(ImageID id) const
 {
 	switch (id)
 	{
@@ -173,7 +174,7 @@ point game_status::get_src_pos(ImageID id) const
 	}
 }
 
-void game_status::drawCell(int dst_x, int dst_y, ImageID id) const
+void state::drawCell(int dst_x, int dst_y, ImageID id) const
 {
 	static const size_t cell_size = 32;
 
@@ -216,7 +217,7 @@ void game_status::drawCell(int dst_x, int dst_y, ImageID id) const
 	}
 }
 
-void game_status::draw() const
+void state::draw() const
 {
     for (int y=0; y < map.size_y; y++)
     for (int x=0; x < map.size_x; x++)
@@ -246,7 +247,7 @@ void game_status::draw() const
 	}
 }
 
-game_status::ImageID game_status::id(int x, int y) const
+state::ImageID state::id(int x, int y) const
 {
 	assert(x >= 0 || x < map.size_x);
 	assert(y >= 0 || y < map.size_y);
