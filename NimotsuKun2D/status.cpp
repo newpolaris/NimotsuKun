@@ -6,10 +6,13 @@
 #include "image.h"
 #include "GameLib\Framework.h"
 
-game_status* initalize_game_status()
+game_status* game_status::initalize_game_status()
 {
+	static const int MAP_SIZE_X = 8;
+	static const int MAP_SIZE_Y = 5;
+
 	// load initial game status
-	static BYTE game_status_map[game_status::MAP_SIZE_Y*game_status::MAP_SIZE_X] = { 
+	static BYTE game_status_map[MAP_SIZE_Y*MAP_SIZE_X] = { 
 		'#','#','#','#','#','#','#','#',
 		'#',' ','.','.',' ','P',' ','#',
 		'#',' ','B','B',' ',' ',' ','#',
@@ -20,7 +23,7 @@ game_status* initalize_game_status()
     using GameLib::endl;
 
     try {
-        return new game_status(game_status_map);
+        return new game_status(game_status_map, MAP_SIZE_X, MAP_SIZE_Y);
     }
     catch (std::ifstream::failure e) {
         cout << "File Read Failure" << endl; 
@@ -32,6 +35,72 @@ game_status* initalize_game_status()
         GameLib::Framework::instance().requestEnd();
         return nullptr;
     }
+}
+
+game_status::game_status(BYTE* map_data, unsigned x, unsigned y)
+    : map(x, y)
+      , bPlayerWantToQuit(false)
+      , game_obj_image("nimotsuKunImage2.dds")
+{
+    for (int i=0; i < map.size(); i++)
+    {
+        switch (map_data[i])
+        {
+            case '#':
+                map[i].set_wall();
+                break;
+            case 'P':
+                map[i].set_player();
+                break;
+            case '.':
+                map[i].set_goal();
+                break;
+            case 'B':
+                map[i].set_block();
+                break;
+        }
+    }
+
+    for (int y = 0; y < map.size_y; y++)
+        for (int x = 0; x < map.size_y; x++)
+        {
+            if (map(x,y).player)
+                player_position = point(x,y);
+
+            if (map(x,y).block)
+                block_position.push_back(point(x,y));
+
+            if (map(x,y).goal)
+                goal_position.push_back(point(x,y));
+        }
+}
+
+point game_status::convert(int ch)
+{
+    switch(ch)
+    {
+        case 'w':
+            return point(0,-1);
+        case 'a':
+            return point(-1,0);
+        case 's':
+            return point(0,+1);
+        case 'd':
+            return point(+1,0);
+        default:
+            return point(0,0);
+    }
+}
+
+int game_status::num_of_finished_box() const
+{
+    int count = 0;
+    for (auto it = goal_position.begin(); it != goal_position.end(); ++it)
+    {
+        if (map(*it).block) 
+            count++;
+    }
+    return count;
 }
 
 bool game_status::update(int ch)
@@ -81,23 +150,23 @@ bool game_status::update(int ch)
 	return true;
 }
 
-point get_src_pos(game_status::ImageID id) 
+point game_status::get_src_pos(ImageID id) const
 {
 	switch (id)
 	{
-	case game_status::IMAGE_ID_BLOCK:
+	case IMAGE_ID_BLOCK:
 		return point(2,0);
-	case game_status::IMAGE_ID_BLOCK_ON_GOAL:
+	case IMAGE_ID_BLOCK_ON_GOAL:
 		return point(5,0);
-	case game_status::IMAGE_ID_GOAL:
+	case IMAGE_ID_GOAL:
 		return point(3,0);
-	case game_status::IMAGE_ID_PLAYER:
+	case IMAGE_ID_PLAYER:
 		return point(0,0);
-	case game_status::IMAGE_ID_PLAYER_ON_GOAL:
+	case IMAGE_ID_PLAYER_ON_GOAL:
 		return point(4,0);
-	case game_status::IMAGE_ID_SPACE:
+	case IMAGE_ID_SPACE:
 		return point(4,0);
-	case game_status::IMAGE_ID_WALL:
+	case IMAGE_ID_WALL:
 		return point(1,0);
 	default:
 		return point(0,0);
@@ -149,8 +218,8 @@ void game_status::drawCell(int dst_x, int dst_y, ImageID id) const
 
 void game_status::draw() const
 {
-    for (int y=0; y < MAP_SIZE_Y; y++)
-    for (int x=0; x < MAP_SIZE_X; x++)
+    for (int y=0; y < map.size_y; y++)
+    for (int x=0; x < map.size_x; x++)
 	{
 		ImageID image_id = id(x,y);
 
@@ -179,8 +248,8 @@ void game_status::draw() const
 
 game_status::ImageID game_status::id(int x, int y) const
 {
-	assert(x >= 0 || x < MAP_SIZE_X);
-	assert(y >= 0 || y < MAP_SIZE_Y);
+	assert(x >= 0 || x < map.size_x);
+	assert(y >= 0 || y < map.size_y);
 
 	const map_info& info = map(x, y);
 

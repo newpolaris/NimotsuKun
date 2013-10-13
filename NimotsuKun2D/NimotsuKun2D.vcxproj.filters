@@ -24,9 +24,6 @@
     <ClCompile Include="file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="status.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -48,9 +45,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Array2D.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stage.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="status.h">

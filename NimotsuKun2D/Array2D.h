@@ -7,10 +7,10 @@ class Array2D
 {
 public:
     typedef T value_type; 
-
-private:
     const unsigned size_x;
     const unsigned size_y;
+
+private:
     std::vector<T> map; 
 
 public:
