@@ -41,9 +41,6 @@
     <ClInclude Include="point.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="types.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Array2D.h">
       <Filter>Source Files</Filter>
     </ClInclude>

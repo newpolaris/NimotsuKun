@@ -4,7 +4,6 @@
 
 #include "state.h"
 #include "point.h"
-#include "image.h"
 #include "GameLib\Framework.h"
 
 state* state::initalize_state()
@@ -13,7 +12,7 @@ state* state::initalize_state()
 	static const int MAP_SIZE_Y = 5;
 
 	// load initial game status
-	static BYTE state_map[MAP_SIZE_Y*MAP_SIZE_X] = { 
+	static unsigned state_map[MAP_SIZE_Y*MAP_SIZE_X] = { 
 		'#','#','#','#','#','#','#','#',
 		'#',' ','.','.',' ','P',' ','#',
 		'#',' ','B','B',' ',' ',' ','#',
@@ -38,7 +37,7 @@ state* state::initalize_state()
     }
 }
 
-state::state(BYTE* map_data, unsigned x, unsigned y)
+state::state(unsigned* map_data, unsigned x, unsigned y)
     : map(x, y)
       , bPlayerWantToQuit(false)
       , game_obj_image("nimotsuKunImage2.dds")

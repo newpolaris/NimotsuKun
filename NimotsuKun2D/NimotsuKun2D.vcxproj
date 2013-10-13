@@ -110,7 +110,6 @@
     <ClInclude Include="map_info.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="state.h" />
-    <ClInclude Include="types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

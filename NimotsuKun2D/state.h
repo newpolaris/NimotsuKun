@@ -3,7 +3,6 @@
 #include "map_info.h"
 #include "Array2D.h"
 #include "image.h"
-#include "types.h"
 
 struct point;
 
@@ -32,7 +31,7 @@ private:
 public:
     static state* initalize_state();
 	// initailize game status using game map
-	state(BYTE* map_data, unsigned x, unsigned y);
+	state(unsigned* map_data, unsigned x, unsigned y);
 	ImageID id(int x, int y) const;
 	point convert(int ch);
 	void drawCell(int x, int y, ImageID id) const;
