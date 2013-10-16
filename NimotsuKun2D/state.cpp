@@ -42,7 +42,7 @@ state::state(unsigned* map_data, unsigned x, unsigned y)
       , bPlayerWantToQuit(false)
       , game_obj_image("nimotsuKunImage2.dds")
 {
-    for (int i=0; i < map.size(); i++) {
+    for (unsigned i=0; i < map.size(); i++) {
         switch (map_data[i]) {
             case '#': map[i].set_wall(); break;
             case 'P': map[i].set_player(); break;
@@ -51,8 +51,8 @@ state::state(unsigned* map_data, unsigned x, unsigned y)
         }
     }
 
-    for (int y = 0; y < map.size_y; y++)
-	for (int x = 0; x < map.size_x; x++)
+    for (unsigned y = 0; y < map.size_y; y++)
+	for (unsigned x = 0; x < map.size_x; x++)
     {
         if (map(x,y).player)
             player_position = point(x,y);
@@ -72,14 +72,21 @@ point getInput()
 
 	if (f.isKeyOn('a'))
 		dx -= 1;
-	if (f.isKeyOn('s'))
+	else if (f.isKeyOn('w'))
 		dy -= 1;
-	if (f.isKeyOn('d'))
+	else if (f.isKeyOn('d'))
 		dx += 1;
-	if (f.isKeyOn('w'))
+	else if (f.isKeyOn('s'))
 		dy += 1;
 
-	return point(dx,dy);
+	static point prev = point(dx,dy);
+	
+	if (prev == point(dx,dy))
+		return point(0,0);
+	else
+	{
+		return prev=point(dx,dy);
+	}
 }
 
 bool state::update()
@@ -143,8 +150,8 @@ void state::drawCell(int dst_x, int dst_y, ImageID id) const
 
 void state::draw() const
 {
-    for (int y=0; y < map.size_y; y++) 
-    for (int x=0; x < map.size_x; x++) 
+    for (unsigned y=0; y < map.size_y; y++) 
+    for (unsigned x=0; x < map.size_x; x++) 
 	{
         const map_info& info = map(x,y);
 
