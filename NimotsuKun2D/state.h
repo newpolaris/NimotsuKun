@@ -27,13 +27,11 @@ private:
 public:
     static state* initalize_state();
 	void draw() const;
-	bool update(int ch);
+	bool update();
 	bool is_finished() const;
 
 private:
 	state(unsigned* map_data, unsigned x, unsigned y);
-	point convert(int ch);
-
 	void drawCell(int x, int y, ImageID id) const;
     int num_of_finished_box() const;
 };

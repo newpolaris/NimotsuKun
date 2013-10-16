@@ -62,26 +62,39 @@ state::state(unsigned* map_data, unsigned x, unsigned y)
     }
 }
 
-bool state::update(int ch)
+// get input and analysis exit status
+point getInput()
 {
-	auto convert = [](char ch)->point {
-		switch(ch)
-		{
-		case 'w': return point(0,-1);
-		case 'a': return point(-1,0);
-		case 's': return point(0,+1);
-		case 'd': return point(+1,0);
-		default: return point(0,0);
-		}
-	};
+	GameLib::Framework f = GameLib::Framework::instance();
 
-	if (ch == 'q')
+	int dx = 0;
+	int dy = 0;
+
+	if (f.isKeyOn('a'))
+		dx -= 1;
+	if (f.isKeyOn('s'))
+		dy -= 1;
+	if (f.isKeyOn('d'))
+		dx += 1;
+	if (f.isKeyOn('w'))
+		dy += 1;
+
+	return point(dx,dy);
+}
+
+bool state::update()
+{
+	GameLib::Framework f = GameLib::Framework::instance();
+
+	if (f.isKeyOn('q'))
 	{
 		bPlayerWantToQuit = true;
 		return true;
 	}
 
-	point next_player_position = convert(ch)+player_position;
+	point direction = getInput();
+
+	point next_player_position = direction+player_position;
 	map_info info = map(next_player_position);
 
 	if (info.wall)
@@ -90,7 +103,7 @@ bool state::update(int ch)
 	}
 	else if (info.block)
 	{
-		point next_box_position = next_player_position+convert(ch);
+		point next_box_position = next_player_position+direction;
 		map_info next_block_info = map(next_box_position);
 
 		if (next_block_info.block || next_block_info.wall)
