@@ -18,3 +18,7 @@ struct point
 	int y;
 };
 
+inline point operator-(const point& lh, const point& rh)
+{
+	return point(lh.x-rh.x, lh.y-rh.y);
+}

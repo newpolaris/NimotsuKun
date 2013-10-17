@@ -38,9 +38,7 @@ state* state::initalize_state()
 }
 
 state::state(unsigned* map_data, unsigned x, unsigned y)
-    : map(x, y)
-      , bPlayerWantToQuit(false)
-      , game_obj_image("nimotsuKunImage2.dds")
+    : map(x, y), game_obj_image("nimotsuKunImage2.dds")
 {
     for (unsigned i=0; i < map.size(); i++) {
         switch (map_data[i]) {
@@ -63,12 +61,18 @@ state::state(unsigned* map_data, unsigned x, unsigned y)
 }
 
 // get input and analysis exit status
-point getInput()
+point state::getInput()
 {
 	GameLib::Framework f = GameLib::Framework::instance();
 
 	int dx = 0;
 	int dy = 0;
+
+    if (f.isKeyOn('q'))
+    {
+		f.requestEnd();
+        return point(0,0);
+    }
 
 	if (f.isKeyOn('a'))
 		dx -= 1;
@@ -89,55 +93,82 @@ point getInput()
 	}
 }
 
-bool state::update()
+bool state::update(point direction)
 {
-	GameLib::Framework f = GameLib::Framework::instance();
-
-	if (f.isKeyOn('q'))
-	{
-		bPlayerWantToQuit = true;
-		return true;
-	}
-
-	point direction = getInput();
+    if (direction == point(0,0))
+        return false;
 
 	point next_player_position = direction+player_position;
 	map_info info = map(next_player_position);
 
-	if (info.wall)
-	{
-		return false;
-	}
-	else if (info.block)
-	{
+	if (info.wall) {
+		anim_false.push_back(Anim(IMAGE_ID_PLAYER, player_position, next_player_position));
+	} else if (info.block) {
 		point next_box_position = next_player_position+direction;
 		map_info next_block_info = map(next_box_position);
 
-		if (next_block_info.block || next_block_info.wall)
-		{
-			return false;
-		}
-		else
-		{
+		if (next_block_info.block || next_block_info.wall) {
+            anim_false.push_back(Anim(IMAGE_ID_PLAYER, player_position, next_player_position));
+		} else {
 			// box move, player move			
+            anim_true.push_back(Anim(IMAGE_ID_PLAYER, player_position, next_player_position));
+            anim_true.push_back(Anim(IMAGE_ID_BLOCK, next_player_position, next_box_position));
+
 			map(player_position).reset_player();
 			map(next_player_position).set_player();
 			player_position = next_player_position;
 			map(next_player_position).reset_block();
 			map(next_box_position).set_block();
-
-			return true;
 		}
-	}
-	// player move only.
-	else
-	{
+	} else { // player move only.
+        anim_true.push_back(Anim(IMAGE_ID_PLAYER, player_position, next_player_position));
+
 		map(player_position).reset_player();
 		map(next_player_position).set_player();
 		player_position = next_player_position;
 	}
+    return true;
+}
 
+bool state::update()
+{
+    static GameState gamestate = S_INPUT;
+
+    switch (gamestate) {
+    case S_ANIM:
+        if (drawAnimation())
+            gamestate = S_DET;
+        break;
+    case S_DET:
+        if (is_finished())
+            gamestate = S_ANIM_FINISH;
+        else
+            gamestate = S_INPUT;
+        break;
+    case S_ANIM_FINISH:
+        // if (drawAnimationEnd())
+            gamestate = S_FINISH;
+        break;
+    case S_FINISH:
+		GameLib::Framework::instance().requestEnd();
+        break;
+    case S_INPUT:
+        if (update(getInput())) 
+            gamestate = S_ANIM;
+        else
+            draw(map);
+        break;
+    }
 	return true;
+}
+
+void state::drawCell(int dst_x, int dst_y, ImageID id, float perX, float perY) const
+{
+	static const size_t cell_size = 32;
+    game_obj_image.draw(cell_size*dst_x+static_cast<int>(cell_size*perX),
+                        cell_size*dst_y+static_cast<int>(cell_size*perY),
+                        cell_size*id, 0,
+                        cell_size, cell_size);
 }
 
 void state::drawCell(int dst_x, int dst_y, ImageID id) const
@@ -148,7 +179,73 @@ void state::drawCell(int dst_x, int dst_y, ImageID id) const
                         cell_size, cell_size);
 }
 
-void state::draw() const
+bool state::drawAnimation() 
+{
+    static bool isInit = false;
+    static Array2D<map_info> background;
+    static int count;
+	static const int max = 128;
+	static const int max_false = max/1.5;
+
+    if (!isInit) {
+        isInit = true;
+        background = map;
+
+        if (anim_true.size() > 0) {
+            count = max;
+            
+            for (unsigned i = 0; i < anim_true.size(); ++i) {
+                point p = anim_true[i].m_after;
+                background(p).reset_player();
+                background(p).reset_block();
+            }
+        } else {
+            count = max_false;
+
+            for (unsigned i = 0; i < anim_false.size(); ++i) {
+                point p = anim_false[i].m_before;
+                background(p).reset_player();
+            }
+        }
+	}
+
+	if (isInit)
+	{
+        draw(background);
+        if (anim_true.size() > 0) {
+            for (unsigned i = 0; i < anim_true.size(); ++i) {
+                point p = anim_true[i].m_before;
+                point dist = anim_true[i].m_after - anim_true[i].m_before;
+                drawCell(p.x, p.y, anim_true[i].m_id, 
+						 (float)dist.x*(max-count)/max,
+						 (float)dist.y*(max-count)/max);
+            }
+        } else {
+            for (unsigned i = 0; i < anim_false.size(); ++i) {
+                point p = anim_false[i].m_before;
+                point dist = anim_false[i].m_after - anim_false[i].m_before;
+
+				float ts = (float)(max_false-count)/max_false*3.1415*2;
+				float fs = 0.15*std::sinf(ts);
+
+                drawCell(p.x, p.y, anim_false[i].m_id, (float)dist.x*fs, (float)dist.y*fs);
+            }
+        }
+
+        count--;            
+
+        if (count <= 0) {
+            isInit = false;
+            anim_true.clear();
+            anim_false.clear();
+
+			return true;
+        }
+    }
+	return false;
+}
+
+void state::draw(Array2D<map_info>& map) const
 {
     for (unsigned y=0; y < map.size_y; y++) 
     for (unsigned x=0; x < map.size_x; x++) 
@@ -177,6 +274,5 @@ int state::num_of_finished_box() const
 
 bool state::is_finished() const
 {
-    return goal_position.size() == num_of_finished_box()
-        || bPlayerWantToQuit;
+    return goal_position.size() == num_of_finished_box();
 }

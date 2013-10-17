@@ -8,13 +8,14 @@ class Array2D
 {
 public:
     typedef T value_type; 
-    const unsigned size_x;
-    const unsigned size_y;
+    unsigned size_x;
+    unsigned size_y;
 
 private:
     std::vector<T> map; 
 
 public:
+	Array2D() {}
     Array2D(unsigned x, unsigned y) 
         : size_x(x)
         , size_y(y)
