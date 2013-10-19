@@ -171,21 +171,14 @@ void state::drawCell(int dst_x, int dst_y, ImageID id, float perX, float perY) c
                         cell_size, cell_size);
 }
 
-void state::drawCell(int dst_x, int dst_y, ImageID id) const
-{
-	static const size_t cell_size = 32;
-    game_obj_image.draw(cell_size*dst_x, cell_size*dst_y,
-                        cell_size*id, 0,
-                        cell_size, cell_size);
-}
-
 bool state::drawAnimation() 
 {
     static bool isInit = false;
     static Array2D<map_info> background;
-    static int count;
 	static const int max = 128;
 	static const int max_false = max/1.5;
+
+    static int count;
 
     if (!isInit) {
         isInit = true;
@@ -205,6 +198,7 @@ bool state::drawAnimation()
             for (unsigned i = 0; i < anim_false.size(); ++i) {
                 point p = anim_false[i].m_before;
                 background(p).reset_player();
+                background(p).reset_block();
             }
         }
 	}

@@ -55,8 +55,7 @@ private:
 	bool update(point direction);
     bool drawAnimation();
 	void draw(Array2D<map_info>& map) const;
-	void drawCell(int x, int y, ImageID id) const;
-	void drawCell(int dst_x, int dst_y, ImageID id, float perX, float perY) const;
+	void drawCell(int dst_x, int dst_y, ImageID id, float perX=0.f, float perY=0.f) const;
     int num_of_finished_box() const;
 };
 
