@@ -1,6 +1,6 @@
 #include <vector>
 
-#include "map_info.h"
+#include "Object.h"
 #include "Array2D.h"
 #include "image.h"
 
@@ -22,7 +22,7 @@ private:
 	bool bPlayerWantToQuit;
 
 	const Image game_obj_image;
-    Array2D<map_info> map;
+    Array2D<Object> map;
 
 public:
     static state* initalize_state();

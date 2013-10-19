@@ -1,8 +1,9 @@
 #pragma once
 
-struct map_info
+class Object 
 {
-	map_info() : block(false), wall(false), player(false), goal(false) {}
+public:
+	Object() : block(false), wall(false), player(false), goal(false) {}
 
 	void set_wall() { wall = true; }
 	void set_block() { block = true; }	
@@ -13,6 +14,15 @@ struct map_info
 	void reset_block() { block = false; }	
 	void reset_player() { player = false; }	
 	void reset_goal() { goal = false; }
+
+    bool isBlock() const { return block; }
+    bool isWall() const { return wall; }
+    bool isPlayer() const { return player; }
+    bool isGoal() const { return goal; }
+
+private:
+    int mMoveX;
+    int mMoveY;
 
 	bool block;
 	bool wall;

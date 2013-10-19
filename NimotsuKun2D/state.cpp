@@ -54,10 +54,10 @@ state::state(unsigned* map_data, unsigned x, unsigned y)
     for (unsigned y = 0; y < map.size_y; y++)
 	for (unsigned x = 0; x < map.size_x; x++)
     {
-        if (map(x,y).player)
+        if (map(x,y).isPlayer())
             player_position = point(x,y);
 
-        if (map(x,y).goal)
+        if (map(x,y).isGoal())
             goal_position.push_back(point(x,y));
     }
 }
@@ -102,18 +102,18 @@ bool state::update()
 	point direction = getInput();
 
 	point next_player_position = direction+player_position;
-	map_info info = map(next_player_position);
+	Object info = map(next_player_position);
 
-	if (info.wall)
+	if (info.isWall())
 	{
 		return false;
 	}
-	else if (info.block)
+	else if (info.isBlock())
 	{
 		point next_box_position = next_player_position+direction;
-		map_info next_block_info = map(next_box_position);
+		Object next_block_info = map(next_box_position);
 
-		if (next_block_info.block || next_block_info.wall)
+		if (next_block_info.isBlock() || next_block_info.isWall())
 		{
 			return false;
 		}
@@ -153,16 +153,16 @@ void state::draw() const
     for (unsigned y=0; y < map.size_y; y++) 
     for (unsigned x=0; x < map.size_x; x++) 
 	{
-        const map_info& info = map(x,y);
+        const Object& info = map(x,y);
 
-		if (info.wall) {
+		if (info.isWall()) {
 			drawCell(x, y, IMAGE_ID_WALL);
         } else {
 			drawCell(x, y, IMAGE_ID_SPACE);
 
-            if (info.goal)  drawCell(x, y, IMAGE_ID_GOAL);
-            if (info.block) drawCell(x, y, IMAGE_ID_BLOCK);
-			if (info.player) drawCell(x, y, IMAGE_ID_PLAYER);
+            if (info.isGoal())  drawCell(x, y, IMAGE_ID_GOAL);
+            if (info.isBlock()) drawCell(x, y, IMAGE_ID_BLOCK);
+			if (info.isPlayer()) drawCell(x, y, IMAGE_ID_PLAYER);
 		}
 	}
 }
@@ -171,7 +171,7 @@ int state::num_of_finished_box() const
 {
     int count = 0;
     for (auto it = goal_position.begin(); it != goal_position.end(); ++it)
-        if (map(*it).block) count++;
+        if (map(*it).isBlock()) count++;
     return count;
 }
 
