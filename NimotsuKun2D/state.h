@@ -9,14 +9,7 @@ struct point;
 class state
 {
 private:
-	enum ImageID {
-		IMAGE_ID_PLAYER,
-		IMAGE_ID_WALL,
-		IMAGE_ID_BLOCK,
-		IMAGE_ID_GOAL,
-		IMAGE_ID_SPACE,
-	};
-
+	int mMoveCount;
 	point player_position;
 	std::vector<point> goal_position;
 	bool bPlayerWantToQuit;
@@ -26,13 +19,12 @@ private:
 
 public:
     static state* initalize_state();
-	void draw() const;
 	bool update();
+	void draw() const;
 	bool is_finished() const;
 
 private:
 	state(unsigned* map_data, unsigned x, unsigned y);
-	void drawCell(int x, int y, ImageID id) const;
     int num_of_finished_box() const;
 };
 

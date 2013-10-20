@@ -41,6 +41,7 @@ state::state(unsigned* map_data, unsigned x, unsigned y)
     : map(x, y)
       , bPlayerWantToQuit(false)
       , game_obj_image("nimotsuKunImage2.dds")
+	  , mMoveCount(0)
 {
     for (unsigned i=0; i < map.size(); i++) {
         switch (map_data[i]) {
@@ -91,6 +92,19 @@ point getInput()
 
 bool state::update()
 {
+    if (mMoveCount == 32) {
+        mMoveCount = 0;
+
+        for (unsigned y = 0; y < map.size_y; y++)
+        for (unsigned x = 0; x < map.size_x; x++)
+            map(x,y).move(point(0,0));
+    }
+
+    if (mMoveCount > 0) {
+        ++mMoveCount;
+        return true;
+    }
+
 	GameLib::Framework f = GameLib::Framework::instance();
 
 	if (f.isKeyOn('q'))
@@ -104,67 +118,48 @@ bool state::update()
 	point next_player_position = direction+player_position;
 	Object info = map(next_player_position);
 
-	if (info.isWall())
-	{
+	if (info.isWall()) {
 		return false;
-	}
-	else if (info.isBlock())
-	{
+	} else if (info.isBlock()) {
 		point next_box_position = next_player_position+direction;
 		Object next_block_info = map(next_box_position);
 
-		if (next_block_info.isBlock() || next_block_info.isWall())
-		{
+		if (next_block_info.isBlock() || next_block_info.isWall()) {
 			return false;
-		}
-		else
-		{
+		} else {
 			// box move, player move			
 			map(player_position).reset_player();
 			map(next_player_position).set_player();
+			map(next_player_position).move(direction);
+
 			player_position = next_player_position;
 			map(next_player_position).reset_block();
 			map(next_box_position).set_block();
+			map(next_box_position).move(direction);
 
+            mMoveCount = 1;
 			return true;
 		}
-	}
-	// player move only.
-	else
-	{
+	} else { // player move only.  
 		map(player_position).reset_player();
 		map(next_player_position).set_player();
+		map(next_player_position).move(direction);
 		player_position = next_player_position;
+        mMoveCount = 1;
 	}
 
 	return true;
-}
-
-void state::drawCell(int dst_x, int dst_y, ImageID id) const
-{
-	static const size_t cell_size = 32;
-    game_obj_image.draw(cell_size*dst_x, cell_size*dst_y,
-                        cell_size*id, 0,
-                        cell_size, cell_size);
 }
 
 void state::draw() const
 {
     for (unsigned y=0; y < map.size_y; y++) 
     for (unsigned x=0; x < map.size_x; x++) 
-	{
-        const Object& info = map(x,y);
+        map(x,y).drawBackground(x, y, game_obj_image);
 
-		if (info.isWall()) {
-			drawCell(x, y, IMAGE_ID_WALL);
-        } else {
-			drawCell(x, y, IMAGE_ID_SPACE);
-
-            if (info.isGoal())  drawCell(x, y, IMAGE_ID_GOAL);
-            if (info.isBlock()) drawCell(x, y, IMAGE_ID_BLOCK);
-			if (info.isPlayer()) drawCell(x, y, IMAGE_ID_PLAYER);
-		}
-	}
+    for (unsigned y=0; y < map.size_y; y++) 
+    for (unsigned x=0; x < map.size_x; x++) 
+        map(x,y).drawForeground(x, y, game_obj_image, mMoveCount);
 }
 
 int state::num_of_finished_box() const

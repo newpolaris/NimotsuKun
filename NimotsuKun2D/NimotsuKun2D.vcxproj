@@ -92,6 +92,9 @@
       <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</IntrinsicFunctions>
       <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</WholeProgramOptimization>
     </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
     <ClCompile Include="source.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</IntrinsicFunctions>
@@ -107,7 +110,7 @@
     <ClInclude Include="Array2D.h" />
     <ClInclude Include="file.h" />
     <ClInclude Include="image.h" />
-    <ClInclude Include="map_info.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="state.h" />
   </ItemGroup>

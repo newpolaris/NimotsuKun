@@ -1,5 +1,9 @@
 #pragma once
 
+#include "point.h"
+
+struct Image;
+
 class Object 
 {
 public:
@@ -20,9 +24,22 @@ public:
     bool isPlayer() const { return player; }
     bool isGoal() const { return goal; }
 
+    void drawForeground(unsigned x, unsigned y, const Image& image, int count) const;
+    void drawBackground(unsigned x, unsigned y, const Image& image) const;
+    void move(const point& dir);
+
 private:
-    int mMoveX;
-    int mMoveY;
+	enum ImageID {
+		IMAGE_ID_PLAYER,
+		IMAGE_ID_WALL,
+		IMAGE_ID_BLOCK,
+		IMAGE_ID_GOAL,
+		IMAGE_ID_SPACE,
+	};
+
+    void drawCell(int dst_x, int dst_y, ImageID id, const Image& image, float fx=0.f, float fy=0.f) const;
+
+    point mDir;
 
 	bool block;
 	bool wall;
