@@ -177,3 +177,18 @@ bool state::is_finished() const
     return goal_position.size() == num_of_finished_box()
         || bPlayerWantToQuit;
 }
+
+int state::frameRate() const
+{
+	static unsigned gPreviousTime[10] = {0};
+
+	unsigned currentTime = GameLib::Framework::instance().time();
+	unsigned frameTime10 = currentTime - gPreviousTime[0];
+	for (int i = 0; i < 10-1; ++i) {
+		gPreviousTime[i] = gPreviousTime[i+1];
+	}
+
+	gPreviousTime[10-1] = currentTime;
+
+	return (int)1000*10/frameTime10;
+}
