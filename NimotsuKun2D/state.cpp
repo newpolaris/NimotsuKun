@@ -113,6 +113,8 @@ bool state::update()
 		return true;
 	}
 
+	if (is_finished()) f.requestEnd();
+
 	point direction = getInput();
 
 	point next_player_position = direction+player_position;
