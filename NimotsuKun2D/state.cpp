@@ -80,14 +80,7 @@ point getInput()
 	else if (f.isKeyOn('s'))
 		dy += 1;
 
-	static point prev = point(dx,dy);
-	
-	if (prev == point(dx,dy))
-		return point(0,0);
-	else
-	{
-		return prev=point(dx,dy);
-	}
+	return point(dx,dy);
 }
 
 bool state::update()
@@ -124,6 +117,8 @@ bool state::update()
 	if (is_finished()) f.requestEnd();
 
 	point direction = getInput();
+	if (direction == point(0,0))
+		return true;
 
 	point next_player_position = direction+player_position;
 	Object info = map(next_player_position);
