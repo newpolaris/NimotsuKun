@@ -92,6 +92,14 @@ point getInput()
 
 bool state::update()
 {
+	static const unsigned expected_delay = 16;
+	static unsigned previousFrameTime = 0;
+
+	while ((GameLib::Framework::instance().time() - previousFrameTime) < expected_delay) {
+		GameLib::Framework::instance().sleep(1);
+	}
+	previousFrameTime = GameLib::Framework::instance().time();
+
     if (mMoveCount == 32) {
         mMoveCount = 0;
 
