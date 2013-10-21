@@ -27,8 +27,8 @@ void Object::drawForeground(unsigned x, unsigned y, const Image& game_obj_image,
     }
 
     // next position is base.
-    float fx = -(float)mDir.x*(32-count)/32;
-    float fy = -(float)mDir.y*(32-count)/32;
+    float fx = -(float)mDir.x*(500-count)/500;
+    float fy = -(float)mDir.y*(500-count)/500;
 
     if (id != IMAGE_ID_SPACE) {
         drawCell(x, y, id, game_obj_image, fx, fy);

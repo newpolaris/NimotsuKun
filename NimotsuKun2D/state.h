@@ -9,6 +9,7 @@ struct point;
 class state
 {
 private:
+	bool m_bAnimation;
 	int mMoveCount;
 	point player_position;
 	std::vector<point> goal_position;

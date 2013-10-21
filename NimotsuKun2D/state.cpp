@@ -42,6 +42,7 @@ state::state(unsigned* map_data, unsigned x, unsigned y)
       , bPlayerWantToQuit(false)
       , game_obj_image("nimotsuKunImage2.dds")
 	  , mMoveCount(0)
+	  , m_bAnimation(false)
 {
     for (unsigned i=0; i < map.size(); i++) {
         switch (map_data[i]) {
@@ -80,36 +81,28 @@ point getInput()
 	else if (f.isKeyOn('s'))
 		dy += 1;
 
-	static point prev = point(dx,dy);
-	
-	if (prev == point(dx,dy))
-		return point(0,0);
-	else
-	{
-		return prev=point(dx,dy);
-	}
+	return point(dx,dy);
 }
 
 bool state::update()
 {
-	static const unsigned expected_delay = 16;
-	static unsigned previousFrameTime = 0;
+	static const unsigned expected_delay = 500;
+	static unsigned previousFrameTime = GameLib::Framework::instance().time();
+	const unsigned currentTime = GameLib::Framework::instance().time();
 
-	while ((GameLib::Framework::instance().time() - previousFrameTime) < expected_delay) {
-		GameLib::Framework::instance().sleep(1);
-	}
-	previousFrameTime = GameLib::Framework::instance().time();
+	unsigned elapseTime = currentTime - previousFrameTime;
+	previousFrameTime = currentTime; 
 
-    if (mMoveCount == 32) {
+    if (m_bAnimation && mMoveCount>= expected_delay) {
+		m_bAnimation = false;
         mMoveCount = 0;
-
         for (unsigned y = 0; y < map.size_y; y++)
         for (unsigned x = 0; x < map.size_x; x++)
             map(x,y).move(point(0,0));
     }
 
-    if (mMoveCount > 0) {
-        ++mMoveCount;
+    if (m_bAnimation) {
+		mMoveCount += elapseTime;
         return true;
     }
 
@@ -124,6 +117,8 @@ bool state::update()
 	if (is_finished()) f.requestEnd();
 
 	point direction = getInput();
+	if (direction == point(0,0))
+		return true;
 
 	point next_player_position = direction+player_position;
 	Object info = map(next_player_position);
@@ -147,7 +142,7 @@ bool state::update()
 			map(next_box_position).set_block();
 			map(next_box_position).move(direction);
 
-            mMoveCount = 1;
+            m_bAnimation = true;
 			return true;
 		}
 	} else { // player move only.  
@@ -155,7 +150,7 @@ bool state::update()
 		map(next_player_position).set_player();
 		map(next_player_position).move(direction);
 		player_position = next_player_position;
-        mMoveCount = 1;
+        m_bAnimation = true;
 	}
 
 	return true;
