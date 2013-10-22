@@ -30,7 +30,7 @@ point findOutMapSize(buffer_type& buffer)
 
 state* state::initalize_state()
 {
-    buffer_type stageFile(fileRead("stage/1.stage"));
+    buffer_type stageFile(fileRead("data/stageData/2.txt"));
     point size = findOutMapSize(stageFile);
 
     using GameLib::cout;
@@ -54,17 +54,25 @@ state* state::initalize_state()
 state::state(buffer_value_type* map_data, unsigned x, unsigned y)
     : map(x, y)
     , bPlayerWantToQuit(false)
-    , game_obj_image("nimotsuKunImage2.dds")
+    , game_obj_image("data/image/nimotsuKunImage2.dds")
 	, mMoveCount(0)
 {
-	int count = 0;
+	unsigned count = 0;
 	int idx = 0;
 	while (count <= map.size()) {
         switch (map_data[idx++]) {
             case '#': map[count++].set_wall(); break;
-            case 'P': map[count++].set_player(); break;
+            case 'p': map[count++].set_player(); break;
+            case 'P': 
+				map[count].set_goal(); ;
+				map[count++].set_player();
+				break;
             case '.': map[count++].set_goal(); break;
-            case 'B': map[count++].set_block(); break;
+            case 'o': map[count++].set_block(); break;
+            case 'O': 
+				map[count].set_block();
+				map[count++].set_goal();
+				break;
             case ' ': count++; break;
             case '\n': break;
             default: break;
