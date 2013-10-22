@@ -4,26 +4,40 @@
 
 #include "state.h"
 #include "point.h"
+#include "file.h"
 #include "GameLib\Framework.h"
+
+point findOutMapSize(buffer_type& buffer)
+{
+	int arr[2]={0};
+	int arr_idx = 0;
+
+    for (unsigned i=0; i < buffer.size(); ++i)
+    {
+        if (buffer[i] == '\n') {
+            arr[arr_idx++] = i-1;
+
+			if (arr_idx == 2)
+				break;
+        }
+    }
+
+    int x = arr[0];
+	const static int max_line_end_simbol = 2;
+    int y = static_cast<int>((buffer.size()+max_line_end_simbol)/(arr[1]-arr[0]));
+    return point(x, y);
+}
 
 state* state::initalize_state()
 {
-	static const int MAP_SIZE_X = 8;
-	static const int MAP_SIZE_Y = 5;
-
-	// load initial game status
-	static unsigned state_map[MAP_SIZE_Y*MAP_SIZE_X] = { 
-		'#','#','#','#','#','#','#','#',
-		'#',' ','.','.',' ','P',' ','#',
-		'#',' ','B','B',' ',' ',' ','#',
-		'#',' ',' ',' ',' ',' ',' ','#',
-		'#','#','#','#','#','#','#','#' };
+    buffer_type stageFile(fileRead("stage/1.stage"));
+    point size = findOutMapSize(stageFile);
 
     using GameLib::cout;
     using GameLib::endl;
 
     try {
-        return new state(state_map, MAP_SIZE_X, MAP_SIZE_Y);
+		return new state(stageFile.data(), size.x, size.y);
     }
     catch (std::ifstream::failure e) {
         cout << "File Read Failure" << endl; 
@@ -37,18 +51,23 @@ state* state::initalize_state()
     }
 }
 
-state::state(unsigned* map_data, unsigned x, unsigned y)
+state::state(buffer_value_type* map_data, unsigned x, unsigned y)
     : map(x, y)
-      , bPlayerWantToQuit(false)
-      , game_obj_image("nimotsuKunImage2.dds")
-	  , mMoveCount(0)
+    , bPlayerWantToQuit(false)
+    , game_obj_image("nimotsuKunImage2.dds")
+	, mMoveCount(0)
 {
-    for (unsigned i=0; i < map.size(); i++) {
-        switch (map_data[i]) {
-            case '#': map[i].set_wall(); break;
-            case 'P': map[i].set_player(); break;
-            case '.': map[i].set_goal(); break;
-            case 'B': map[i].set_block(); break;
+	int count = 0;
+	int idx = 0;
+	while (count <= map.size()) {
+        switch (map_data[idx++]) {
+            case '#': map[count++].set_wall(); break;
+            case 'P': map[count++].set_player(); break;
+            case '.': map[count++].set_goal(); break;
+            case 'B': map[count++].set_block(); break;
+            case ' ': count++; break;
+            case '\n': break;
+            default: break;
         }
     }
 

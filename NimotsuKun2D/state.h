@@ -24,7 +24,7 @@ public:
 	bool is_finished() const;
 
 private:
-	state(unsigned* map_data, unsigned x, unsigned y);
+	state(char* map_data, unsigned x, unsigned y);
     int num_of_finished_box() const;
 	int frameRate() const;
 };
