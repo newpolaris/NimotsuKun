@@ -69,7 +69,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\newpolaris\Projects\GameLib2010\Sequence1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\NimotsuKun2D;$(SolutionDir)\NimotsuKun2D\Sequence;C:\Users\newpolaris\Projects\GameLib2010\Sequence1\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -87,6 +87,7 @@
       <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</IntrinsicFunctions>
       <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</WholeProgramOptimization>
     </ClCompile>
+    <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="image.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</IntrinsicFunctions>
@@ -95,24 +96,19 @@
     <ClCompile Include="Object.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="source.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
-      <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</IntrinsicFunctions>
-      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</WholeProgramOptimization>
-    </ClCompile>
-    <ClCompile Include="state.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
-      <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</IntrinsicFunctions>
-      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</WholeProgramOptimization>
-    </ClCompile>
+    <ClCompile Include="Sequence\Game.cpp" />
+    <ClCompile Include="Sequence\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array2D.h" />
     <ClInclude Include="file.h" />
+    <ClInclude Include="GameInstance.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="point.h" />
-    <ClInclude Include="state.h" />
+    <ClInclude Include="Sequence\Sequence.h" />
+    <ClInclude Include="Sequence\Game.h" />
+    <ClInclude Include="Sequence\Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

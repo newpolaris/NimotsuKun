@@ -2,7 +2,7 @@
 #include <fstream>
 #include <cassert>
 
-#include "state.h"
+#include "Game.h"
 #include "point.h"
 #include "file.h"
 #include "GameLib\Framework.h"
@@ -28,7 +28,7 @@ point findOutMapSize(buffer_type& buffer)
     return point(x, y);
 }
 
-state* state::initalize_state()
+Game* Game::initalize_Game()
 {
     buffer_type stageFile(fileRead("data/stageData/2.txt"));
     point size = findOutMapSize(stageFile);
@@ -37,7 +37,7 @@ state* state::initalize_state()
     using GameLib::endl;
 
     try {
-		return new state(stageFile.data(), size.x, size.y);
+		return new Game(stageFile.data(), size.x, size.y);
     }
     catch (std::ifstream::failure e) {
         cout << "File Read Failure" << endl; 
@@ -51,7 +51,7 @@ state* state::initalize_state()
     }
 }
 
-state::state(buffer_value_type* map_data, unsigned x, unsigned y)
+Game::Game(buffer_value_type* map_data, unsigned x, unsigned y)
     : map(x, y)
     , bPlayerWantToQuit(false)
     , game_obj_image("data/image/nimotsuKunImage2.dds")
@@ -110,7 +110,13 @@ point getInput()
 	return point(dx,dy);
 }
 
-bool state::update()
+void Game::update()
+{
+	draw();
+	game_update();
+}
+
+bool Game::game_update()
 {
 	static const unsigned expected_delay = 16;
 	static unsigned previousFrameTime = 0;
@@ -183,7 +189,7 @@ bool state::update()
 	return true;
 }
 
-void state::draw() const
+void Game::draw() const
 {
     for (unsigned y=0; y < map.size_y; y++) 
     for (unsigned x=0; x < map.size_x; x++) 
@@ -194,7 +200,7 @@ void state::draw() const
         map(x,y).drawForeground(x, y, game_obj_image, mMoveCount);
 }
 
-int state::num_of_finished_box() const
+int Game::num_of_finished_box() const
 {
     int count = 0;
     for (auto it = goal_position.begin(); it != goal_position.end(); ++it)
@@ -202,13 +208,13 @@ int state::num_of_finished_box() const
     return count;
 }
 
-bool state::is_finished() const
+bool Game::is_finished() const
 {
     return goal_position.size() == num_of_finished_box()
         || bPlayerWantToQuit;
 }
 
-int state::frameRate() const
+int Game::frameRate() const
 {
 	static unsigned gPreviousTime[10] = {0};
 

@@ -6,7 +6,7 @@
 
 struct point;
 
-class state
+class Game
 {
 private:
 	int mMoveCount;
@@ -18,13 +18,14 @@ private:
     Array2D<Object> map;
 
 public:
-    static state* initalize_state();
-	bool update();
-	void draw() const;
+    static Game* initalize_Game();
+	void update();
 	bool is_finished() const;
 
 private:
-	state(char* map_data, unsigned x, unsigned y);
+	Game(char* map_data, unsigned x, unsigned y);
+	bool game_update();
+	void draw() const;
     int num_of_finished_box() const;
 	int frameRate() const;
 };

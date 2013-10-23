@@ -13,22 +13,28 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Sequence">
+      <UniqueIdentifier>{4a17a15a-dcd8-4875-ad10-87dd9ec4750c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="state.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInstance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Title.cpp">
+      <Filter>Source Files\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game.cpp">
+      <Filter>Source Files\Sequence</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,11 +50,20 @@
     <ClInclude Include="Array2D.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="state.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInstance.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Title.h">
+      <Filter>Source Files\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Sequence.h">
+      <Filter>Source Files\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game.h">
+      <Filter>Source Files\Sequence</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
