@@ -87,7 +87,9 @@
       <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</IntrinsicFunctions>
       <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</WholeProgramOptimization>
     </ClCompile>
-    <ClCompile Include="GameInstance.cpp" />
+    <ClCompile Include="GameInstance.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
     <ClCompile Include="image.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</IntrinsicFunctions>
@@ -96,7 +98,21 @@
     <ClCompile Include="Object.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="Sequence\Game.cpp" />
+    <ClCompile Include="Sequence\Clear.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
+    <ClCompile Include="Sequence\Loading.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
+    <ClCompile Include="Sequence\Menu.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
+    <ClCompile Include="Sequence\StageSelect.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
     <ClCompile Include="Sequence\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -106,8 +122,12 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="point.h" />
+    <ClInclude Include="Sequence\Clear.h" />
+    <ClInclude Include="Sequence\Loading.h" />
+    <ClInclude Include="Sequence\Menu.h" />
     <ClInclude Include="Sequence\Sequence.h" />
     <ClInclude Include="Sequence\Game.h" />
+    <ClInclude Include="Sequence\StageSelect.h" />
     <ClInclude Include="Sequence\Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

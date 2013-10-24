@@ -5,7 +5,11 @@
 void Title::input()
 {
 	if (GameLib::Framework::instance().isKeyTriggered(' '))
-		gameInstance().requestSequence(SEQUENCE_GAME);
+		gameInstance().requestSequence(SEQUENCE_STAGE_SELECT);
+
+	auto f = GameLib::Framework::instance();
+    if (f.isKeyTriggered('q'))
+		f.requestEnd();
 }
 
 void Title::draw()

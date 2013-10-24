@@ -3,10 +3,11 @@
 #include "Object.h"
 #include "Array2D.h"
 #include "image.h"
+#include "Sequence.h"
 
 struct point;
 
-class Game
+class Game : public Sequence
 {
 private:
 	int mMoveCount;
@@ -18,14 +19,14 @@ private:
     Array2D<Object> map;
 
 public:
-    static Game* initalize_Game();
+    static Game* initalizeWithStage(int stage);
 	void update();
-	bool is_finished() const;
+	void draw() const;
 
 private:
 	Game(char* map_data, unsigned x, unsigned y);
 	bool game_update();
-	void draw() const;
+	bool is_finished() const;
     int num_of_finished_box() const;
 	int frameRate() const;
 };
