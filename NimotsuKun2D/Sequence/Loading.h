@@ -3,11 +3,10 @@
 #include "Sequence.h"
 #include "image.h"
 
-class Title : public Sequence
+class Loading : public Sequence
 {
 public:
-	Title() : titleImage("data/image/title.dds") {}
-
+	Loading();
 	void update()
 	{
 		draw();
@@ -18,5 +17,6 @@ private:
 	void input();
 	void draw();
 
-	Image titleImage;
+	int m_startTime;
+	Image image;
 };

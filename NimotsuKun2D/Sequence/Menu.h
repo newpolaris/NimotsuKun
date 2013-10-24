@@ -3,10 +3,10 @@
 #include "Sequence.h"
 #include "image.h"
 
-class Title : public Sequence
+class Menu : public Sequence
 {
 public:
-	Title() : titleImage("data/image/title.dds") {}
+	Menu() : titleImage("data/image/menu.dds") {}
 
 	void update()
 	{

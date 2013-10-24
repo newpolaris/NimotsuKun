@@ -6,6 +6,7 @@
 #include "point.h"
 #include "file.h"
 #include "GameLib\Framework.h"
+#include "GameInstance.h"
 
 point findOutMapSize(buffer_type& buffer)
 {
@@ -28,9 +29,14 @@ point findOutMapSize(buffer_type& buffer)
     return point(x, y);
 }
 
-Game* Game::initalize_Game()
+Game* Game::initalizeWithStage(int stage)
 {
-    buffer_type stageFile(fileRead("data/stageData/2.txt"));
+	static std::string path("data/stageData/");
+	static std::string extension(".txt");
+	std::string stageStr(std::to_string((long long)stage));
+	std::string fullPath = path + stageStr + extension; 
+
+    buffer_type stageFile(fileRead(fullPath));
     point size = findOutMapSize(stageFile);
 
     using GameLib::cout;
@@ -118,10 +124,10 @@ void Game::update()
 
 bool Game::game_update()
 {
-	static const unsigned expected_delay = 16;
+	static const unsigned expected_delay = 8;
 	static unsigned previousFrameTime = 0;
 
-	while ((GameLib::Framework::instance().time() - previousFrameTime) < expected_delay) {
+	while ((GameLib::Framework::instance().time()-previousFrameTime) < expected_delay) {
 		GameLib::Framework::instance().sleep(1);
 	}
 	previousFrameTime = GameLib::Framework::instance().time();
@@ -141,13 +147,16 @@ bool Game::game_update()
 
 	GameLib::Framework f = GameLib::Framework::instance();
 
-	if (f.isKeyOn('q'))
-	{
-		bPlayerWantToQuit = true;
+	if (f.isKeyOn('q')) {
+        f.requestEnd();
 		return true;
-	}
+    } else if (f.isKeyOn(' ')) {
+		gameInstance().requestSequence(SEQUENCE_MENU);
+        return true;
+    }
 
-	if (is_finished()) f.requestEnd();
+	if (is_finished())
+		gameInstance().requestSequence(SEQUENCE_CLEAR);
 
 	point direction = getInput();
 	if (direction == point(0,0))

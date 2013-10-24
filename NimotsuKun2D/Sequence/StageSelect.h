@@ -3,10 +3,10 @@
 #include "Sequence.h"
 #include "image.h"
 
-class Title : public Sequence
+class StageSelect : public Sequence
 {
 public:
-	Title() : titleImage("data/image/title.dds") {}
+	StageSelect() : image("data/image/stageSelect.dds") {}
 
 	void update()
 	{
@@ -18,5 +18,5 @@ private:
 	void input();
 	void draw();
 
-	Image titleImage;
+	Image image;
 };

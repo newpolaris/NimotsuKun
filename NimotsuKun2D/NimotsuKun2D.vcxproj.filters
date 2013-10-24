@@ -36,6 +36,18 @@
     <ClCompile Include="Sequence\Game.cpp">
       <Filter>Source Files\Sequence</Filter>
     </ClCompile>
+    <ClCompile Include="Sequence\Loading.cpp">
+      <Filter>Source Files\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\StageSelect.cpp">
+      <Filter>Source Files\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Clear.cpp">
+      <Filter>Source Files\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Menu.cpp">
+      <Filter>Source Files\Sequence</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="file.h">
@@ -63,6 +75,18 @@
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
     <ClInclude Include="Sequence\Game.h">
+      <Filter>Source Files\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Loading.h">
+      <Filter>Source Files\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\StageSelect.h">
+      <Filter>Source Files\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Clear.h">
+      <Filter>Source Files\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Menu.h">
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
   </ItemGroup>
