@@ -25,11 +25,16 @@ bool GameInstance::initGameObj()
 	return true;
 }
 
+void GameInstance::reset()
+{
+	game_->reset(); 
+}
+
 void GameInstance::update() 
 {
 	sequence_->update();
 
-	if (mReqSequence != mSequence || m_bReInit)
+	if (mReqSequence != mSequence)
 		changeSequence();
 }
 
@@ -57,8 +62,8 @@ void GameInstance::drawBlackPanel()
     unsigned windowWidth  = GameLib::Framework::instance().width();
     unsigned windowHeight = GameLib::Framework::instance().height();
 
-    for (int y=0; y < windowHeight; ++y)
-    for (int x=0; x < windowWidth;  ++x)
+    for (unsigned y=0; y < windowHeight; ++y)
+    for (unsigned x=0; x < windowWidth;  ++x)
 	{
 		size_t dst_pos = y*windowWidth+x;
 		unsigned dst = vram[dst_pos];
@@ -77,7 +82,6 @@ void GameInstance::drawBlackPanel()
 
 void GameInstance::changeSequence()
 {
-	m_bReInit = false;
     clearScreen();
 
 	mSequence = mReqSequence;
@@ -98,7 +102,6 @@ void GameInstance::changeSequence()
 		sequence_ = game_;
 		break;
 	case SEQUENCE_CLEAR:
-		game_.reset();
 		sequence_.reset(new Clear());
 		break;
 
@@ -115,6 +118,5 @@ void GameInstance::changeSequence()
 GameInstance::GameInstance() 
 	: mSequence(SEQUENCE_TITLE)
 	, m_stage(0)
-	, sequence_(new Title())
-	, m_bReInit(false) {}
+	, sequence_(new Title()) {}
 

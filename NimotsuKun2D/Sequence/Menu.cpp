@@ -22,7 +22,7 @@ void Menu::input()
 
     switch ( inputNumber ) {
         case 1: // やりなおし
-            gameInstance().reinit();
+            gameInstance().reset();
             gameInstance().requestSequence(SEQUENCE_GAME);
             break;
         case 2: // 面セレへ

@@ -35,13 +35,12 @@ Game* Game::initalizeWithStage(int stage)
     std::ostringstream oss;
     oss << "data/stageData/" << stage << ".txt";
     buffer_type stageFile(fileRead(oss.str())); //これでstringが取れる(とれる)
-    point size = findOutMapSize(stageFile);
 
     using GameLib::cout;
     using GameLib::endl;
 
     try {
-		return new Game(stageFile.data(), size.x, size.y);
+		return new Game(stageFile);
     }
     catch (std::ifstream::failure e) {
         cout << "File Read Failure" << endl; 
@@ -55,16 +54,33 @@ Game* Game::initalizeWithStage(int stage)
     }
 }
 
-Game::Game(buffer_value_type* map_data, unsigned x, unsigned y)
-    : map(x, y)
-    , bPlayerWantToQuit(false)
+Game::Game(buffer_type& stageData)
+    : bPlayerWantToQuit(false)
     , game_obj_image("data/image/nimotsuKunImage2.dds")
 	, mMoveCount(0)
+	, mStageData(stageData)
+	, mSize(findOutMapSize(stageData))
+	, map(mSize.x, mSize.y)
 {
+    reset();
+}
+
+void Game::reset() 
+{
+	goal_position.clear();
+
+	for (auto i=0; i < map.size(); i++)
+	{
+		map[i].reset_block();
+		map[i].reset_goal();
+		map[i].reset_player();
+		map[i].reset_wall();
+	}
+
 	unsigned count = 0;
 	int idx = 0;
 	while (count <= map.size()) {
-        switch (map_data[idx++]) {
+        switch (mStageData[idx++]) {
             case '#': map[count++].set_wall(); break;
             case 'p': map[count++].set_player(); break;
             case 'P': 
