@@ -6,26 +6,17 @@ void StageSelect::input()
 {
 	auto f = GameLib::Framework::instance();
 
+	// 入力(にゅうりょく)取得(しゅとく)
 	int stage = 0;
 
-	if (f.isKeyTriggered('1'))
-		stage = 1;
-	else if (f.isKeyTriggered('2'))
-		stage = 2;
-	else if (f.isKeyTriggered('3'))
-		stage = 3;
-	else if (f.isKeyTriggered('4'))
-		stage = 4;
-	else if (f.isKeyTriggered('5'))
-		stage = 5;
-	else if (f.isKeyTriggered('6'))
-		stage = 6;
-	else if (f.isKeyTriggered('7'))
-		stage = 7;
-	else if (f.isKeyTriggered('8'))
-		stage = 8;
-	else if (f.isKeyTriggered('9'))
-		stage = 9;
+	// 添え(そえ)字がずれると厄介(やっかい)なので0も入れ(いれ)ておく
+    // 첨자가 어긋나면 귀찮은 것으로 0도 넣어 둔다
+    char numberChars[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    for ( int i = 0; i < 10; ++i ) {
+        if (GameLib::Framework::instance().isKeyTriggered( numberChars[ i ] ) ) {
+            stage = i;
+        }
+    }
 
 	if (stage != 0) {
 		gameInstance().changeStage(stage);
