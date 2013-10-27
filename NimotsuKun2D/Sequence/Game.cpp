@@ -1,6 +1,7 @@
 #include <vector>
 #include <fstream>
 #include <cassert>
+#include <sstream>
 
 #include "Game.h"
 #include "point.h"
@@ -31,12 +32,9 @@ point findOutMapSize(buffer_type& buffer)
 
 Game* Game::initalizeWithStage(int stage)
 {
-	static std::string path("data/stageData/");
-	static std::string extension(".txt");
-	std::string stageStr(std::to_string((long long)stage));
-	std::string fullPath = path + stageStr + extension; 
-
-    buffer_type stageFile(fileRead(fullPath));
+    std::ostringstream oss;
+    oss << "data/stageData/" << stage << ".txt";
+    buffer_type stageFile(fileRead(oss.str())); //これでstringが取れる(とれる)
     point size = findOutMapSize(stageFile);
 
     using GameLib::cout;
