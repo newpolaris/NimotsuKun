@@ -8,7 +8,7 @@
 
 struct point;
 
-class Game : public Sequence
+class State : public Sequence
 {
 private:
 	int mMoveCount;
@@ -22,13 +22,13 @@ private:
 	buffer_type mStageData;
 
 public:
-    static Game* initalizeWithStage(int stage);
+    static State* initalizeWithStage(int stage);
 	void update();
 	void draw() const;
 	void reset();
 
 private:
-	Game(buffer_type& stageData);
+	State(buffer_type& stageData);
 	bool game_update();
 	bool is_finished() const;
     int num_of_finished_box() const;

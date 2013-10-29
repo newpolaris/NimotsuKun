@@ -20,11 +20,11 @@ public:
 	void drawBlackPanel();
 	void reset();
 
-	const std::shared_ptr<Game>& GameObj() const { return game_; }
+	const std::shared_ptr<State>& GameObj() const { return game_; }
 
 private:
 	std::shared_ptr<Sequence> sequence_;
-	std::shared_ptr<Game> game_;
+	std::shared_ptr<State> game_;
 
 	int m_stage;
 

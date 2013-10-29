@@ -21,7 +21,7 @@ GameInstance& gameInstance()
 
 bool GameInstance::initGameObj()
 {
-	game_.reset(Game::initalizeWithStage(m_stage));
+	game_.reset(State::initalizeWithStage(m_stage));
 	return true;
 }
 

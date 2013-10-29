@@ -30,7 +30,7 @@ point findOutMapSize(buffer_type& buffer)
     return point(x, y);
 }
 
-Game* Game::initalizeWithStage(int stage)
+State* State::initalizeWithStage(int stage)
 {
     std::ostringstream oss;
     oss << "data/stageData/" << stage << ".txt";
@@ -40,7 +40,7 @@ Game* Game::initalizeWithStage(int stage)
     using GameLib::endl;
 
     try {
-		return new Game(stageFile);
+		return new State(stageFile);
     }
     catch (std::ifstream::failure e) {
         cout << "File Read Failure" << endl; 
@@ -54,7 +54,7 @@ Game* Game::initalizeWithStage(int stage)
     }
 }
 
-Game::Game(buffer_type& stageData)
+State::State(buffer_type& stageData)
     : bPlayerWantToQuit(false)
     , game_obj_image("data/image/nimotsuKunImage2.dds")
 	, mMoveCount(0)
@@ -65,7 +65,7 @@ Game::Game(buffer_type& stageData)
     reset();
 }
 
-void Game::reset() 
+void State::reset() 
 {
 	goal_position.clear();
 
@@ -130,13 +130,13 @@ point getInput()
 	return point(dx,dy);
 }
 
-void Game::update()
+void State::update()
 {
 	draw();
 	game_update();
 }
 
-bool Game::game_update()
+bool State::game_update()
 {
 	static const unsigned expected_delay = 8;
 	static unsigned previousFrameTime = 0;
@@ -212,7 +212,7 @@ bool Game::game_update()
 	return true;
 }
 
-void Game::draw() const
+void State::draw() const
 {
     for (unsigned y=0; y < map.size_y; y++) 
     for (unsigned x=0; x < map.size_x; x++) 
@@ -223,7 +223,7 @@ void Game::draw() const
         map(x,y).drawForeground(x, y, game_obj_image, mMoveCount);
 }
 
-int Game::num_of_finished_box() const
+int State::num_of_finished_box() const
 {
     int count = 0;
     for (auto it = goal_position.begin(); it != goal_position.end(); ++it)
@@ -231,13 +231,13 @@ int Game::num_of_finished_box() const
     return count;
 }
 
-bool Game::is_finished() const
+bool State::is_finished() const
 {
     return goal_position.size() == num_of_finished_box()
         || bPlayerWantToQuit;
 }
 
-int Game::frameRate() const
+int State::frameRate() const
 {
 	static unsigned gPreviousTime[10] = {0};
 
