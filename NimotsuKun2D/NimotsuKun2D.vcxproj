@@ -87,9 +87,6 @@
       <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</IntrinsicFunctions>
       <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</WholeProgramOptimization>
     </ClCompile>
-    <ClCompile Include="GameInstance.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
-    </ClCompile>
     <ClCompile Include="image.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</IntrinsicFunctions>
@@ -98,35 +95,46 @@
     <ClCompile Include="Object.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="Sequence\Clear.cpp">
+    <ClCompile Include="Sequence\GameInstance.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="Sequence\Game.cpp">
+    <ClCompile Include="Sequence\Game\Clear.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
+    <ClCompile Include="Sequence\Game\Menu.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Parent.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Play.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\State.cpp" />
     <ClCompile Include="Sequence\Loading.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
-    </ClCompile>
-    <ClCompile Include="Sequence\Menu.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="Sequence\StageSelect.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="Sequence\Title.cpp" />
+    <ClCompile Include="Sequence\Title.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array2D.h" />
     <ClInclude Include="file.h" />
-    <ClInclude Include="GameInstance.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="point.h" />
-    <ClInclude Include="Sequence\Clear.h" />
+    <ClInclude Include="Sequence\GameInstance.h" />
+    <ClInclude Include="Sequence\Game\Clear.h" />
+    <ClInclude Include="Sequence\Game\Menu.h" />
+    <ClInclude Include="Sequence\Game\Parent.h" />
+    <ClInclude Include="Sequence\Game\Play.h" />
+    <ClInclude Include="Sequence\Game\State.h" />
     <ClInclude Include="Sequence\Loading.h" />
-    <ClInclude Include="Sequence\Menu.h" />
     <ClInclude Include="Sequence\Sequence.h" />
-    <ClInclude Include="Sequence\Game.h" />
     <ClInclude Include="Sequence\StageSelect.h" />
     <ClInclude Include="Sequence\Title.h" />
   </ItemGroup>

@@ -3,7 +3,7 @@
 #include <cassert>
 #include <sstream>
 
-#include "Game.h"
+#include "Parent.h"
 #include "point.h"
 #include "file.h"
 #include "GameLib\Framework.h"

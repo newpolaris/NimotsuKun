@@ -1,7 +1,7 @@
 #include "GameLib/Framework.h"
 #include "GameInstance.h"
 #include "Menu.h"
-#include "Sequence/Game.h"
+#include "Sequence/Game/Parent.h"
 
 void Menu::input()
 {

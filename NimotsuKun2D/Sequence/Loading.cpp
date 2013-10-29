@@ -1,7 +1,7 @@
 #include "GameLib/Framework.h"
 #include "Loading.h"
 #include "GameInstance.h"
-#include "Sequence/Game.h"
+#include "Sequence/Game/Parent.h"
 
 Loading::Loading()
 	: image("data/image/loading.dds")

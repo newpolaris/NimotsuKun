@@ -1,9 +1,9 @@
 #include "GameInstance.h"
 #include "Sequence/Title.h"
-#include "Sequence/Game.h"
+#include "Sequence/Game/Parent.h"
 #include "Sequence/StageSelect.h"
-#include "Sequence/Clear.h"
-#include "Sequence/Menu.h"
+#include "Sequence/Game/Clear.h"
+#include "Sequence/Game/Menu.h"
 #include "Sequence/Loading.h"
 #include "GameLib/Framework.h"
 

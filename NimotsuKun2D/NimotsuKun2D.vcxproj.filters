@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Sequence">
       <UniqueIdentifier>{4a17a15a-dcd8-4875-ad10-87dd9ec4750c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Sequence\Game">
+      <UniqueIdentifier>{af82a72c-c187-4325-bd14-df9905e983d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="image.cpp">
@@ -27,13 +30,7 @@
     <ClCompile Include="Object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameInstance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\Title.cpp">
-      <Filter>Source Files\Sequence</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\Game.cpp">
+    <ClCompile Include="Sequence\GameInstance.cpp">
       <Filter>Source Files\Sequence</Filter>
     </ClCompile>
     <ClCompile Include="Sequence\Loading.cpp">
@@ -42,11 +39,23 @@
     <ClCompile Include="Sequence\StageSelect.cpp">
       <Filter>Source Files\Sequence</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\Clear.cpp">
+    <ClCompile Include="Sequence\Title.cpp">
       <Filter>Source Files\Sequence</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\Menu.cpp">
-      <Filter>Source Files\Sequence</Filter>
+    <ClCompile Include="Sequence\Game\Clear.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Menu.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Parent.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Play.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\State.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,29 +74,35 @@
     <ClInclude Include="Object.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameInstance.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence\Title.h">
-      <Filter>Source Files\Sequence</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence\Sequence.h">
-      <Filter>Source Files\Sequence</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence\Game.h">
+    <ClInclude Include="Sequence\GameInstance.h">
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
     <ClInclude Include="Sequence\Loading.h">
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
+    <ClInclude Include="Sequence\Sequence.h">
+      <Filter>Source Files\Sequence</Filter>
+    </ClInclude>
     <ClInclude Include="Sequence\StageSelect.h">
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\Clear.h">
+    <ClInclude Include="Sequence\Title.h">
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\Menu.h">
-      <Filter>Source Files\Sequence</Filter>
+    <ClInclude Include="Sequence\Game\Clear.h">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\Menu.h">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\Parent.h">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\Play.h">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\State.h">
+      <Filter>Source Files\Sequence\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

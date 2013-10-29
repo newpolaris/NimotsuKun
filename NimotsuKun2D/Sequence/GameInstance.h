@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "Sequence/Sequence.h"
+#include "Sequence/Game/State.h"
 
 class Title;
 class Game;

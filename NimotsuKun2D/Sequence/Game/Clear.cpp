@@ -1,8 +1,8 @@
 #include "GameLib/Framework.h"
 #include "Clear.h"
 #include "GameInstance.h"
-#include "Sequence\Game.h"
-
+#include "Sequence/Game/Parent.h"
+	
 Clear::Clear() : image("data/image/clear.dds")
 {
 	m_startTime = GameLib::Framework::instance().time();
