@@ -1,35 +1,38 @@
 #pragma once
 
-#include <memory>
-#include "Sequence/Sequence.h"
-#include "Sequence/Game/State.h"
+namespace Sequence{
 
 class Title;
-class Game;
+class StageSelect;
+
+namespace Game {
+	class Parent;
+}
 
 class GameInstance
 {
 public:
-	GameInstance();
-	void update();
-	void changeSequence();
-	void requestSequence(SequenceType seq);
-	void clearScreen();
-	bool initGameObj();	
-	void changeStage(int stage) { m_stage=stage; }
-	void drawBlackPanel();
-	void reset();
+	enum SeqID{
+		SEQUENCE_STAGE_SELECT,
+		SEQUENCE_TITLE,
+		SEQUENCE_GAME,
+		SEQUENCE_NONE,
+	};
 
-	const std::shared_ptr<State>& GameObj() const { return game_; }
+	GameInstance();
+	~GameInstance();
+	void update();
+
+	void moveTo( SeqID );
+	void setStageID( int stageID );
 
 private:
-	std::shared_ptr<Sequence> sequence_;
-	std::shared_ptr<State> game_;
+	StageSelect* mStageSelect;
+	Title* mTitle;
+    Game::Parent* mGame;
 
-	int m_stage;
-
-	SequenceType mReqSequence;
-	SequenceType mSequence;
+	SeqID mNext;
+    int mStageID;
 };
 
-GameInstance& gameInstance();
+} //namespace Sequence

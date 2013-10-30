@@ -15,15 +15,7 @@ public:
 
 	unsigned width() const { return m_width; }
 
-	value_type operator[](int i) const
-	{
-		return m_image[i];
-	}
-	value_type operator()(int x, int y) const
-	{
-		return m_image[ y * m_width + x ];
-	}
-
+	void draw() const;
 	void draw(int dstX, int dstY, int srcX, int srcY, int srcW, int srcH) const; 
 
 	unsigned m_width;

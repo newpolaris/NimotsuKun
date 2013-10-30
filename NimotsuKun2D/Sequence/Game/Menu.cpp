@@ -1,9 +1,15 @@
+#include "GameLib/GameLib.h"
 #include "GameLib/Framework.h"
-#include "GameInstance.h"
-#include "Menu.h"
+using namespace GameLib;
+
+#include "State.h"
+#include "Sequence/Game/Menu.h"
 #include "Sequence/Game/Parent.h"
 
-void Menu::input()
+namespace Sequence{
+namespace Game{
+
+void Menu::update(Parent* parent)
 {
 	// 1:やりなおし(다시 고쳐 하기)
 	// 2:面セレへ
@@ -20,34 +26,28 @@ void Menu::input()
         }
     }
 
-    switch ( inputNumber ) {
-        case 1: // やりなおし
-            gameInstance().reset();
-            gameInstance().requestSequence(SEQUENCE_GAME);
-            break;
-        case 2: // 面セレへ
-            gameInstance().requestSequence(SEQUENCE_STAGE_SELECT);
+	switch ( inputNumber ){
+		case 1: //やりなおし
+			parent->state()->reset();
+			parent->moveTo( Parent::SEQUENCE_PLAY );
 			break;
-		case 3: // タイトルへ
-            gameInstance().requestSequence(SEQUENCE_TITLE);
+		case 2: //面セレへ
+			parent->moveTo( Parent::SEQUENCE_STAGE_SELECT );
 			break;
-		case 4: // そのまま戻る
-            gameInstance().requestSequence(SEQUENCE_GAME);
+		case 3: //タイトルへ
+			parent->moveTo( Parent::SEQUENCE_TITLE );
 			break;
-		default: // その他(ほか)は無視(むし)
+		case 4: //そのまま戻る
+			parent->moveTo( Parent::SEQUENCE_PLAY );
+			break;
+		default: //その他は無視
 			break;
     }
+
+	parent->state()->draw();
+	image.draw();
 }
 
-void Menu::draw()
-{
-	auto f = GameLib::Framework::instance();
+} //namespace Game
+} //namespace Sequence
 
-    gameInstance().GameObj()->draw();
-	gameInstance().drawBlackPanel();
-
-	int height = f.height();
-	int width  = f.width();
-
-	titleImage.draw(0, 0, 0, 0, width, height);
-}

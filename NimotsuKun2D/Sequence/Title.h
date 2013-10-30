@@ -1,22 +1,18 @@
 #pragma once
 
-#include "Sequence.h"
 #include "image.h"
 
-class Title : public Sequence
+namespace Sequence {
+class GameInstance;
+
+class Title
 {
 public:
-	Title() : titleImage("data/image/title.dds") {}
-
-	void update()
-	{
-		draw();
-		input();
-	}
+	Title() : image("data/image/title.dds") {}
+	void update(GameInstance*);
 
 private:
-	void input();
-	void draw();
-
-	Image titleImage;
+	Image image;
 };
+
+} // namespace Sequence

@@ -6,6 +6,7 @@
 #include "Parent.h"
 #include "point.h"
 #include "file.h"
+#include "State.h"
 #include "GameLib\Framework.h"
 #include "GameInstance.h"
 
@@ -69,7 +70,7 @@ void State::reset()
 {
 	goal_position.clear();
 
-	for (auto i=0; i < map.size(); i++)
+	for (unsigned i=0; i < map.size(); i++)
 	{
 		map[i].reset_block();
 		map[i].reset_goal();
@@ -110,33 +111,7 @@ void State::reset()
     }
 }
 
-// get input and analysis exit status
-point getInput()
-{
-	GameLib::Framework f = GameLib::Framework::instance();
-
-	int dx = 0;
-	int dy = 0;
-
-	if (f.isKeyOn('a'))
-		dx -= 1;
-	else if (f.isKeyOn('w'))
-		dy -= 1;
-	else if (f.isKeyOn('d'))
-		dx += 1;
-	else if (f.isKeyOn('s'))
-		dy += 1;
-
-	return point(dx,dy);
-}
-
-void State::update()
-{
-	draw();
-	game_update();
-}
-
-bool State::game_update()
+void State::update(point direction)
 {
 	static const unsigned expected_delay = 8;
 	static unsigned previousFrameTime = 0;
@@ -156,37 +131,23 @@ bool State::game_update()
 
     if (mMoveCount > 0) {
         ++mMoveCount;
-        return true;
+        return;
     }
 
-	GameLib::Framework f = GameLib::Framework::instance();
-
-	if (f.isKeyOn('q')) {
-        f.requestEnd();
-		return true;
-    } else if (f.isKeyOn(' ')) {
-		gameInstance().requestSequence(SEQUENCE_MENU);
-        return true;
-    }
-
-	if (is_finished())
-		gameInstance().requestSequence(SEQUENCE_CLEAR);
-
-	point direction = getInput();
 	if (direction == point(0,0))
-		return true;
+		return;
 
 	point next_player_position = direction+player_position;
 	Object info = map(next_player_position);
 
 	if (info.isWall()) {
-		return false;
+		return;
 	} else if (info.isBlock()) {
 		point next_box_position = next_player_position+direction;
 		Object next_block_info = map(next_box_position);
 
 		if (next_block_info.isBlock() || next_block_info.isWall()) {
-			return false;
+			return;
 		} else {
 			// box move, player move			
 			map(player_position).reset_player();
@@ -199,7 +160,7 @@ bool State::game_update()
 			map(next_box_position).move(direction);
 
             mMoveCount = 1;
-			return true;
+			return;
 		}
 	} else { // player move only.  
 		map(player_position).reset_player();
@@ -209,7 +170,7 @@ bool State::game_update()
         mMoveCount = 1;
 	}
 
-	return true;
+	return;
 }
 
 void State::draw() const
@@ -231,10 +192,9 @@ int State::num_of_finished_box() const
     return count;
 }
 
-bool State::is_finished() const
+bool State::hasCleared() const
 {
-    return goal_position.size() == num_of_finished_box()
-        || bPlayerWantToQuit;
+    return goal_position.size() == num_of_finished_box();
 }
 
 int State::frameRate() const

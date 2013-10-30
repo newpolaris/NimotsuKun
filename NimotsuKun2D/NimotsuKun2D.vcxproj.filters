@@ -33,9 +33,6 @@
     <ClCompile Include="Sequence\GameInstance.cpp">
       <Filter>Source Files\Sequence</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\Loading.cpp">
-      <Filter>Source Files\Sequence</Filter>
-    </ClCompile>
     <ClCompile Include="Sequence\StageSelect.cpp">
       <Filter>Source Files\Sequence</Filter>
     </ClCompile>
@@ -55,6 +52,9 @@
       <Filter>Source Files\Sequence\Game</Filter>
     </ClCompile>
     <ClCompile Include="Sequence\Game\State.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Loading.cpp">
       <Filter>Source Files\Sequence\Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,12 +77,6 @@
     <ClInclude Include="Sequence\GameInstance.h">
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\Loading.h">
-      <Filter>Source Files\Sequence</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence\Sequence.h">
-      <Filter>Source Files\Sequence</Filter>
-    </ClInclude>
     <ClInclude Include="Sequence\StageSelect.h">
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
@@ -102,6 +96,9 @@
       <Filter>Source Files\Sequence\Game</Filter>
     </ClInclude>
     <ClInclude Include="Sequence\Game\State.h">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\Loading.h">
       <Filter>Source Files\Sequence\Game</Filter>
     </ClInclude>
   </ItemGroup>

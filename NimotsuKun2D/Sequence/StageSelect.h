@@ -1,22 +1,18 @@
 #pragma once
 
-#include "Sequence.h"
 #include "image.h"
 
-class StageSelect : public Sequence
+namespace Sequence {
+class GameInstance;
+
+class StageSelect
 {
 public:
 	StageSelect() : image("data/image/stageSelect.dds") {}
-
-	void update()
-	{
-		draw();
-		input();
-	}
+	void update(GameInstance* parent);
 
 private:
-	void input();
-	void draw();
-
 	Image image;
 };
+
+} // namespace Sequence

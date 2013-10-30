@@ -1,34 +1,30 @@
+#include "GameLib/GameLib.h"
 #include "GameLib/Framework.h"
-#include "Clear.h"
-#include "GameInstance.h"
+
+#include "Sequence/Game/Clear.h"
 #include "Sequence/Game/Parent.h"
+#include "Sequence/GameInstance.h"
+#include "Image.h"
+#include "State.h"
+
+using namespace GameLib;
+
+namespace Sequence {
+namespace Game {
 	
-Clear::Clear() : image("data/image/clear.dds")
-{
-	m_startTime = GameLib::Framework::instance().time();
+Clear::Clear() 
+    : mCount(0)
+    , image("data/image/clear.dds") {}
+
+void Clear::update(Parent* parent) {
+	if (mCount == 60) {
+		parent->moveTo(Parent::SEQUENCE_STAGE_SELECT);
+	}
+	parent->state()->draw();
+	image.draw();
+
+	++mCount;
 }
 
-void Clear::input()
-{
-    static const unsigned expected_elapse_time = 1000;
-
-	if (GameLib::Framework::instance().time()-m_startTime > expected_elapse_time)
-		gameInstance().requestSequence(SEQUENCE_STAGE_SELECT);
-
-	auto f = GameLib::Framework::instance();
-    if (f.isKeyTriggered('q'))
-		f.requestEnd();
-}
-
-void Clear::draw()
-{
-    gameInstance().GameObj()->draw();
-	gameInstance().drawBlackPanel();
-
-	auto f = GameLib::Framework::instance();
-	int height = f.height();
-	int width  = f.width();
-
-	image.draw(0, 0, 0, 0, width, height);
-}
-
+} // namespace Game
+} // namespace Sequence

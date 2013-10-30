@@ -58,3 +58,7 @@ void Image::draw(int dstX, int dstY,
 	}
 }
 
+void Image::draw() const {
+	draw(0, 0, 0, 0, m_width, m_height);
+}
+

@@ -1,11 +1,14 @@
+#include "GameLib/GameLib.h"
 #include "GameLib/Framework.h"
-#include "StageSelect.h"
-#include "GameInstance.h"
+using namespace GameLib;
 
-void StageSelect::input()
+#include "Sequence/StageSelect.h"
+#include "Sequence/GameInstance.h"
+
+namespace Sequence{
+
+void StageSelect::update(GameInstance* parent)
 {
-	auto f = GameLib::Framework::instance();
-
 	// 入力(にゅうりょく)取得(しゅとく)
 	int stage = 0;
 
@@ -13,25 +16,17 @@ void StageSelect::input()
     // 첨자가 어긋나면 귀찮은 것으로 0도 넣어 둔다
     char numberChars[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
     for ( int i = 0; i < 10; ++i ) {
-        if (GameLib::Framework::instance().isKeyTriggered( numberChars[ i ] ) ) {
+        if (Framework::instance().isKeyTriggered( numberChars[ i ] ) ) {
             stage = i;
         }
     }
 
 	if (stage != 0) {
-		gameInstance().changeStage(stage);
-		gameInstance().requestSequence(SEQUENCE_LOAD);
+		parent->setStageID( stage );
+		parent->moveTo(GameInstance::SEQUENCE_GAME);
 	}
 
-    if (f.isKeyTriggered('q'))
-		f.requestEnd();
+    image.draw();
 }
 
-void StageSelect::draw()
-{
-	auto f = GameLib::Framework::instance();
-	int height = f.height();
-	int width  = f.width();
-
-	image.draw(0, 0, 0, 0, width, height);
-}
+} //namespace Sequence

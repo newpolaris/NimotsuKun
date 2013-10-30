@@ -4,119 +4,95 @@
 #include "Sequence/StageSelect.h"
 #include "Sequence/Game/Clear.h"
 #include "Sequence/Game/Menu.h"
-#include "Sequence/Loading.h"
+#include "Sequence/Game/Loading.h"
 #include "GameLib/Framework.h"
+
+//?°ãƒ­?¼ãƒ?«å¤‰???¸ã‚“?™ã†)
+Sequence::GameInstance* gRootSequence = 0; //?¹ã£?“ã‚·?¼ã‚±?³ã‚¹
+int gCounter = 0; //?¡ã‚¤?³ãƒ«?¼ãƒ—?’å›?£ãŸ?æ•°?’æ•°?ˆã‚‹?«ã‚¦?³ã‚¿
 
 namespace GameLib {
     void Framework::update() {
-		gameInstance().update();
+		if ( !gRootSequence ){
+			gRootSequence = new Sequence::GameInstance();
+		}
+		//?•ãƒ¬?¼ãƒ ?¬ãƒ¼?ˆèª¿???¡ã‚‡?†ã›??
+		setFrameRate( 60 ); //ä¸€?å‘¼?¹ã°?„ã„?? ?Œé¢?’ãª??§?¼ã‚“?§ã—?¾ã†??
+
+		if ( gCounter % 60 == 0 ){ //60?•ãƒ¬?¼ãƒ ?«ä??ãƒ•?¬ãƒ¼? ãƒ¬?¼ãƒˆè¡¨ç¤º
+			cout << " FrameRate:" << frameRate() << endl;
+		}
+		++gCounter;
+
+		gRootSequence->update();
+
+		//çµ‚äº†?¤å®š(q?ŒæŠ¼?•ã‚Œ?Ÿã‹?ãƒ?¦ã‚¹?§Ã—ãƒœ?¿ãƒ³?Œå©?‹ã‚Œ?Ÿã‹)
+		if ( isKeyOn( 'q' ) ){
+			requestEnd();
+		}
+		if ( isEndRequested() ){
+			SAFE_DELETE( gRootSequence );
+		}
     }
 }
 
-GameInstance& gameInstance()
+namespace Sequence {
+
+GameInstance::GameInstance() 
+    : mTitle( 0 )
+    , mStageSelect( 0 )
+    , mGame( 0 )
+    , mNext( SEQUENCE_NONE )
+    , mStageID( 0 )
 {
-	static GameInstance inst;
-	return inst;
+	mTitle = new Title();
 }
 
-bool GameInstance::initGameObj()
+GameInstance::~GameInstance()
 {
-	game_.reset(State::initalizeWithStage(m_stage));
-	return true;
-}
-
-void GameInstance::reset()
-{
-	game_->reset(); 
+	SAFE_DELETE(mTitle);
+	SAFE_DELETE(mGame);
+	SAFE_DELETE(mStageSelect);
 }
 
 void GameInstance::update() 
 {
-	sequence_->update();
+	if (mTitle)
+		mTitle->update(this);
+	else if (mStageSelect)
+		mStageSelect->update(this);
+	else if (mGame)
+		mGame->update(this);
+	else
+		HALT("bakana!"); //?ê·™êµ¤??€ê²??
 
-	if (mReqSequence != mSequence)
-		changeSequence();
-}
-
-void GameInstance::requestSequence(SequenceType seq)
-{
-	mReqSequence = seq;
-}
-
-void GameInstance::clearScreen()
-{
-    unsigned* vram = GameLib::Framework::instance().videoMemory();
-    unsigned windowWidth  = GameLib::Framework::instance().width();
-	unsigned windowHeight = GameLib::Framework::instance().height();
-
-    for (unsigned y=0; y < windowHeight; ++y)
-    for (unsigned x=0; x < windowWidth;  ++x)
-	{
-		vram[y*windowWidth+x] = 0;
+	//?ë£¨ã‰??µì¸£
+	switch ( mNext ){
+		case SEQUENCE_STAGE_SELECT:
+			SAFE_DELETE( mTitle );
+			SAFE_DELETE( mGame );
+			mStageSelect = new StageSelect();
+			break;
+		case SEQUENCE_TITLE:
+			SAFE_DELETE( mGame );
+			mTitle = new Title(); 
+			break;
+		case SEQUENCE_GAME:
+			SAFE_DELETE( mStageSelect );
+			ASSERT( mStageID != 0 ); //??²êµ›?ë³ê²?Î³êµ??‰ê±¦??£ê²?ê¾ êµ¥??ê±?
+			mGame = new Game::Parent( mStageID );
+			break;
 	}
+	mNext = SEQUENCE_NONE;
 }
 
-void GameInstance::drawBlackPanel()
-{
-    unsigned* vram = GameLib::Framework::instance().videoMemory();
-    unsigned windowWidth  = GameLib::Framework::instance().width();
-    unsigned windowHeight = GameLib::Framework::instance().height();
-
-    for (unsigned y=0; y < windowHeight; ++y)
-    for (unsigned x=0; x < windowWidth;  ++x)
-	{
-		size_t dst_pos = y*windowWidth+x;
-		unsigned dst = vram[dst_pos];
-
-		unsigned dr = dst & 0x00ff0000;
-		unsigned dg = dst & 0x0000ff00;
-		unsigned db = dst & 0x000000ff;
-
-		dr /= 2;
-		dg /= 2;
-		db /= 2;
-
-		vram[dst_pos] = 0xff<<24|(dr&0xff0000)|(dg&0x00ff00)|db;
-	}
+void GameInstance::moveTo( SeqID next ){
+	mNext = next;
 }
 
-void GameInstance::changeSequence()
-{
-    clearScreen();
-
-	mSequence = mReqSequence;
-
-	switch (mReqSequence)
-	{
-	case SEQUENCE_STAGE_SELECT:
-		game_.reset();
-		sequence_.reset(new StageSelect());
-		break;
-
-	case SEQUENCE_LOAD:
-		game_.reset();
-		sequence_.reset(new Loading());
-		break;
-
-	case SEQUENCE_GAME:
-		sequence_ = game_;
-		break;
-	case SEQUENCE_CLEAR:
-		sequence_.reset(new Clear());
-		break;
-
-	case SEQUENCE_MENU:
-		sequence_.reset(new Menu());
-		break;
-	case SEQUENCE_TITLE:
-		game_.reset();
-		sequence_.reset(new Title());
-		break;
-	}
+void GameInstance::setStageID( int stageID ){
+	mStageID = stageID;
 }
 
-GameInstance::GameInstance() 
-	: mSequence(SEQUENCE_TITLE)
-	, m_stage(0)
-	, sequence_(new Title()) {}
+} //namespace Sequence
 

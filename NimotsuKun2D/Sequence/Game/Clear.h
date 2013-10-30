@@ -1,22 +1,21 @@
 #pragma once
 
-#include "Sequence.h"
 #include "image.h"
 
-class Clear : public Sequence
+namespace Sequence{
+namespace Game{
+class Parent;
+
+class Clear
 {
 public:
 	Clear();
-	void update()
-	{
-		draw();
-		input();
-	}
+	void update(Parent*);
 
 private:
-	void input();
-	void draw();
-
-	int m_startTime;
 	Image image;
+    int mCount;
 };
+
+} //namespace Game
+} //namespace Sequence
