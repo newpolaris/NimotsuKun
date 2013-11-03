@@ -118,6 +118,9 @@
     <ClCompile Include="Sequence\Title.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
+    <ClCompile Include="StringRenderer.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array2D.h" />
@@ -134,6 +137,7 @@
     <ClInclude Include="Sequence\Game\State.h" />
     <ClInclude Include="Sequence\StageSelect.h" />
     <ClInclude Include="Sequence\Title.h" />
+    <ClInclude Include="StringRenderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

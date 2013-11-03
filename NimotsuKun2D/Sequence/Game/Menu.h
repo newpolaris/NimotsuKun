@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+#include <vector>
 #include "image.h"
 
 namespace Sequence{
@@ -9,12 +11,14 @@ class Parent;
 class Menu
 {
 public:
-	Menu() : image("data/image/menu.dds") {}
+    Menu();
 	void update(Parent*);
 
 private:
 	void draw();
 	Image image;
+
+    std::vector<std::string> m_menu;
 };
 
 } // namespace Sequence

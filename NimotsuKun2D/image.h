@@ -17,6 +17,7 @@ public:
 
 	void draw() const;
 	void draw(int dstX, int dstY, int srcX, int srcY, int srcW, int srcH) const; 
+	void drawWithReplacementColor(int dstX, int dstY, int srcX, int srcY, int srcW, int srcH, unsigned color=0xFFFFFFFF) const;
 
 	unsigned m_width;
 	unsigned m_height;

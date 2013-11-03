@@ -1,6 +1,4 @@
 #include <vector>
-#include <fstream>
-#include <cassert>
 #include <sstream>
 
 #include "Parent.h"
@@ -40,19 +38,7 @@ State* State::initalizeWithStage(int stage)
     using GameLib::cout;
     using GameLib::endl;
 
-    try {
-		return new State(stageFile);
-    }
-    catch (std::ifstream::failure e) {
-        cout << "File Read Failure" << endl; 
-		GameLib::Framework::instance().requestEnd();
-        return nullptr;
-    }
-    catch (std::exception e) {
-        cout << "Can't find file" << endl; 
-        GameLib::Framework::instance().requestEnd();
-        return nullptr;
-    }
+	return new State(stageFile);
 }
 
 State::State(buffer_type& stageData)

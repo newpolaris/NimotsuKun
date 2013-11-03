@@ -62,3 +62,34 @@ void Image::draw() const {
 	draw(0, 0, 0, 0, m_width, m_height);
 }
 
+void Image::drawWithReplacementColor(int dstX, int dstY,
+                                     int srcX, int srcY,
+                                     int srcW, int srcH,
+                                     unsigned color) const 
+{
+    unsigned *vram = GameLib::Framework::instance().videoMemory();
+    int windowWidth = GameLib::Framework::instance().width();
+
+    unsigned srcR = color & 0xff0000;
+    unsigned srcG = color & 0x00ff00;
+    unsigned srcB = color & 0x0000ff;
+
+    for (int y = 0; y < srcH; ++y) {
+    for (int x = 0; x < srcW;  ++x) {
+        unsigned src = m_image[(y+srcY) * m_width+ (x+srcX)];
+        unsigned *dst = &vram[(y+dstY) * windowWidth + (x+dstX)];
+
+        unsigned srcA = src & 0xff; // 청색 채널을 사용한다.
+        unsigned dstR = *dst & 0xff0000;
+        unsigned dstG = *dst & 0x00ff00;
+        unsigned dstB = *dst & 0x0000ff;
+        
+        unsigned r = (srcR - dstR) * srcA / 255 + dstR;
+        unsigned g = (srcG - dstG) * srcA / 255 + dstG;
+        unsigned b = (srcB - dstB) * srcA / 255 + dstB;
+
+        *dst = (r & 0xff0000) | ( g & 0x00ff00) | b;
+    }
+    }
+}
+

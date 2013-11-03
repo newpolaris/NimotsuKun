@@ -8,7 +8,7 @@ class GameInstance;
 class Title
 {
 public:
-	Title() : image("data/image/title.dds") {}
+	Title() : image("data/image/dummy.dds") {}
 	void update(GameInstance*);
 
 private:

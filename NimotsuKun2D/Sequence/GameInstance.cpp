@@ -1,3 +1,6 @@
+#include <fstream>
+#include <cassert>
+
 #include "GameInstance.h"
 #include "Sequence/Title.h"
 #include "Sequence/Game/Parent.h"
@@ -14,7 +17,19 @@ int gCounter = 0; //?¡ã‚¤?³ãƒ«?¼ãƒ—?’å›?£ãŸ?æ•°?’æ•°?ˆã‚‹?«ã‚¦?³ã‚¿
 namespace GameLib {
     void Framework::update() {
 		if ( !gRootSequence ){
-			gRootSequence = new Sequence::GameInstance();
+			try {
+				gRootSequence = new Sequence::GameInstance();
+			}
+			catch (std::ifstream::failure e) {
+				cout << "File Read Failure" << endl; 
+				GameLib::Framework::instance().requestEnd();
+				return;
+			}
+			catch (std::exception e) {
+				cout << "Can't find file" << endl; 
+				GameLib::Framework::instance().requestEnd();
+				return;
+			}
 		}
 		//?•ãƒ¬?¼ãƒ ?¬ãƒ¼?ˆèª¿???¡ã‚‡?†ã›??
 		setFrameRate( 60 ); //ä¸€?å‘¼?¹ã°?„ã„?? ?Œé¢?’ãª??§?¼ã‚“?§ã—?¾ã†??

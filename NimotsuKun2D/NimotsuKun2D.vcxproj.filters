@@ -57,6 +57,9 @@
     <ClCompile Include="Sequence\Game\Loading.cpp">
       <Filter>Source Files\Sequence\Game</Filter>
     </ClCompile>
+    <ClCompile Include="StringRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="file.h">
@@ -100,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="Sequence\Game\Loading.h">
       <Filter>Source Files\Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="StringRenderer.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
