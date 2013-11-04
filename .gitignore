@@ -1,11 +1,8 @@
 *.opensdf
-
-/ipch/nimotsukun2d-ac66d731/*.ipch
-/NimotsuKun2D.sdf
-
-/NimotsuKun2D/*.swp
-/NimotsuKun2D/Release/*
-/NimotsuKun2D/Debug/*
-
+*.ipch
+*.sdf
+*.swp
+*/Release/*
+*/Debug/*
 *.swp
 *~

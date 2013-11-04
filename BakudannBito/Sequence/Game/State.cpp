@@ -6,7 +6,7 @@
 #include "file.h"
 #include "State.h"
 #include "GameLib\Framework.h"
-#include "GameInstance.h"
+#include "Sequence\GameInstance.h"
 
 point findOutMapSize(buffer_type& buffer)
 {

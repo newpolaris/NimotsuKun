@@ -5,79 +5,40 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Source Files\Sequence">
-      <UniqueIdentifier>{4a17a15a-dcd8-4875-ad10-87dd9ec4750c}</UniqueIdentifier>
+      <UniqueIdentifier>{90d5ac0a-51bc-461c-ad0a-995cc59d6a75}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Sequence\Game">
-      <UniqueIdentifier>{af82a72c-c187-4325-bd14-df9905e983d1}</UniqueIdentifier>
+      <UniqueIdentifier>{f966baf7-569e-4f13-8424-fe5d1c25ba1c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="image.cpp">
+    <ClInclude Include="Array2D.h">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\GameInstance.cpp">
-      <Filter>Source Files\Sequence</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\StageSelect.cpp">
-      <Filter>Source Files\Sequence</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\Title.cpp">
-      <Filter>Source Files\Sequence</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\Game\Clear.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\Game\Menu.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\Game\Parent.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\Game\Play.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\Game\State.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\Game\Loading.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="StringRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
+    </ClInclude>
     <ClInclude Include="file.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="image.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="point.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Array2D.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="point.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringRenderer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="Sequence\GameInstance.h">
+      <Filter>Source Files\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Sequence.h">
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
     <ClInclude Include="Sequence\StageSelect.h">
@@ -87,6 +48,9 @@
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
     <ClInclude Include="Sequence\Game\Clear.h">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\Loading.h">
       <Filter>Source Files\Sequence\Game</Filter>
     </ClInclude>
     <ClInclude Include="Sequence\Game\Menu.h">
@@ -101,11 +65,46 @@
     <ClInclude Include="Sequence\Game\State.h">
       <Filter>Source Files\Sequence\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\Game\Loading.h">
-      <Filter>Source Files\Sequence\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="StringRenderer.h">
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="file.cpp">
       <Filter>Source Files</Filter>
-    </ClInclude>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StringRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\GameInstance.cpp">
+      <Filter>Source Files\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\StageSelect.cpp">
+      <Filter>Source Files\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Title.cpp">
+      <Filter>Source Files\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Clear.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Loading.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Menu.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Parent.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Play.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\State.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
