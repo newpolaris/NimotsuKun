@@ -1,17 +1,16 @@
 #include "GameLib/GameLib.h"
 #include "GameLib/Framework.h"
 
-#include "Sequence/DuoGame/Ready.h"
-#include "Sequence/DuoGame/Parent.h"
+#include "Sequence/Game/Parent.h"
+#include "Sequence/Game/Ready.h"
 #include "StringRenderer.h"
 
 using namespace GameLib;
 
 namespace Sequence {
-namespace DuoGame {
+namespace Game {
 
 Ready::Ready() : mImage("data/image/dummy.dds") {}
-
 
 void Ready::update(Parent* parent)
 {
@@ -28,6 +27,5 @@ void Ready::update(Parent* parent)
     }
 }
 
-} // namespace DuoGame 
 } // namespace Sequence 
-
+} // namespace SoloGame 

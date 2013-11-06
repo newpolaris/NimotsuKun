@@ -18,18 +18,17 @@
     <ClInclude Include="point.h" />
     <ClInclude Include="Sequence\DuoGame\DisplayResult.h" />
     <ClInclude Include="Sequence\DuoGame\Parent.h" />
-    <ClInclude Include="Sequence\DuoGame\Pause.h" />
     <ClInclude Include="Sequence\DuoGame\Play.h" />
-    <ClInclude Include="Sequence\DuoGame\Ready.h" />
     <ClInclude Include="Sequence\Ending.h" />
     <ClInclude Include="Sequence\GameInstance.h" />
     <ClInclude Include="Sequence\GameOver.h" />
+    <ClInclude Include="Sequence\Game\Parent.h" />
+    <ClInclude Include="Sequence\Game\Pause.h" />
+    <ClInclude Include="Sequence\Game\Ready.h" />
     <ClInclude Include="Sequence\SoloGame\Clear.h" />
     <ClInclude Include="Sequence\SoloGame\Fail.h" />
     <ClInclude Include="Sequence\SoloGame\Parent.h" />
-    <ClInclude Include="Sequence\SoloGame\Pause.h" />
     <ClInclude Include="Sequence\SoloGame\Play.h" />
-    <ClInclude Include="Sequence\SoloGame\Ready.h" />
     <ClInclude Include="Sequence\Title.h" />
     <ClInclude Include="StringRenderer.h" />
   </ItemGroup>
@@ -39,18 +38,17 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Sequence\DuoGame\DisplayResult.cpp" />
     <ClCompile Include="Sequence\DuoGame\Parent.cpp" />
-    <ClCompile Include="Sequence\DuoGame\Pause.cpp" />
     <ClCompile Include="Sequence\DuoGame\Play.cpp" />
-    <ClCompile Include="Sequence\DuoGame\Ready.cpp" />
     <ClCompile Include="Sequence\Ending.cpp" />
     <ClCompile Include="Sequence\GameInstance.cpp" />
     <ClCompile Include="Sequence\GameOver.cpp" />
+    <ClCompile Include="Sequence\Game\Parent.cpp" />
+    <ClCompile Include="Sequence\Game\Pause.cpp" />
+    <ClCompile Include="Sequence\Game\Ready.cpp" />
     <ClCompile Include="Sequence\SoloGame\Clear.cpp" />
     <ClCompile Include="Sequence\SoloGame\Fail.cpp" />
     <ClCompile Include="Sequence\SoloGame\Parent.cpp" />
-    <ClCompile Include="Sequence\SoloGame\Pause.cpp" />
     <ClCompile Include="Sequence\SoloGame\Play.cpp" />
-    <ClCompile Include="Sequence\SoloGame\Ready.cpp" />
     <ClCompile Include="Sequence\Title.cpp" />
     <ClCompile Include="StringRenderer.cpp" />
   </ItemGroup>

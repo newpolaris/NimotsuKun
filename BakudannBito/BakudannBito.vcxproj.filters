@@ -62,13 +62,7 @@
     <ClInclude Include="Sequence\SoloGame\Parent.h">
       <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\SoloGame\Pause.h">
-      <Filter>Source Files\Sequence\SoloGame</Filter>
-    </ClInclude>
     <ClInclude Include="Sequence\SoloGame\Play.h">
-      <Filter>Source Files\Sequence\SoloGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence\SoloGame\Ready.h">
       <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClInclude>
     <ClInclude Include="Sequence\DuoGame\DisplayResult.h">
@@ -77,14 +71,17 @@
     <ClInclude Include="Sequence\DuoGame\Parent.h">
       <Filter>Source Files\Sequence\DuoGame</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\DuoGame\Pause.h">
-      <Filter>Source Files\Sequence\DuoGame</Filter>
-    </ClInclude>
     <ClInclude Include="Sequence\DuoGame\Play.h">
       <Filter>Source Files\Sequence\DuoGame</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\DuoGame\Ready.h">
-      <Filter>Source Files\Sequence\DuoGame</Filter>
+    <ClInclude Include="Sequence\Game\Pause.h">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\Ready.h">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\Parent.h">
+      <Filter>Source Files\Sequence\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -121,13 +118,7 @@
     <ClCompile Include="Sequence\SoloGame\Parent.cpp">
       <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\SoloGame\Pause.cpp">
-      <Filter>Source Files\Sequence\SoloGame</Filter>
-    </ClCompile>
     <ClCompile Include="Sequence\SoloGame\Play.cpp">
-      <Filter>Source Files\Sequence\SoloGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\SoloGame\Ready.cpp">
       <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClCompile>
     <ClCompile Include="Sequence\DuoGame\DisplayResult.cpp">
@@ -136,14 +127,17 @@
     <ClCompile Include="Sequence\DuoGame\Parent.cpp">
       <Filter>Source Files\Sequence\DuoGame</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\DuoGame\Pause.cpp">
-      <Filter>Source Files\Sequence\DuoGame</Filter>
-    </ClCompile>
     <ClCompile Include="Sequence\DuoGame\Play.cpp">
       <Filter>Source Files\Sequence\DuoGame</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\DuoGame\Ready.cpp">
-      <Filter>Source Files\Sequence\DuoGame</Filter>
+    <ClCompile Include="Sequence\Game\Pause.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Ready.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Parent.cpp">
+      <Filter>Source Files\Sequence\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

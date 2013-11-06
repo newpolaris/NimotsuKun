@@ -4,9 +4,9 @@
 #include "Sequence/SoloGame/Parent.h"
 #include "Sequence/SoloGame/Fail.h"
 #include "Sequence/SoloGame/Clear.h"
-#include "Sequence/SoloGame/Pause.h"
 #include "Sequence/SoloGame/Play.h"
-#include "Sequence/SoloGame/Ready.h"
+#include "Sequence/Game/Pause.h"
+#include "Sequence/Game/Ready.h"
 
 namespace Sequence {
 namespace SoloGame {
@@ -17,7 +17,7 @@ Parent::Parent()
     , mFail(0)
     , mPause(0)
     , mPlay(0)
-    , mReady(new Ready()) {}
+    , mReady(new Game::Ready()) {}
 
 Parent::~Parent()
 {
@@ -57,7 +57,7 @@ void Parent::update(GrandParent* parent)
         break;
     case SEQUENCE_PAUSE:
         SAFE_DELETE(mPlay);
-        mPause = new Pause();
+        mPause = new Game::Pause();
         break;
     case SEQUENCE_PLAY:
         SAFE_DELETE(mReady);
@@ -67,7 +67,7 @@ void Parent::update(GrandParent* parent)
     case SEQUENCE_READY:
         SAFE_DELETE(mClear);
         SAFE_DELETE(mFail);
-        mReady = new Ready(); 
+        mReady = new Game::Ready(); 
         break;
     case SEQUENCE_ENDING:
         SAFE_DELETE(mClear);

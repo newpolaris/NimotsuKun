@@ -3,7 +3,7 @@
 #include "image.h"
 
 namespace Sequence {
-namespace DuoGame {
+namespace Game {
 class Parent;
 
 class Pause
@@ -15,7 +15,5 @@ private:
 	Image mImage;
 };
 
-} // namespace DuoGame
+} // namespace SoloGame
 } // namespace Sequence
-
-

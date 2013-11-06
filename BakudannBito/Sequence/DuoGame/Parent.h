@@ -1,28 +1,22 @@
 #pragma once
 
+#include "Sequence/Game/Parent.h"
+
 namespace Sequence {
 class GameInstance;
 
-namespace DuoGame {
+namespace Game {
 class Pause;
-class Play;
 class Ready;
+}
+
+namespace DuoGame {
+class Play;
 class DisplayResult;
 
-class Parent
+class Parent : public Game::Parent
 {
 public:
-    typedef Sequence::GameInstance GrandParent;
-    enum SeqID {
-        SEQUENCE_PAUSE,
-        SEQUENCE_PLAY,
-        SEQUENCE_READY,
-        SEQUENCE_DISPLAYRESULT,
-
-        SEQUENCE_TITLE,
-        SEQUENCE_NONE
-    };
-
     Parent();
 	~Parent();
 	void update(GrandParent*);
@@ -31,9 +25,9 @@ public:
 private:
     SeqID mNext;
 
-    Pause* mPause;
+    Game::Pause* mPause;
+    Game::Ready* mReady;
     Play* mPlay;
-    Ready* mReady;
     DisplayResult* mDisplayResult;
 };
 

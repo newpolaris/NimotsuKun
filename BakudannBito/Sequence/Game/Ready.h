@@ -3,17 +3,17 @@
 #include "image.h"
 
 namespace Sequence {
-namespace SoloGame {
+namespace Game {
 class Parent;
 
-class Pause
+class Ready
 {
 public:
-    Pause();
+    Ready();
     void update(Parent*);
 private:
 	Image mImage;
 };
 
-} // namespace SoloGame
+} // namespace Game
 } // namespace Sequence

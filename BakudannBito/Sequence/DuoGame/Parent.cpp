@@ -2,9 +2,9 @@
 #include "Sequence/GameInstance.h"
 #include "Sequence/DuoGame/Parent.h"
 
-#include "Sequence/DuoGame/Pause.h"
+#include "Sequence/Game/Ready.h"
+#include "Sequence/Game/Pause.h"
 #include "Sequence/DuoGame/Play.h"
-#include "Sequence/DuoGame/Ready.h"
 #include "Sequence/DuoGame/DisplayResult.h"
 
 namespace Sequence {
@@ -14,7 +14,7 @@ Parent::Parent()
     : mNext(SEQUENCE_NONE) 
     , mPause(0)
     , mPlay(0)
-    , mReady(new Ready())
+    , mReady(new Game::Ready())
     , mDisplayResult(0) {}
 
 Parent::~Parent()
@@ -44,7 +44,7 @@ void Parent::update(GrandParent* parent)
     switch (mNext) {
     case SEQUENCE_PAUSE:
         SAFE_DELETE(mPlay);
-        mPause = new Pause();
+        mPause = new Game::Pause();
         break;
     case SEQUENCE_PLAY:
         SAFE_DELETE(mReady);
@@ -53,7 +53,7 @@ void Parent::update(GrandParent* parent)
         break;
     case SEQUENCE_READY:
         SAFE_DELETE(mDisplayResult);
-        mReady = new Ready(); 
+        mReady = new Game::Ready(); 
         break;
     case SEQUENCE_DISPLAYRESULT:
         SAFE_DELETE(mPlay);

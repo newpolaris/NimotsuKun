@@ -1,14 +1,14 @@
 #include "GameLib/GameLib.h"
 #include "GameLib/Framework.h"
 
-#include "Sequence/SoloGame/Pause.h"
-#include "Sequence/SoloGame/Parent.h"
+#include "Sequence/Game/Pause.h"
+#include "Sequence/Game/Parent.h"
 #include "StringRenderer.h"
 
 using namespace GameLib;
 
 namespace Sequence {
-namespace SoloGame {
+namespace Game {
 
 Pause::Pause() : mImage("data/image/dummy.dds") {}
 

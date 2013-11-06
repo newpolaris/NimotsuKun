@@ -1,48 +1,31 @@
 #pragma once
 
-class State;
-
 namespace Sequence {
 class GameInstance;
 
 namespace Game {
 
-class Play;
-class Menu;
-class Clear;
-class Loading;
-
 class Parent 
 {
 public:
-	typedef Sequence::GameInstance GrandParent; //祖父
+	typedef Sequence::GameInstance GrandParent; 
 
-	enum SeqID {
-		SEQUENCE_STAGE_SELECT, //上階�?
-		SEQUENCE_TITLE, //上階�?
-		SEQUENCE_MENU,
-		SEQUENCE_CLEAR,
-		SEQUENCE_PLAY,
-		SEQUENCE_NONE
-	};
+    enum SeqID {
+        SEQUENCE_CLEAR,
+        SEQUENCE_FAIL,
+        SEQUENCE_PAUSE,
+        SEQUENCE_PLAY,
+        SEQUENCE_READY,
+        SEQUENCE_DISPLAYRESULT,
 
-	Parent(int stageID);
-	~Parent();
+        SEQUENCE_ENDING,
+        SEQUENCE_GAMEOVER,
+        SEQUENCE_TITLE,
+        SEQUENCE_NONE
+    };
 
-	void moveTo(SeqID);
-	void update(GrandParent*);
-    void startLoading();
-    State* state();
-
-private:
-	int mStageID;
-	State* mState;
-    SeqID mNext;
-
-	Play* mPlay;
-	Menu* mMenu;
-	Clear* mClear;
-    Loading* mLoading;
+	virtual void moveTo(SeqID)=0;
+	virtual void update(GrandParent*)=0;
 };
 
 } // namespace Game
