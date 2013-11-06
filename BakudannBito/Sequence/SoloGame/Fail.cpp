@@ -10,11 +10,13 @@ using namespace GameLib;
 namespace Sequence {
 namespace SoloGame {
 
-Fail::Fail() {}
+Fail::Fail() : mImage("data/image/dummy.dds") {}
 
 void Fail::update(Parent* parent)
 {
     using namespace GameLib;
+
+	mImage.draw();
 
     StringRenderer::instance().draw("Fail");
     StringRenderer::instance().draw("Please input space key go to Ready", 0, 1);

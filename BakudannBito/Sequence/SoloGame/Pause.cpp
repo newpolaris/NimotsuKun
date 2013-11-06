@@ -10,11 +10,13 @@ using namespace GameLib;
 namespace Sequence {
 namespace SoloGame {
 
-Pause::Pause() {}
+Pause::Pause() : mImage("data/image/dummy.dds") {}
 
 void Pause::update(Parent* parent)
 {
     using namespace GameLib;
+
+	mImage.draw();
 
     StringRenderer::instance().draw("Pause");
     StringRenderer::instance().draw("Please input space key to Play", 0, 1);

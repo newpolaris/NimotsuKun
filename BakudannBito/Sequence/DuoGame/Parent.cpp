@@ -14,7 +14,7 @@ Parent::Parent()
     : mNext(SEQUENCE_NONE) 
     , mPause(0)
     , mPlay(0)
-    , mReady(0)
+    , mReady(new Ready())
     , mDisplayResult(0) {}
 
 Parent::~Parent()
@@ -35,7 +35,7 @@ void Parent::update(GrandParent* parent)
     if (mPause)
         mPause->update(this);
     else if (mPlay)
-        mPause->update(this);
+        mPlay->update(this);
     else if (mReady)
         mReady->update(this);
     else if (mDisplayResult)

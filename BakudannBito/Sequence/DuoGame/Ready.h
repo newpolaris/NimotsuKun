@@ -1,5 +1,7 @@
 #pragma once
 
+#include "image.h"
+
 namespace Sequence {
 namespace DuoGame {
 class Parent;
@@ -10,6 +12,7 @@ public:
     Ready();
     void update(Parent*);
 private:
+	Image mImage;
 };
 
 } // namespace DuoGame

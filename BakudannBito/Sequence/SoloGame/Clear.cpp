@@ -10,11 +10,13 @@ using namespace GameLib;
 namespace Sequence {
 namespace SoloGame {
 
-Clear::Clear() {}
+Clear::Clear() : mImage("data/image/dummy.dds") {}
 
 void Clear::update(Parent* parent)
 {
     using namespace GameLib;
+
+	mImage.draw();
 
     StringRenderer::instance().draw("Clear");
     StringRenderer::instance().draw("Please input space key go to Ready", 0, 1);

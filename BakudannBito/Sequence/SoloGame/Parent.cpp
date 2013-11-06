@@ -17,7 +17,7 @@ Parent::Parent()
     , mFail(0)
     , mPause(0)
     , mPlay(0)
-    , mReady(0) {}
+    , mReady(new Ready()) {}
 
 Parent::~Parent()
 {
@@ -38,11 +38,11 @@ void Parent::update(GrandParent* parent)
     if (mClear)
         mClear->update(this);
     else if (mFail)
-        mClear->update(this);
+        mFail->update(this);
     else if (mPause)
         mPause->update(this);
     else if (mPlay)
-        mPause->update(this);
+        mPlay->update(this);
     else if (mReady)
         mReady->update(this);
 

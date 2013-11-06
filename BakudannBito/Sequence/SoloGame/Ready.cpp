@@ -10,11 +10,13 @@ using namespace GameLib;
 namespace Sequence {
 namespace SoloGame {
 
-Ready::Ready() {}
+Ready::Ready() : mImage("data/image/dummy.dds") {}
 
 void Ready::update(Parent* parent)
 {
     using namespace GameLib;
+
+	mImage.draw();
 
     StringRenderer::instance().draw("Ready");
     StringRenderer::instance().draw("Go", 0, 1);
