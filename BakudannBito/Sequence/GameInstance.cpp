@@ -1,14 +1,14 @@
 #include <fstream>
 #include <cassert>
 
+#include "GameLib/Framework.h"
+
 #include "GameInstance.h"
 #include "Sequence/Title.h"
-#include "Sequence/Game/Parent.h"
-#include "Sequence/StageSelect.h"
-#include "Sequence/Game/Clear.h"
-#include "Sequence/Game/Menu.h"
-#include "Sequence/Game/Loading.h"
-#include "GameLib/Framework.h"
+#include "Sequence/GameOver.h"
+#include "Sequence/Ending.h"
+#include "Sequence/SoloGame/Parent.h"
+#include "Sequence/DuoGame/Parent.h"
 
 Sequence::GameInstance* gRootSequence = 0; 
 int gCounter = 0;
@@ -53,8 +53,10 @@ namespace Sequence {
 
 GameInstance::GameInstance() 
     : mTitle( 0 )
-    , mStageSelect( 0 )
-    , mGame( 0 )
+    , mEnding( 0 )
+    , mGameOver( 0 )
+    , mSoloGame( 0 )
+    , mDuoGame( 0 )
     , mNext( SEQUENCE_NONE )
     , mStageID( 0 )
 {
@@ -64,35 +66,50 @@ GameInstance::GameInstance()
 GameInstance::~GameInstance()
 {
 	SAFE_DELETE(mTitle);
-	SAFE_DELETE(mGame);
-	SAFE_DELETE(mStageSelect);
+	SAFE_DELETE(mEnding);
+	SAFE_DELETE(mGameOver);
+	SAFE_DELETE(mSoloGame);
+	SAFE_DELETE(mDuoGame);
 }
 
 void GameInstance::update() 
 {
 	if (mTitle)
 		mTitle->update(this);
-	else if (mStageSelect)
-		mStageSelect->update(this);
-	else if (mGame)
-		mGame->update(this);
+	else if (mEnding)
+		mEnding->update(this);
+	else if (mGameOver)
+		mGameOver->update(this);
+	else if (mSoloGame)
+		mSoloGame->update(this);
+	else if (mDuoGame)
+		mDuoGame->update(this);
 	else
 		HALT("bakana!");
 
 	switch ( mNext ){
-		case SEQUENCE_STAGE_SELECT:
-			SAFE_DELETE( mTitle );
-			SAFE_DELETE( mGame );
-			mStageSelect = new StageSelect();
-			break;
 		case SEQUENCE_TITLE:
-			SAFE_DELETE( mGame );
+			SAFE_DELETE( mGameOver );
+			SAFE_DELETE( mEnding );
+			SAFE_DELETE( mSoloGame );
+			SAFE_DELETE( mDuoGame );
 			mTitle = new Title(); 
 			break;
-		case SEQUENCE_GAME:
-			SAFE_DELETE( mStageSelect );
-			ASSERT( mStageID != 0 );
-			mGame = new Game::Parent( mStageID );
+        case SEQUENCE_ENDING:
+			SAFE_DELETE( mSoloGame );
+			mEnding = new Ending(); 
+			break;
+        case SEQUENCE_GAMEOVER:
+			SAFE_DELETE( mSoloGame );
+			mGameOver = new GameOver();
+			break;
+		case SEQUENCE_SOLOGAME:
+			SAFE_DELETE( mTitle );
+			mSoloGame = new SoloGame::Parent();
+			break;
+		case SEQUENCE_DUOGAME:
+            SAFE_DELETE( mTitle );
+			mDuoGame = new DuoGame::Parent();
 			break;
 	}
 	mNext = SEQUENCE_NONE;
@@ -100,10 +117,6 @@ void GameInstance::update()
 
 void GameInstance::moveTo( SeqID next ){
 	mNext = next;
-}
-
-void GameInstance::setStageID( int stageID ){
-	mStageID = stageID;
 }
 
 } //namespace Sequence

@@ -13,15 +13,10 @@ namespace Game{
 Menu::Menu() 
     : image("data/image/dummy.dds") 
 {
-    m_menu.push_back("Retry");
-    m_menu.push_back("Back to stage Select");
-    m_menu.push_back("Back to title");
-    m_menu.push_back("Continue");
 }
 
 void Menu::update(Parent* parent)
 {
-    using std::string;
 
 	parent->state()->draw();
 	image.draw();

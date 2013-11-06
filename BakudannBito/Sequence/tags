@@ -1,0 +1,289 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Clear	.\Game\Clear.cpp	/^Clear::Clear() $/;"	f	class:Sequence::Game::Clear	signature:()
+Clear	.\Game\Clear.h	/^	Clear();$/;"	p	class:Sequence::Game::Clear	access:public	signature:()
+Clear	.\Game\Clear.h	/^class Clear$/;"	c	namespace:Sequence::Game
+DuoGame	.\GameInstance.h	/^namespace DuoGame {$/;"	n	namespace:Sequence
+Game	.\Game\Clear.cpp	/^namespace Game {$/;"	n	namespace:Sequence	file:
+Game	.\Game\Clear.h	/^namespace Game{$/;"	n	namespace:Sequence
+Game	.\Game\Loading.cpp	/^namespace Game {$/;"	n	namespace:Sequence	file:
+Game	.\Game\Loading.h	/^namespace Game{$/;"	n	namespace:Sequence
+Game	.\Game\Menu.cpp	/^namespace Game{$/;"	n	namespace:Sequence	file:
+Game	.\Game\Menu.h	/^namespace Game{$/;"	n	namespace:Sequence
+Game	.\Game\Parent.cpp	/^namespace Game{$/;"	n	namespace:Sequence	file:
+Game	.\Game\Parent.h	/^namespace Game {$/;"	n	namespace:Sequence
+Game	.\Game\Play.cpp	/^namespace Game{$/;"	n	namespace:Sequence	file:
+Game	.\Game\Play.h	/^namespace Game{$/;"	n	namespace:Sequence
+GameInstance	.\GameInstance.cpp	/^GameInstance::GameInstance() $/;"	f	class:Sequence::GameInstance	signature:()
+GameInstance	.\GameInstance.h	/^	GameInstance();$/;"	p	class:Sequence::GameInstance	access:public	signature:()
+GameInstance	.\GameInstance.h	/^class GameInstance$/;"	c	namespace:Sequence
+GameLib	.\GameInstance.cpp	/^namespace GameLib {$/;"	n	file:
+GameLib::Framework::update	.\GameInstance.cpp	/^    void Framework::update() {$/;"	f	class:GameLib::Framework	signature:()
+GrandParent	.\Game\Parent.h	/^	typedef Sequence::GameInstance GrandParent; \/\/祖父$/;"	t	class:Sequence::Game::Parent	access:public
+Loading	.\Game\Loading.cpp	/^Loading::Loading()$/;"	f	class:Sequence::Game::Loading	signature:()
+Loading	.\Game\Loading.h	/^	Loading();$/;"	p	class:Sequence::Game::Loading	access:public	signature:()
+Loading	.\Game\Loading.h	/^class Loading{$/;"	c	namespace:Sequence::Game
+Menu	.\Game\Menu.cpp	/^Menu::Menu() $/;"	f	class:Sequence::Game::Menu	signature:()
+Menu	.\Game\Menu.h	/^    Menu();$/;"	p	class:Sequence::Game::Menu	access:public	signature:()
+Menu	.\Game\Menu.h	/^class Menu$/;"	c	namespace:Sequence::Game
+Parent	.\Game\Parent.cpp	/^Parent::Parent(int stageID) $/;"	f	class:Sequence::Game::Parent	signature:(int stageID)
+Parent	.\Game\Parent.h	/^	Parent(int stageID);$/;"	p	class:Sequence::Game::Parent	access:public	signature:(int stageID)
+Parent	.\Game\Parent.h	/^class Parent $/;"	c	namespace:Sequence::Game
+Play	.\Game\Play.h	/^	Play() {}$/;"	f	class:Sequence::Game::Play	access:public	signature:()
+Play	.\Game\Play.h	/^class Play{$/;"	c	namespace:Sequence::Game
+SEQUENCE_CLEAR	.\Game\Parent.h	/^		SEQUENCE_CLEAR,$/;"	e	enum:Sequence::Game::Parent::SeqID
+SEQUENCE_CLEAR	.\Sequence.h	/^	SEQUENCE_CLEAR,$/;"	e	enum:SequenceType
+SEQUENCE_GAME	.\GameInstance.h	/^		SEQUENCE_GAME,$/;"	e	enum:Sequence::GameInstance::SeqID
+SEQUENCE_GAME	.\Sequence.h	/^	SEQUENCE_GAME,$/;"	e	enum:SequenceType
+SEQUENCE_LOAD	.\Sequence.h	/^	SEQUENCE_LOAD,$/;"	e	enum:SequenceType
+SEQUENCE_MENU	.\Game\Parent.h	/^		SEQUENCE_MENU,$/;"	e	enum:Sequence::Game::Parent::SeqID
+SEQUENCE_MENU	.\Sequence.h	/^	SEQUENCE_MENU,$/;"	e	enum:SequenceType
+SEQUENCE_NONE	.\GameInstance.h	/^		SEQUENCE_NONE,$/;"	e	enum:Sequence::GameInstance::SeqID
+SEQUENCE_NONE	.\Game\Parent.h	/^		SEQUENCE_NONE$/;"	e	enum:Sequence::Game::Parent::SeqID
+SEQUENCE_PLAY	.\Game\Parent.h	/^		SEQUENCE_PLAY,$/;"	e	enum:Sequence::Game::Parent::SeqID
+SEQUENCE_STAGE_SELECT	.\GameInstance.h	/^		SEQUENCE_STAGE_SELECT,$/;"	e	enum:Sequence::GameInstance::SeqID
+SEQUENCE_STAGE_SELECT	.\Game\Parent.h	/^		SEQUENCE_STAGE_SELECT, \/\/上階�?$/;"	e	enum:Sequence::Game::Parent::SeqID
+SEQUENCE_STAGE_SELECT	.\Sequence.h	/^	SEQUENCE_STAGE_SELECT,$/;"	e	enum:SequenceType
+SEQUENCE_TITLE	.\GameInstance.h	/^		SEQUENCE_TITLE,$/;"	e	enum:Sequence::GameInstance::SeqID
+SEQUENCE_TITLE	.\Game\Parent.h	/^		SEQUENCE_TITLE, \/\/上階�?$/;"	e	enum:Sequence::Game::Parent::SeqID
+SEQUENCE_TITLE	.\Sequence.h	/^	SEQUENCE_TITLE,$/;"	e	enum:SequenceType
+SeqID	.\GameInstance.h	/^	enum SeqID{$/;"	g	class:Sequence::GameInstance	access:public
+SeqID	.\Game\Parent.h	/^	enum SeqID {$/;"	g	class:Sequence::Game::Parent	access:public
+Sequence	.\GameInstance.cpp	/^namespace Sequence {$/;"	n	file:
+Sequence	.\GameInstance.h	/^namespace Sequence {$/;"	n
+Sequence	.\Game\Clear.cpp	/^namespace Sequence {$/;"	n	file:
+Sequence	.\Game\Clear.h	/^namespace Sequence{$/;"	n
+Sequence	.\Game\Loading.cpp	/^namespace Sequence {$/;"	n	file:
+Sequence	.\Game\Loading.h	/^namespace Sequence{$/;"	n
+Sequence	.\Game\Menu.cpp	/^namespace Sequence{$/;"	n	file:
+Sequence	.\Game\Menu.h	/^namespace Sequence{$/;"	n
+Sequence	.\Game\Parent.cpp	/^namespace Sequence{$/;"	n	file:
+Sequence	.\Game\Parent.h	/^namespace Sequence {$/;"	n
+Sequence	.\Game\Play.cpp	/^namespace Sequence{$/;"	n	file:
+Sequence	.\Game\Play.h	/^namespace Sequence{$/;"	n
+Sequence	.\Sequence.h	/^class Sequence $/;"	c
+Sequence	.\StageSelect.cpp	/^namespace Sequence{$/;"	n	file:
+Sequence	.\StageSelect.h	/^namespace Sequence {$/;"	n
+Sequence	.\Title.cpp	/^namespace Sequence {$/;"	n	file:
+Sequence	.\Title.h	/^namespace Sequence {$/;"	n
+Sequence::DuoGame	.\GameInstance.h	/^namespace DuoGame {$/;"	n	namespace:Sequence
+Sequence::Game	.\Game\Clear.cpp	/^namespace Game {$/;"	n	namespace:Sequence	file:
+Sequence::Game	.\Game\Clear.h	/^namespace Game{$/;"	n	namespace:Sequence
+Sequence::Game	.\Game\Loading.cpp	/^namespace Game {$/;"	n	namespace:Sequence	file:
+Sequence::Game	.\Game\Loading.h	/^namespace Game{$/;"	n	namespace:Sequence
+Sequence::Game	.\Game\Menu.cpp	/^namespace Game{$/;"	n	namespace:Sequence	file:
+Sequence::Game	.\Game\Menu.h	/^namespace Game{$/;"	n	namespace:Sequence
+Sequence::Game	.\Game\Parent.cpp	/^namespace Game{$/;"	n	namespace:Sequence	file:
+Sequence::Game	.\Game\Parent.h	/^namespace Game {$/;"	n	namespace:Sequence
+Sequence::Game	.\Game\Play.cpp	/^namespace Game{$/;"	n	namespace:Sequence	file:
+Sequence::Game	.\Game\Play.h	/^namespace Game{$/;"	n	namespace:Sequence
+Sequence::Game::Clear	.\Game\Clear.h	/^class Clear$/;"	c	namespace:Sequence::Game
+Sequence::Game::Clear::Clear	.\Game\Clear.cpp	/^Clear::Clear() $/;"	f	class:Sequence::Game::Clear	signature:()
+Sequence::Game::Clear::Clear	.\Game\Clear.h	/^	Clear();$/;"	p	class:Sequence::Game::Clear	access:public	signature:()
+Sequence::Game::Clear::image	.\Game\Clear.h	/^	Image image;$/;"	m	class:Sequence::Game::Clear	access:private
+Sequence::Game::Clear::mCount	.\Game\Clear.h	/^    int mCount;$/;"	m	class:Sequence::Game::Clear	access:private
+Sequence::Game::Clear::update	.\Game\Clear.cpp	/^void Clear::update(Parent* parent) {$/;"	f	class:Sequence::Game::Clear	signature:(Parent* parent)
+Sequence::Game::Clear::update	.\Game\Clear.h	/^	void update(Parent*);$/;"	p	class:Sequence::Game::Clear	access:public	signature:(Parent*)
+Sequence::Game::Loading	.\Game\Loading.h	/^class Loading{$/;"	c	namespace:Sequence::Game
+Sequence::Game::Loading::Loading	.\Game\Loading.cpp	/^Loading::Loading()$/;"	f	class:Sequence::Game::Loading	signature:()
+Sequence::Game::Loading::Loading	.\Game\Loading.h	/^	Loading();$/;"	p	class:Sequence::Game::Loading	access:public	signature:()
+Sequence::Game::Loading::image	.\Game\Loading.h	/^	Image image;$/;"	m	class:Sequence::Game::Loading	access:private
+Sequence::Game::Loading::mCount	.\Game\Loading.h	/^	int mCount;$/;"	m	class:Sequence::Game::Loading	access:private
+Sequence::Game::Loading::mStarted	.\Game\Loading.h	/^	bool mStarted;$/;"	m	class:Sequence::Game::Loading	access:private
+Sequence::Game::Loading::update	.\Game\Loading.cpp	/^void Loading::update(Parent* parent) {$/;"	f	class:Sequence::Game::Loading	signature:(Parent* parent)
+Sequence::Game::Loading::update	.\Game\Loading.h	/^	void update( Parent* );$/;"	p	class:Sequence::Game::Loading	access:public	signature:( Parent* )
+Sequence::Game::Menu	.\Game\Menu.h	/^class Menu$/;"	c	namespace:Sequence::Game
+Sequence::Game::Menu::Menu	.\Game\Menu.cpp	/^Menu::Menu() $/;"	f	class:Sequence::Game::Menu	signature:()
+Sequence::Game::Menu::Menu	.\Game\Menu.h	/^    Menu();$/;"	p	class:Sequence::Game::Menu	access:public	signature:()
+Sequence::Game::Menu::draw	.\Game\Menu.h	/^	void draw();$/;"	p	class:Sequence::Game::Menu	access:private	signature:()
+Sequence::Game::Menu::image	.\Game\Menu.h	/^	Image image;$/;"	m	class:Sequence::Game::Menu	access:private
+Sequence::Game::Menu::m_menu	.\Game\Menu.h	/^    std::vector<std::string> m_menu;$/;"	m	class:Sequence::Game::Menu	access:private
+Sequence::Game::Menu::update	.\Game\Menu.cpp	/^void Menu::update(Parent* parent)$/;"	f	class:Sequence::Game::Menu	signature:(Parent* parent)
+Sequence::Game::Menu::update	.\Game\Menu.h	/^	void update(Parent*);$/;"	p	class:Sequence::Game::Menu	access:public	signature:(Parent*)
+Sequence::Game::Parent	.\Game\Parent.h	/^class Parent $/;"	c	namespace:Sequence::Game
+Sequence::Game::Parent::GrandParent	.\Game\Parent.h	/^	typedef Sequence::GameInstance GrandParent; \/\/祖父$/;"	t	class:Sequence::Game::Parent	access:public
+Sequence::Game::Parent::Parent	.\Game\Parent.cpp	/^Parent::Parent(int stageID) $/;"	f	class:Sequence::Game::Parent	signature:(int stageID)
+Sequence::Game::Parent::Parent	.\Game\Parent.h	/^	Parent(int stageID);$/;"	p	class:Sequence::Game::Parent	access:public	signature:(int stageID)
+Sequence::Game::Parent::SEQUENCE_CLEAR	.\Game\Parent.h	/^		SEQUENCE_CLEAR,$/;"	e	enum:Sequence::Game::Parent::SeqID
+Sequence::Game::Parent::SEQUENCE_MENU	.\Game\Parent.h	/^		SEQUENCE_MENU,$/;"	e	enum:Sequence::Game::Parent::SeqID
+Sequence::Game::Parent::SEQUENCE_NONE	.\Game\Parent.h	/^		SEQUENCE_NONE$/;"	e	enum:Sequence::Game::Parent::SeqID
+Sequence::Game::Parent::SEQUENCE_PLAY	.\Game\Parent.h	/^		SEQUENCE_PLAY,$/;"	e	enum:Sequence::Game::Parent::SeqID
+Sequence::Game::Parent::SEQUENCE_STAGE_SELECT	.\Game\Parent.h	/^		SEQUENCE_STAGE_SELECT, \/\/上階�?$/;"	e	enum:Sequence::Game::Parent::SeqID
+Sequence::Game::Parent::SEQUENCE_TITLE	.\Game\Parent.h	/^		SEQUENCE_TITLE, \/\/上階�?$/;"	e	enum:Sequence::Game::Parent::SeqID
+Sequence::Game::Parent::SeqID	.\Game\Parent.h	/^	enum SeqID {$/;"	g	class:Sequence::Game::Parent	access:public
+Sequence::Game::Parent::mClear	.\Game\Parent.h	/^	Clear* mClear;$/;"	m	class:Sequence::Game::Parent	access:private
+Sequence::Game::Parent::mLoading	.\Game\Parent.h	/^    Loading* mLoading;$/;"	m	class:Sequence::Game::Parent	access:private
+Sequence::Game::Parent::mMenu	.\Game\Parent.h	/^	Menu* mMenu;$/;"	m	class:Sequence::Game::Parent	access:private
+Sequence::Game::Parent::mNext	.\Game\Parent.h	/^    SeqID mNext;$/;"	m	class:Sequence::Game::Parent	access:private
+Sequence::Game::Parent::mPlay	.\Game\Parent.h	/^	Play* mPlay;$/;"	m	class:Sequence::Game::Parent	access:private
+Sequence::Game::Parent::mStageID	.\Game\Parent.h	/^	int mStageID;$/;"	m	class:Sequence::Game::Parent	access:private
+Sequence::Game::Parent::mState	.\Game\Parent.h	/^	State* mState;$/;"	m	class:Sequence::Game::Parent	access:private
+Sequence::Game::Parent::moveTo	.\Game\Parent.cpp	/^void Parent::moveTo(SeqID next) {$/;"	f	class:Sequence::Game::Parent	signature:(SeqID next)
+Sequence::Game::Parent::moveTo	.\Game\Parent.h	/^	void moveTo(SeqID);$/;"	p	class:Sequence::Game::Parent	access:public	signature:(SeqID)
+Sequence::Game::Parent::startLoading	.\Game\Parent.cpp	/^void Parent::startLoading() {$/;"	f	class:Sequence::Game::Parent	signature:()
+Sequence::Game::Parent::startLoading	.\Game\Parent.h	/^    void startLoading();$/;"	p	class:Sequence::Game::Parent	access:public	signature:()
+Sequence::Game::Parent::state	.\Game\Parent.cpp	/^State* Parent::state() {$/;"	f	class:Sequence::Game::Parent	signature:()
+Sequence::Game::Parent::state	.\Game\Parent.h	/^    State* state();$/;"	p	class:Sequence::Game::Parent	access:public	signature:()
+Sequence::Game::Parent::update	.\Game\Parent.cpp	/^void Parent::update(GrandParent* parent)$/;"	f	class:Sequence::Game::Parent	signature:(GrandParent* parent)
+Sequence::Game::Parent::update	.\Game\Parent.h	/^	void update(GrandParent*);$/;"	p	class:Sequence::Game::Parent	access:public	signature:(GrandParent*)
+Sequence::Game::Parent::~Parent	.\Game\Parent.cpp	/^Parent::~Parent() {$/;"	f	class:Sequence::Game::Parent	signature:()
+Sequence::Game::Parent::~Parent	.\Game\Parent.h	/^	~Parent();$/;"	p	class:Sequence::Game::Parent	access:public	signature:()
+Sequence::Game::Play	.\Game\Play.h	/^class Play{$/;"	c	namespace:Sequence::Game
+Sequence::Game::Play::Play	.\Game\Play.h	/^	Play() {}$/;"	f	class:Sequence::Game::Play	access:public	signature:()
+Sequence::Game::Play::update	.\Game\Play.cpp	/^void Play::update( Parent* parent ){$/;"	f	class:Sequence::Game::Play	signature:( Parent* parent )
+Sequence::Game::Play::update	.\Game\Play.h	/^	void update( Parent* );$/;"	p	class:Sequence::Game::Play	access:public	signature:( Parent* )
+Sequence::Game::Play::~Play	.\Game\Play.h	/^	~Play() {}$/;"	f	class:Sequence::Game::Play	access:public	signature:()
+Sequence::GameInstance	.\GameInstance.h	/^class GameInstance$/;"	c	namespace:Sequence
+Sequence::GameInstance::GameInstance	.\GameInstance.cpp	/^GameInstance::GameInstance() $/;"	f	class:Sequence::GameInstance	signature:()
+Sequence::GameInstance::GameInstance	.\GameInstance.h	/^	GameInstance();$/;"	p	class:Sequence::GameInstance	access:public	signature:()
+Sequence::GameInstance::SEQUENCE_GAME	.\GameInstance.h	/^		SEQUENCE_GAME,$/;"	e	enum:Sequence::GameInstance::SeqID
+Sequence::GameInstance::SEQUENCE_NONE	.\GameInstance.h	/^		SEQUENCE_NONE,$/;"	e	enum:Sequence::GameInstance::SeqID
+Sequence::GameInstance::SEQUENCE_STAGE_SELECT	.\GameInstance.h	/^		SEQUENCE_STAGE_SELECT,$/;"	e	enum:Sequence::GameInstance::SeqID
+Sequence::GameInstance::SEQUENCE_TITLE	.\GameInstance.h	/^		SEQUENCE_TITLE,$/;"	e	enum:Sequence::GameInstance::SeqID
+Sequence::GameInstance::SeqID	.\GameInstance.h	/^	enum SeqID{$/;"	g	class:Sequence::GameInstance	access:public
+Sequence::GameInstance::mDuoGame	.\GameInstance.h	/^    DuoGame::Parent* mDuoGame;$/;"	m	class:Sequence::GameInstance	access:private
+Sequence::GameInstance::mEnding	.\GameInstance.h	/^    Engine* mEnding;$/;"	m	class:Sequence::GameInstance	access:private
+Sequence::GameInstance::mGameOver	.\GameInstance.h	/^    GameOver* mGameOver;$/;"	m	class:Sequence::GameInstance	access:private
+Sequence::GameInstance::mNext	.\GameInstance.h	/^	SeqID mNext;$/;"	m	class:Sequence::GameInstance	access:private
+Sequence::GameInstance::mSoloGame	.\GameInstance.h	/^    SoloGame::Parent* mSoloGame;$/;"	m	class:Sequence::GameInstance	access:private
+Sequence::GameInstance::mStageID	.\GameInstance.h	/^    int mStageID;$/;"	m	class:Sequence::GameInstance	access:private
+Sequence::GameInstance::mTitle	.\GameInstance.h	/^	Title* mTitle;$/;"	m	class:Sequence::GameInstance	access:private
+Sequence::GameInstance::moveTo	.\GameInstance.cpp	/^void GameInstance::moveTo( SeqID next ){$/;"	f	class:Sequence::GameInstance	signature:( SeqID next )
+Sequence::GameInstance::moveTo	.\GameInstance.h	/^	void moveTo( SeqID );$/;"	p	class:Sequence::GameInstance	access:public	signature:( SeqID )
+Sequence::GameInstance::setStageID	.\GameInstance.cpp	/^void GameInstance::setStageID( int stageID ){$/;"	f	class:Sequence::GameInstance	signature:( int stageID )
+Sequence::GameInstance::setStageID	.\GameInstance.h	/^	void setStageID( int stageID );$/;"	p	class:Sequence::GameInstance	access:public	signature:( int stageID )
+Sequence::GameInstance::update	.\GameInstance.cpp	/^void GameInstance::update() $/;"	f	class:Sequence::GameInstance	signature:()
+Sequence::GameInstance::update	.\GameInstance.h	/^	void update();$/;"	p	class:Sequence::GameInstance	access:public	signature:()
+Sequence::GameInstance::~GameInstance	.\GameInstance.cpp	/^GameInstance::~GameInstance()$/;"	f	class:Sequence::GameInstance	signature:()
+Sequence::GameInstance::~GameInstance	.\GameInstance.h	/^	~GameInstance();$/;"	p	class:Sequence::GameInstance	access:public	signature:()
+Sequence::SoloGame	.\GameInstance.h	/^namespace SoloGame {$/;"	n	namespace:Sequence
+Sequence::StageSelect	.\StageSelect.h	/^class StageSelect$/;"	c	namespace:Sequence
+Sequence::StageSelect::StageSelect	.\StageSelect.h	/^	StageSelect() : image("data\/image\/stageSelect.dds") {}$/;"	f	class:Sequence::StageSelect	access:public	signature:()
+Sequence::StageSelect::image	.\StageSelect.h	/^	Image image;$/;"	m	class:Sequence::StageSelect	access:private
+Sequence::StageSelect::update	.\StageSelect.cpp	/^void StageSelect::update(GameInstance* parent)$/;"	f	class:Sequence::StageSelect	signature:(GameInstance* parent)
+Sequence::StageSelect::update	.\StageSelect.h	/^	void update(GameInstance* parent);$/;"	p	class:Sequence::StageSelect	access:public	signature:(GameInstance* parent)
+Sequence::Title	.\Title.h	/^class Title$/;"	c	namespace:Sequence
+Sequence::Title::Title	.\Title.h	/^	Title() : image("data\/image\/dummy.dds") {}$/;"	f	class:Sequence::Title	access:public	signature:()
+Sequence::Title::image	.\Title.h	/^	Image image;$/;"	m	class:Sequence::Title	access:private
+Sequence::Title::update	.\Title.cpp	/^void Title::update(GameInstance* parent) {$/;"	f	class:Sequence::Title	signature:(GameInstance* parent)
+Sequence::Title::update	.\Title.h	/^	void update(GameInstance*);$/;"	p	class:Sequence::Title	access:public	signature:(GameInstance*)
+Sequence::update	.\Sequence.h	/^	virtual void update()=0;$/;"	p	class:Sequence	access:public	signature:()
+SequenceType	.\Sequence.h	/^enum SequenceType {$/;"	g
+SoloGame	.\GameInstance.h	/^namespace SoloGame {$/;"	n	namespace:Sequence
+StageSelect	.\StageSelect.h	/^	StageSelect() : image("data\/image\/stageSelect.dds") {}$/;"	f	class:Sequence::StageSelect	access:public	signature:()
+StageSelect	.\StageSelect.h	/^class StageSelect$/;"	c	namespace:Sequence
+State	.\Game\State.cpp	/^State::State(buffer_type& stageData)$/;"	f	class:State	signature:(buffer_type& stageData)
+State	.\Game\State.h	/^	State(buffer_type& stageData);$/;"	p	class:State	access:private	signature:(buffer_type& stageData)
+State	.\Game\State.h	/^class State$/;"	c
+State::State	.\Game\State.cpp	/^State::State(buffer_type& stageData)$/;"	f	class:State	signature:(buffer_type& stageData)
+State::State	.\Game\State.h	/^	State(buffer_type& stageData);$/;"	p	class:State	access:private	signature:(buffer_type& stageData)
+State::bPlayerWantToQuit	.\Game\State.h	/^	bool bPlayerWantToQuit;$/;"	m	class:State	access:private
+State::draw	.\Game\State.cpp	/^void State::draw() const$/;"	f	class:State	signature:() const
+State::draw	.\Game\State.h	/^	void draw() const;$/;"	p	class:State	access:public	signature:() const
+State::frameRate	.\Game\State.cpp	/^int State::frameRate() const$/;"	f	class:State	signature:() const
+State::frameRate	.\Game\State.h	/^	int frameRate() const;$/;"	p	class:State	access:private	signature:() const
+State::game_obj_image	.\Game\State.h	/^	const Image game_obj_image;$/;"	m	class:State	access:private
+State::goal_position	.\Game\State.h	/^	std::vector<point> goal_position;$/;"	m	class:State	access:private
+State::hasCleared	.\Game\State.cpp	/^bool State::hasCleared() const$/;"	f	class:State	signature:() const
+State::hasCleared	.\Game\State.h	/^    bool hasCleared() const;$/;"	p	class:State	access:public	signature:() const
+State::initalizeWithStage	.\Game\State.cpp	/^State* State::initalizeWithStage(int stage)$/;"	f	class:State	signature:(int stage)
+State::initalizeWithStage	.\Game\State.h	/^    static State* initalizeWithStage(int stage);$/;"	p	class:State	access:public	signature:(int stage)
+State::mMoveCount	.\Game\State.h	/^	int mMoveCount;$/;"	m	class:State	access:private
+State::mSize	.\Game\State.h	/^	point mSize;$/;"	m	class:State	access:private
+State::mStageData	.\Game\State.h	/^	buffer_type mStageData;$/;"	m	class:State	access:private
+State::map	.\Game\State.h	/^    Array2D<Object> map;$/;"	m	class:State	access:private
+State::num_of_finished_box	.\Game\State.cpp	/^int State::num_of_finished_box() const$/;"	f	class:State	signature:() const
+State::num_of_finished_box	.\Game\State.h	/^    int num_of_finished_box() const;$/;"	p	class:State	access:private	signature:() const
+State::player_position	.\Game\State.h	/^	point player_position;$/;"	m	class:State	access:private
+State::reset	.\Game\State.cpp	/^void State::reset() $/;"	f	class:State	signature:()
+State::reset	.\Game\State.h	/^	void reset();$/;"	p	class:State	access:public	signature:()
+State::update	.\Game\State.cpp	/^void State::update(point direction)$/;"	f	class:State	signature:(point direction)
+State::update	.\Game\State.h	/^	void update(point);$/;"	p	class:State	access:public	signature:(point)
+Title	.\Title.h	/^	Title() : image("data\/image\/dummy.dds") {}$/;"	f	class:Sequence::Title	access:public	signature:()
+Title	.\Title.h	/^class Title$/;"	c	namespace:Sequence
+bPlayerWantToQuit	.\Game\State.h	/^	bool bPlayerWantToQuit;$/;"	m	class:State	access:private
+draw	.\Game\Menu.h	/^	void draw();$/;"	p	class:Sequence::Game::Menu	access:private	signature:()
+draw	.\Game\State.cpp	/^void State::draw() const$/;"	f	class:State	signature:() const
+draw	.\Game\State.h	/^	void draw() const;$/;"	p	class:State	access:public	signature:() const
+findOutMapSize	.\Game\State.cpp	/^point findOutMapSize(buffer_type& buffer)$/;"	f	signature:(buffer_type& buffer)
+frameRate	.\Game\State.cpp	/^int State::frameRate() const$/;"	f	class:State	signature:() const
+frameRate	.\Game\State.h	/^	int frameRate() const;$/;"	p	class:State	access:private	signature:() const
+gCounter	.\GameInstance.cpp	/^int gCounter = 0;$/;"	v
+gRootSequence	.\GameInstance.cpp	/^Sequence::GameInstance* gRootSequence = 0; $/;"	v
+game_obj_image	.\Game\State.h	/^	const Image game_obj_image;$/;"	m	class:State	access:private
+goal_position	.\Game\State.h	/^	std::vector<point> goal_position;$/;"	m	class:State	access:private
+hasCleared	.\Game\State.cpp	/^bool State::hasCleared() const$/;"	f	class:State	signature:() const
+hasCleared	.\Game\State.h	/^    bool hasCleared() const;$/;"	p	class:State	access:public	signature:() const
+image	.\Game\Clear.h	/^	Image image;$/;"	m	class:Sequence::Game::Clear	access:private
+image	.\Game\Loading.h	/^	Image image;$/;"	m	class:Sequence::Game::Loading	access:private
+image	.\Game\Menu.h	/^	Image image;$/;"	m	class:Sequence::Game::Menu	access:private
+image	.\StageSelect.h	/^	Image image;$/;"	m	class:Sequence::StageSelect	access:private
+image	.\Title.h	/^	Image image;$/;"	m	class:Sequence::Title	access:private
+initalizeWithStage	.\Game\State.cpp	/^State* State::initalizeWithStage(int stage)$/;"	f	class:State	signature:(int stage)
+initalizeWithStage	.\Game\State.h	/^    static State* initalizeWithStage(int stage);$/;"	p	class:State	access:public	signature:(int stage)
+mClear	.\Game\Parent.h	/^	Clear* mClear;$/;"	m	class:Sequence::Game::Parent	access:private
+mCount	.\Game\Clear.h	/^    int mCount;$/;"	m	class:Sequence::Game::Clear	access:private
+mCount	.\Game\Loading.h	/^	int mCount;$/;"	m	class:Sequence::Game::Loading	access:private
+mDuoGame	.\GameInstance.h	/^    DuoGame::Parent* mDuoGame;$/;"	m	class:Sequence::GameInstance	access:private
+mEnding	.\GameInstance.h	/^    Engine* mEnding;$/;"	m	class:Sequence::GameInstance	access:private
+mGameOver	.\GameInstance.h	/^    GameOver* mGameOver;$/;"	m	class:Sequence::GameInstance	access:private
+mLoading	.\Game\Parent.h	/^    Loading* mLoading;$/;"	m	class:Sequence::Game::Parent	access:private
+mMenu	.\Game\Parent.h	/^	Menu* mMenu;$/;"	m	class:Sequence::Game::Parent	access:private
+mMoveCount	.\Game\State.h	/^	int mMoveCount;$/;"	m	class:State	access:private
+mNext	.\GameInstance.h	/^	SeqID mNext;$/;"	m	class:Sequence::GameInstance	access:private
+mNext	.\Game\Parent.h	/^    SeqID mNext;$/;"	m	class:Sequence::Game::Parent	access:private
+mPlay	.\Game\Parent.h	/^	Play* mPlay;$/;"	m	class:Sequence::Game::Parent	access:private
+mSize	.\Game\State.h	/^	point mSize;$/;"	m	class:State	access:private
+mSoloGame	.\GameInstance.h	/^    SoloGame::Parent* mSoloGame;$/;"	m	class:Sequence::GameInstance	access:private
+mStageData	.\Game\State.h	/^	buffer_type mStageData;$/;"	m	class:State	access:private
+mStageID	.\GameInstance.h	/^    int mStageID;$/;"	m	class:Sequence::GameInstance	access:private
+mStageID	.\Game\Parent.h	/^	int mStageID;$/;"	m	class:Sequence::Game::Parent	access:private
+mStarted	.\Game\Loading.h	/^	bool mStarted;$/;"	m	class:Sequence::Game::Loading	access:private
+mState	.\Game\Parent.h	/^	State* mState;$/;"	m	class:Sequence::Game::Parent	access:private
+mTitle	.\GameInstance.h	/^	Title* mTitle;$/;"	m	class:Sequence::GameInstance	access:private
+m_menu	.\Game\Menu.h	/^    std::vector<std::string> m_menu;$/;"	m	class:Sequence::Game::Menu	access:private
+map	.\Game\State.h	/^    Array2D<Object> map;$/;"	m	class:State	access:private
+moveTo	.\GameInstance.cpp	/^void GameInstance::moveTo( SeqID next ){$/;"	f	class:Sequence::GameInstance	signature:( SeqID next )
+moveTo	.\GameInstance.h	/^	void moveTo( SeqID );$/;"	p	class:Sequence::GameInstance	access:public	signature:( SeqID )
+moveTo	.\Game\Parent.cpp	/^void Parent::moveTo(SeqID next) {$/;"	f	class:Sequence::Game::Parent	signature:(SeqID next)
+moveTo	.\Game\Parent.h	/^	void moveTo(SeqID);$/;"	p	class:Sequence::Game::Parent	access:public	signature:(SeqID)
+num_of_finished_box	.\Game\State.cpp	/^int State::num_of_finished_box() const$/;"	f	class:State	signature:() const
+num_of_finished_box	.\Game\State.h	/^    int num_of_finished_box() const;$/;"	p	class:State	access:private	signature:() const
+player_position	.\Game\State.h	/^	point player_position;$/;"	m	class:State	access:private
+reset	.\Game\State.cpp	/^void State::reset() $/;"	f	class:State	signature:()
+reset	.\Game\State.h	/^	void reset();$/;"	p	class:State	access:public	signature:()
+setStageID	.\GameInstance.cpp	/^void GameInstance::setStageID( int stageID ){$/;"	f	class:Sequence::GameInstance	signature:( int stageID )
+setStageID	.\GameInstance.h	/^	void setStageID( int stageID );$/;"	p	class:Sequence::GameInstance	access:public	signature:( int stageID )
+startLoading	.\Game\Parent.cpp	/^void Parent::startLoading() {$/;"	f	class:Sequence::Game::Parent	signature:()
+startLoading	.\Game\Parent.h	/^    void startLoading();$/;"	p	class:Sequence::Game::Parent	access:public	signature:()
+state	.\Game\Parent.cpp	/^State* Parent::state() {$/;"	f	class:Sequence::Game::Parent	signature:()
+state	.\Game\Parent.h	/^    State* state();$/;"	p	class:Sequence::Game::Parent	access:public	signature:()
+update	.\GameInstance.cpp	/^    void Framework::update() {$/;"	f	class:GameLib::Framework	signature:()
+update	.\GameInstance.cpp	/^void GameInstance::update() $/;"	f	class:Sequence::GameInstance	signature:()
+update	.\GameInstance.h	/^	void update();$/;"	p	class:Sequence::GameInstance	access:public	signature:()
+update	.\Game\Clear.cpp	/^void Clear::update(Parent* parent) {$/;"	f	class:Sequence::Game::Clear	signature:(Parent* parent)
+update	.\Game\Clear.h	/^	void update(Parent*);$/;"	p	class:Sequence::Game::Clear	access:public	signature:(Parent*)
+update	.\Game\Loading.cpp	/^void Loading::update(Parent* parent) {$/;"	f	class:Sequence::Game::Loading	signature:(Parent* parent)
+update	.\Game\Loading.h	/^	void update( Parent* );$/;"	p	class:Sequence::Game::Loading	access:public	signature:( Parent* )
+update	.\Game\Menu.cpp	/^void Menu::update(Parent* parent)$/;"	f	class:Sequence::Game::Menu	signature:(Parent* parent)
+update	.\Game\Menu.h	/^	void update(Parent*);$/;"	p	class:Sequence::Game::Menu	access:public	signature:(Parent*)
+update	.\Game\Parent.cpp	/^void Parent::update(GrandParent* parent)$/;"	f	class:Sequence::Game::Parent	signature:(GrandParent* parent)
+update	.\Game\Parent.h	/^	void update(GrandParent*);$/;"	p	class:Sequence::Game::Parent	access:public	signature:(GrandParent*)
+update	.\Game\Play.cpp	/^void Play::update( Parent* parent ){$/;"	f	class:Sequence::Game::Play	signature:( Parent* parent )
+update	.\Game\Play.h	/^	void update( Parent* );$/;"	p	class:Sequence::Game::Play	access:public	signature:( Parent* )
+update	.\Game\State.cpp	/^void State::update(point direction)$/;"	f	class:State	signature:(point direction)
+update	.\Game\State.h	/^	void update(point);$/;"	p	class:State	access:public	signature:(point)
+update	.\Sequence.h	/^	virtual void update()=0;$/;"	p	class:Sequence	access:public	signature:()
+update	.\StageSelect.cpp	/^void StageSelect::update(GameInstance* parent)$/;"	f	class:Sequence::StageSelect	signature:(GameInstance* parent)
+update	.\StageSelect.h	/^	void update(GameInstance* parent);$/;"	p	class:Sequence::StageSelect	access:public	signature:(GameInstance* parent)
+update	.\Title.cpp	/^void Title::update(GameInstance* parent) {$/;"	f	class:Sequence::Title	signature:(GameInstance* parent)
+update	.\Title.h	/^	void update(GameInstance*);$/;"	p	class:Sequence::Title	access:public	signature:(GameInstance*)
+~GameInstance	.\GameInstance.cpp	/^GameInstance::~GameInstance()$/;"	f	class:Sequence::GameInstance	signature:()
+~GameInstance	.\GameInstance.h	/^	~GameInstance();$/;"	p	class:Sequence::GameInstance	access:public	signature:()
+~Parent	.\Game\Parent.cpp	/^Parent::~Parent() {$/;"	f	class:Sequence::Game::Parent	signature:()
+~Parent	.\Game\Parent.h	/^	~Parent();$/;"	p	class:Sequence::Game::Parent	access:public	signature:()
+~Play	.\Game\Play.h	/^	~Play() {}$/;"	f	class:Sequence::Game::Play	access:public	signature:()

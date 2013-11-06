@@ -15,6 +15,12 @@
     <Filter Include="Source Files\Sequence\Game">
       <UniqueIdentifier>{f966baf7-569e-4f13-8424-fe5d1c25ba1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Sequence\DuoGame">
+      <UniqueIdentifier>{ec76fdba-a277-41d2-b0d0-c4b1cafd9f70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sequence\SoloGame">
+      <UniqueIdentifier>{211a6d22-40fc-471d-91db-e304dab58c14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array2D.h">
@@ -38,32 +44,47 @@
     <ClInclude Include="Sequence\GameInstance.h">
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\Sequence.h">
-      <Filter>Source Files\Sequence</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence\StageSelect.h">
-      <Filter>Source Files\Sequence</Filter>
-    </ClInclude>
     <ClInclude Include="Sequence\Title.h">
       <Filter>Source Files\Sequence</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\Game\Clear.h">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClInclude Include="Sequence\Ending.h">
+      <Filter>Source Files\Sequence</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\Game\Loading.h">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClInclude Include="Sequence\GameOver.h">
+      <Filter>Source Files\Sequence</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\Game\Menu.h">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClInclude Include="Sequence\SoloGame\Clear.h">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\Game\Parent.h">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClInclude Include="Sequence\SoloGame\Fail.h">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\Game\Play.h">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClInclude Include="Sequence\SoloGame\Parent.h">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\Game\State.h">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClInclude Include="Sequence\SoloGame\Pause.h">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\SoloGame\Play.h">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\SoloGame\Ready.h">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\DuoGame\DisplayResult.h">
+      <Filter>Source Files\Sequence\DuoGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\DuoGame\Parent.h">
+      <Filter>Source Files\Sequence\DuoGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\DuoGame\Pause.h">
+      <Filter>Source Files\Sequence\DuoGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\DuoGame\Play.h">
+      <Filter>Source Files\Sequence\DuoGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\DuoGame\Ready.h">
+      <Filter>Source Files\Sequence\DuoGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -82,29 +103,47 @@
     <ClCompile Include="Sequence\GameInstance.cpp">
       <Filter>Source Files\Sequence</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\StageSelect.cpp">
-      <Filter>Source Files\Sequence</Filter>
-    </ClCompile>
     <ClCompile Include="Sequence\Title.cpp">
       <Filter>Source Files\Sequence</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\Game\Clear.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClCompile Include="Sequence\Ending.cpp">
+      <Filter>Source Files\Sequence</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\Game\Loading.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClCompile Include="Sequence\GameOver.cpp">
+      <Filter>Source Files\Sequence</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\Game\Menu.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClCompile Include="Sequence\SoloGame\Clear.cpp">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\Game\Parent.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClCompile Include="Sequence\SoloGame\Fail.cpp">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\Game\Play.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClCompile Include="Sequence\SoloGame\Parent.cpp">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence\Game\State.cpp">
-      <Filter>Source Files\Sequence\Game</Filter>
+    <ClCompile Include="Sequence\SoloGame\Pause.cpp">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\SoloGame\Play.cpp">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\SoloGame\Ready.cpp">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\DuoGame\DisplayResult.cpp">
+      <Filter>Source Files\Sequence\DuoGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\DuoGame\Parent.cpp">
+      <Filter>Source Files\Sequence\DuoGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\DuoGame\Pause.cpp">
+      <Filter>Source Files\Sequence\DuoGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\DuoGame\Play.cpp">
+      <Filter>Source Files\Sequence\DuoGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\DuoGame\Ready.cpp">
+      <Filter>Source Files\Sequence\DuoGame</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
