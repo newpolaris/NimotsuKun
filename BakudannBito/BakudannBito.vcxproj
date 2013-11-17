@@ -51,6 +51,7 @@
     <ClCompile Include="Sequence\SoloGame\Fail.cpp" />
     <ClCompile Include="Sequence\SoloGame\Parent.cpp" />
     <ClCompile Include="Sequence\SoloGame\Play.cpp" />
+    <ClCompile Include="Sequence\SoloGame\Player.cpp" />
     <ClCompile Include="Sequence\SoloGame\State.cpp" />
     <ClCompile Include="Sequence\Title.cpp" />
     <ClCompile Include="StringRenderer.cpp" />

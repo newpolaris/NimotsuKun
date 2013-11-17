@@ -1,10 +1,14 @@
 #include <vector>
 #include <sstream>
 
-#include "Sequence/SoloGame/State.h"
+#include "GameLib/Framework.h"
 
 #include "point.h"
 #include "file.h"
+
+#include "Sequence/SoloGame/State.h"
+#include "Sequence/SoloGame/Parent.h"
+#include "Sequence/SoloGame/Player.h"
 
 namespace Sequence {
 namespace SoloGame {
@@ -44,17 +48,24 @@ State* State::initalizeWithStage(int stage)
 {
     std::ostringstream oss;
     oss << "data/stageData/" << stage << ".txt";
-    buffer_type stageFile(fileRead(oss.str())); 
     //これでstringが取れる(とれる)
+    buffer_type stageFile(fileRead(oss.str())); 
 
     point size = findOutMapSize(stageFile);
 
 	return new State(stageFile, size.x, size.y);
 }
 
+State::~State()
+{
+	SAFE_DELETE(mPlayer);
+}
+
 State::State(buffer_type& stageData, int sx, int sy)
     : mX(sx)
     , mY(sy)
+	, mSrcW(16)
+	, mSrcH(mSrcW)
     , map(mX, mY)
     , mImage("data/image/BakudanBitoImage.dds")
 {
@@ -66,9 +77,17 @@ State::State(buffer_type& stageData, int sx, int sy)
     unsigned count=0;
 
     while (count < stageData.size()) {
+		point pos(idx%mX, idx/mY);
+
         switch (stageData[count++]) {
         case ' ': map[idx++]=MAP_NONE;  break;
         case '#': map[idx++]=MAP_BLOCK; break;
+        case 'p': 
+			mPlayer = new Player(pos);
+			idx++;				
+			break;
+        case 'm': idx++;				break;
+        case 'b': idx++;				break;
         default: break;
         }
     }
@@ -84,6 +103,8 @@ void State::update(Parent* parent)
      *            Position, Animation 진행을 위한 update 수행.
      */
     // for (int i = 0; i < boomList.size(); ++i)
+	if (mPlayer)
+		mPlayer->update(this);
 
     // Section 2: 
     // Boom total merge search.
@@ -98,9 +119,6 @@ void State::update(Parent* parent)
 // Used for background drawing.
 void State::draw(int x, int y, MAP_INFO type) const
 {
-    const static int srcW = 16;
-    const static int srcH = srcW;
-
     point src;
     switch (type)
     {
@@ -111,16 +129,17 @@ void State::draw(int x, int y, MAP_INFO type) const
     case MAP_MONSTER:   src=point(2,1); break;
     }
 
-	mImage.draw(x*srcW, y*srcH, src.x*srcW, src.y*srcH, srcW, srcH);
+	mImage.draw(x, y, src.x*mSrcW, src.y*mSrcH, mSrcW, mSrcH);
 }
 
 void State::draw() const
 {
-    for (int i=0; i < mY; i++)
-    for (int j=0; j < mX; j++)
-    {
-        draw(j, i, map(j,i));
-    }
+    for (int j=0; j < mY; j++)
+    for (int i=0; i < mX; i++)
+        draw(i*mSrcW, j*mSrcH, map(i,j));
+
+	if (mPlayer)
+		mPlayer->draw(this);
 }
 
 } // namespace SoloGame 

@@ -16,7 +16,8 @@ void Play::update(Parent* parent)
 {
     using namespace GameLib;
 
-	mImage.draw();
+	parent->update();
+	parent->draw();
 
     StringRenderer::instance().draw("Play");
     StringRenderer::instance().draw("Please input space key to Clear", 0, 1);

@@ -41,6 +41,11 @@ void Parent::moveTo(Parent::SeqID next)
     mNext = next;
 }
 
+void Parent::update()
+{
+	mState->update(this);
+}
+
 void Parent::update(GrandParent* parent)
 {
     if (mClear)

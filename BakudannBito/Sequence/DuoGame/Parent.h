@@ -21,6 +21,7 @@ public:
 	~Parent();
 	void draw() const {}
 	void update(GrandParent*);
+	void update() {}
 	void moveTo(SeqID);
 
 private:

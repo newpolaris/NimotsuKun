@@ -9,6 +9,7 @@ namespace Sequence {
 namespace SoloGame {
 
 class Parent;
+class Player;
 
 class State
 {
@@ -25,21 +26,27 @@ public:
     };
 
 	static State* initalizeWithStage(int stage);
-
+	~State();
     void draw() const;
+    void draw(int x, int y, MAP_INFO type) const;
     void update(Parent* parent);
 
 private:
 	static point findOutMapSize(buffer_type& buffer);
 
 	State(buffer_type& stageData, int sx, int sy);
-    void draw(int x, int y, MAP_INFO type) const;
+
+public:
+    const int mSrcW;
+    const int mSrcH;
 
 private:
     int mX;
     int mY;
 	Image mImage;
     Array2D<MAP_INFO> map;
+
+	Player* mPlayer;
 };
 
 } // namespace SoloGame

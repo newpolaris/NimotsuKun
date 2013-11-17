@@ -25,7 +25,7 @@ public:
     };
 
 	virtual void moveTo(SeqID)=0;
-	virtual void update(GrandParent*)=0;
+	virtual void update()=0;
 	virtual void draw() const=0;
 };
 

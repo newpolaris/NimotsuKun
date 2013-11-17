@@ -83,10 +83,10 @@
     <ClInclude Include="Sequence\Game\Parent.h">
       <Filter>Source Files\Sequence\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\SoloGame\Player.h">
-      <Filter>Source Files\Sequence</Filter>
-    </ClInclude>
     <ClInclude Include="Sequence\SoloGame\State.h">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\SoloGame\Player.h">
       <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -146,6 +146,9 @@
       <Filter>Source Files\Sequence\Game</Filter>
     </ClCompile>
     <ClCompile Include="Sequence\SoloGame\State.cpp">
+      <Filter>Source Files\Sequence\SoloGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\SoloGame\Player.cpp">
       <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClCompile>
   </ItemGroup>

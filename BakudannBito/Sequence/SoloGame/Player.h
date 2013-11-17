@@ -1,7 +1,10 @@
 #pragma once
 
-namespace SoloGame {
+#include "point.h"
+
 namespace Sequence {
+namespace SoloGame {
+class State;
 
 class Player
 {
@@ -11,8 +14,9 @@ public:
         , mBoomRange(BoomRange)
         , mBoomCountMax(BoomCountMax)
         , mBoomCount(0)
-    {
-    }
+        , mStepMax(30) {}
+
+    void update(State* state);
 
     void BoomRangeUp()
     {
@@ -24,12 +28,13 @@ public:
         mBoomCountMax++;
     }
 
-    void draw()
-    {
-    }
+	void draw(const State* state);
 
 private:
+    const int mStepMax;
+
     point mPosition;    // Current player's position in block dim.
+    point step;         // Used to sub block precision move.
 
     int mBoomRange;     // Rear blast height = width = 2*mBoomRange+1
     int mBoomCount;     // # of used boom that not going off.
