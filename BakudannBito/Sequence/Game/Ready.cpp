@@ -12,15 +12,20 @@ namespace Game {
 
 Ready::Ready() : mImage("data/image/dummy.dds") {}
 
-void Ready::update(Parent* parent)
+void Ready::draw(Parent* parent) const
 {
-    using namespace GameLib;
-
-	mImage.draw();
+	parent->draw();
 
     StringRenderer::instance().draw("Ready");
     StringRenderer::instance().draw("Go", 0, 1);
     StringRenderer::instance().draw("Please input space bar to contiue", 0, 2);
+}
+
+void Ready::update(Parent* parent)
+{
+    using namespace GameLib;
+
+	draw(parent);
 
     if (Framework::instance().isKeyTriggered(' ')) {
         parent->moveTo(Parent::SEQUENCE_PLAY);

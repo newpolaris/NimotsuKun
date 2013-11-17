@@ -11,7 +11,10 @@ class Ready
 public:
     Ready();
     void update(Parent*);
+
 private:
+	void draw(Parent* parent) const;
+
 	Image mImage;
 };
 

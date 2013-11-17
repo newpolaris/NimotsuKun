@@ -19,6 +19,7 @@ class Parent : public Game::Parent
 public:
     Parent();
 	~Parent();
+	void draw() const {}
 	void update(GrandParent*);
 	void moveTo(SeqID);
 

@@ -5,6 +5,7 @@
 #include "Sequence/SoloGame/Fail.h"
 #include "Sequence/SoloGame/Clear.h"
 #include "Sequence/SoloGame/Play.h"
+#include "Sequence/SoloGame/State.h"
 #include "Sequence/Game/Pause.h"
 #include "Sequence/Game/Ready.h"
 
@@ -17,15 +18,22 @@ Parent::Parent()
     , mFail(0)
     , mPause(0)
     , mPlay(0)
+	, mState(State::initalizeWithStage(1))
     , mReady(new Game::Ready()) {}
 
 Parent::~Parent()
 {
+	SAFE_DELETE(mState);
     SAFE_DELETE(mClear);
     SAFE_DELETE(mFail);
     SAFE_DELETE(mPause);
     SAFE_DELETE(mPlay);
     SAFE_DELETE(mReady);
+}
+
+void Parent::draw() const
+{
+	mState->draw();
 }
 
 void Parent::moveTo(Parent::SeqID next)
