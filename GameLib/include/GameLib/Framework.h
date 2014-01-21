@@ -6,9 +6,9 @@ namespace GameLib{
 class Framework{
 public:
 	Framework();
-	///ユーザ定義関数。これを書く。
+	///ユ?ザ定?関数。これを書く。
 	void update();
-	///インスタンス取得
+	///インス?ンス取得
 	static Framework instance();
 	///画面幅取得
 	int width() const;
@@ -20,21 +20,21 @@ public:
 	void requestEnd();
 	///Frameworkに終了命令が出ているか調べる
 	bool isEndRequested() const;
-	///ミリ秒単位で寝る
+	///?リ秒単位で寝る
 	void sleep( int milliSeconds ) const;
-	///時刻を取得する(ミリ秒単位)
+	///時刻を取得する(?リ秒単位)
 	unsigned time() const;
-	///フレームレート取得
+	///フレ??レ?ト取得
 	int frameRate() const;
-	///フレームレート設定(内部で待ちループを回してくれる)
+	///フレ??レ?ト設定(内部で待ちル?プを回してくれる)
 	void setFrameRate( int );
-	///直前フレーム時間取得(ミリ秒単位)
+	///直前フレ??時間取得(?リ秒単位)
 	int previousFrameInterval() const;
 	///入力
 	bool isKeyOn( int c ) const;
 	///入力(瞬間)
 	bool isKeyTriggered( int c ) const;
-	///ランダム数ゲット
+	///ラン??数ゲット
 	int getRandom( int max = 0 );
 	//文字を書く
 	void drawDebugString( 

@@ -61,11 +61,13 @@ State::~State()
 	SAFE_DELETE(mPlayer);
 }
 
+static const int pixels_per_one_block = 16;
+
 State::State(buffer_type& stageData, int sx, int sy)
     : mX(sx)
     , mY(sy)
-	, mSrcW(16)
-	, mSrcH(mSrcW)
+	, mSrcW(pixels_per_one_block)
+	, mSrcH(pixels_per_one_block)
     , map(mX, mY)
     , mImage("data/image/BakudanBitoImage.dds")
 {
@@ -83,7 +85,7 @@ State::State(buffer_type& stageData, int sx, int sy)
         case ' ': map[idx++]=MAP_NONE;  break;
         case '#': map[idx++]=MAP_BLOCK; break;
         case 'p': 
-			mPlayer = new Player(pos);
+			mPlayer = new Player(pos, point(mSrcW, mSrcH), point(mSrcW*0.8f, mSrcH*0.8f));
 			idx++;				
 			break;
         case 'm': idx++;				break;
@@ -103,6 +105,7 @@ void State::update(Parent* parent)
      *            Position, Animation 진행을 위한 update 수행.
      */
     // for (int i = 0; i < boomList.size(); ++i)
+
 	if (mPlayer)
 		mPlayer->update(this);
 
@@ -140,6 +143,26 @@ void State::draw() const
 
 	if (mPlayer)
 		mPlayer->draw(this);
+}
+
+bool State::isPossibleToMove(std::vector<point>& nextPositions)
+{
+	bool ret = true;
+
+	std::for_each(nextPositions.begin(), nextPositions.end(),
+		[&](point& i) { ret &= isPossibleToMove(i); });
+
+	return ret;
+}
+
+bool State::isPossibleToMove(point nextPosition)
+{
+    MAP_INFO info = map(nextPosition);
+
+	if (info == MAP_BLOCK || info == MAP_BOX || info == MAP_BOOM)
+        return false;
+
+    return true;
 }
 
 } // namespace SoloGame 

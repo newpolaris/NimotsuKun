@@ -30,6 +30,8 @@ public:
     void draw() const;
     void draw(int x, int y, MAP_INFO type) const;
     void update(Parent* parent);
+	bool isPossibleToMove(point nextPosition);
+	bool isPossibleToMove(std::vector<point>& nextPositions);
 
 private:
 	static point findOutMapSize(buffer_type& buffer);

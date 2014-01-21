@@ -26,38 +26,16 @@ void Player::update(State* state)
     else if (f.isKeyOn('d'))
         direction += point(+1,0);
 
+	std::vector<point> bounds = getBound(mPosition+direction);
+
     // 해당 방향으로 update 가능한지 조사.
-    // if (state->isPossibleToMove(mPosition, direction)) {
-    if (true) {
-		const int stepMax = mStepMax;
-        const int stepHalf = mStepMax/2;
-
-        // step update 구문.
-        step += direction;
-
-        // pos update 루틴.
-		auto posUpdate = [stepHalf, stepMax](int& Pos, int& step) {
-			if (step > stepHalf-1) {
-				Pos++;
-				step -= stepMax;
-			} else if (step < -stepHalf) {
-				Pos--;
-				step += stepMax;
-			}
-		};
-
-		posUpdate(mPosition.x, step.x);
-		posUpdate(mPosition.y, step.y);
-    }
+    if (state->isPossibleToMove(bounds))
+		mPosition += direction;
 }
 
 void Player::draw(const State* state)
 {
-    point blockSize = point(state->mSrcW, state->mSrcH);
-    point pos = mPosition * blockSize;
-    pos += step*blockSize/point(mStepMax, mStepMax);
-
-    state->draw(pos.x, pos.y, State::MAP_PLAYER);
+    state->draw(mPosition.x, mPosition.y, State::MAP_PLAYER);
 }
 
 } // namespace SoloGame
