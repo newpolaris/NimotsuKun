@@ -102,13 +102,14 @@ void Player::update(State* state)
 	}
 
 	// 아래 내역 option 으로 분리하려면 구조를 어떻게 잡아야 할까?
+	// : if (OPTION == TRUE) ?
 	else {
 		// 여타 Puzzle 게임과 같은 미끄러지며 보상하는 기능.
 		point OneWay = direction;
 		if (std::abs(OneWay.y) > 0)
 			OneWay.x = 0;
 
-		auto sum = [](point i) { return i.x + i.y; };
+		auto sum = [] (point i) { return i.x + i.y; };
 		const point test = point(-1, 1);
 		auto bound = getBound(mPosition+OneWay);
 		auto pass = isPossibleToMove(bound);
