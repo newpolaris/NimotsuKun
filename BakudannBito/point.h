@@ -2,6 +2,9 @@
 
 struct point
 {
+	int* begin() { return &x; }
+	int* end() { return begin()+2; }
+
 	point() : x(0), y(0) {}
 	point(int _x, int _y) : x(_x), y(_y) {}
 	point(int _v) : x(_v), y(_v) {}
@@ -59,3 +62,8 @@ struct point
 	int y;
 };
 
+template <typename T>
+point operator* (T i, const point& p)
+{
+	return point(i) * p;
+}

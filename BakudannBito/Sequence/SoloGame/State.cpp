@@ -85,7 +85,7 @@ State::State(buffer_type& stageData, int sx, int sy)
         case ' ': map[idx++]=MAP_NONE;  break;
         case '#': map[idx++]=MAP_BLOCK; break;
         case 'p': 
-			mPlayer = new Player(pos, point(mSrcW, mSrcH), point(mSrcW*0.8f, mSrcH*0.8f));
+			mPlayer = new Player(pos, point(mSrcW, mSrcH));
 			idx++;				
 			break;
         case 'm': idx++;				break;
@@ -143,16 +143,6 @@ void State::draw() const
 
 	if (mPlayer)
 		mPlayer->draw(this);
-}
-
-bool State::isPossibleToMove(std::vector<point>& nextPositions)
-{
-	bool ret = true;
-
-	std::for_each(nextPositions.begin(), nextPositions.end(),
-		[&](point& i) { ret &= isPossibleToMove(i); });
-
-	return ret;
 }
 
 bool State::isPossibleToMove(point nextPosition)
