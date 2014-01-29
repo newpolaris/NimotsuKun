@@ -1,10 +1,12 @@
 #include <vector>
 #include <sstream>
+#include <random>
 
 #include "GameLib/Framework.h"
 
 #include "point.h"
 #include "file.h"
+#include "time.h"
 
 #include "Sequence/SoloGame/State.h"
 #include "Sequence/SoloGame/Parent.h"
@@ -68,12 +70,12 @@ State::State(buffer_type& stageData, int sx, int sy)
     , mY(sy)
 	, mSrcW(pixels_per_one_block)
 	, mSrcH(pixels_per_one_block)
-    , map(mX, mY)
+    , mMap(mX, mY)
     , mImage("data/image/BakudanBitoImage.dds")
 {
     for (int j=0; j < mY; j++)
     for (int i=0; i < mX; i++)
-        map(i,j) = MAP_NONE;
+        mMap(i,j) = Map::MAP_NONE;
 
     unsigned idx=0;
     unsigned count=0;
@@ -82,10 +84,10 @@ State::State(buffer_type& stageData, int sx, int sy)
 		point pos(idx%mX, idx/mY);
 
         switch (stageData[count++]) {
-        case ' ': map[idx++]=MAP_NONE;  break;
-        case '#': map[idx++]=MAP_BLOCK; break;
+		case ' ': mMap[idx++]=Map::MAP_NONE;  break;
+		case '#': mMap[idx++]=Map::MAP_BLOCK; break;
         case 'p': 
-			mPlayer = new Player(pos, point(mSrcW, mSrcH));
+			mPlayer = new Player(generateID(), pos, point(mSrcW, mSrcH));
 			idx++;				
 			break;
         case 'm': idx++;				break;
@@ -93,6 +95,32 @@ State::State(buffer_type& stageData, int sx, int sy)
         default: break;
         }
     }
+}
+
+bool State::installBoom(int ID, point position, int range, int delay)
+{
+	if (isPossibleToInstallBoom(position)) {
+		mBoomList.push_back(Map::Boom(theTime.getFutureTime(delay), ID, position, range));
+		return true;
+	} else {
+		return false;
+	}
+}
+
+int State::generateID()
+{
+	static std::mt19937 randomEngine;
+	return randomEngine();
+}
+
+bool State::isPossibleToInstallBoom(point position)
+{
+    MAP_INFO info = mMap(position);
+
+	if (info == Map::MAP_BLOCK || info == Map::MAP_BOX || info == Map::MAP_BOOM)
+        return false;
+
+    return true;
 }
 
 void State::update(Parent* parent)
@@ -120,8 +148,10 @@ void State::update(Parent* parent)
 }
 
 // Used for background drawing.
-void State::draw(int x, int y, MAP_INFO type) const
+void State::draw(int x, int y, MAP_INFO type, bool inBlockDim) const
 {
+	using namespace Map;
+
     point src;
     switch (type)
     {
@@ -132,25 +162,37 @@ void State::draw(int x, int y, MAP_INFO type) const
     case MAP_MONSTER:   src=point(2,1); break;
     }
 
-	mImage.draw(x, y, src.x*mSrcW, src.y*mSrcH, mSrcW, mSrcH);
+	point pt = inBlockDim ? point(x*mSrcW, y*mSrcH) : point(x, y);
+	mImage.draw(pt.x, pt.y, src.x*mSrcW, src.y*mSrcH, mSrcW, mSrcH);
 }
 
 void State::draw() const
 {
     for (int j=0; j < mY; j++)
     for (int i=0; i < mX; i++)
-        draw(i*mSrcW, j*mSrcH, map(i,j));
+        draw(i*mSrcW, j*mSrcH, mMap(i,j));
+
+	for (auto i = 0; i < mBoomList.size(); i++) {
+		mBoomList[i].draw(this);
+	}
 
 	if (mPlayer)
 		mPlayer->draw(this);
 }
 
-bool State::isPossibleToMove(point nextPosition)
+bool State::isObstacle(point pos) const
 {
-    MAP_INFO info = map(nextPosition);
+    MAP_INFO info = mMap(pos);
 
-	if (info == MAP_BLOCK || info == MAP_BOX || info == MAP_BOOM)
+	if (info == Map::MAP_BLOCK || info == Map::MAP_BOX || info == Map::MAP_BOOM)
         return false;
+
+	using std::vector;
+
+	for (auto i = 0; i < mBoomList.size(); i++) {
+		if (mBoomList[i].pos() == pos && mBoomList[i].isBlock())	
+			return false;
+	}
 
     return true;
 }

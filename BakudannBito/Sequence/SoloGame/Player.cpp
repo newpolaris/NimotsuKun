@@ -1,60 +1,160 @@
 #include "GameLib/Framework.h"
 
+#include <algorithm>
+#include <iterator>
 #include "Sequence/SoloGame/Player.h"
 #include "Sequence/SoloGame/State.h"
+#include "Map.h"
 
 #include <type_traits>
 
 namespace Sequence {
 namespace SoloGame {
+using std::vector;
 
-// Helper to determine whether there's a const_iterator for T.
-template<typename T>
-struct has_const_iterator
+Player::Player(int ID, point& position, point blockSize, 
+			   int BoomRange, int BoomCountMax)
+	: mID(ID)
+	, mBoomRange(BoomRange)
+	, mBoomCountMax(BoomCountMax)
+	, mBoomCount(0)
+	, mBlockSize(blockSize) 
 {
-private:
-    template<typename C> static char test(typename C::const_iterator*);
-    template<typename C> static int  test(...);
-public:
-    enum { value = sizeof(test<T>(0)) == sizeof(char) };
+	setPosition(position);
+}
+
+void Player::BoomRangeUp()
+{
+	mBoomRange++;
+}
+
+void Player::BoomCountUp()
+{
+	mBoomCountMax++;
+}
+
+vector<bool> isObstacle(const State* const state, vector<point>& nextPositions)
+{
+	using std::for_each;
+
+	vector<bool> ret;
+	for_each(nextPositions.begin(), nextPositions.end(),
+		[&](point& i) { ret.push_back(state->isObstacle(i)); });
+
+	return ret;
 };
 
-// SFINAE test
-template <typename T>
-class has_begin
+vector<point> Player::getBoundary(point position) const
 {
-    typedef char one;
-    typedef long two;
+	vector<point> bound;
+	point sz = mBlockSize-point(1,1);
+	bound.push_back(position);
+	bound.push_back(position+point(sz.x, 0));
+	bound.push_back(position+sz);
+	bound.push_back(position+point(0, sz.y));
 
-    template <typename C> static one test( decltype(&C::helloworld) ) ;
-    template <typename C> static two test(...);
+	return bound;
+}
 
-
-public:
-    enum { value = sizeof(test<T>(0)) == sizeof(char) };
-};
-
-// bar() is defined for Containers that define const_iterator as well
-// as value_type.
-template <typename Container>
-typename std::enable_if<has_const_iterator<Container>::value,
-                        void>::type
-sum(const Container& c)
+void Player::installBoom(State* state)
 {
-	auto ret = 0;
-	foreach (c.begin(), c.end(), [&](auto i) {
-		ret += i;
-	});
+	if (state->installBoom(mID, getPosition(),mBoomRange, 3))
+		mBoomCount--;
 }
 
 void Player::update(State* state)
 {
-	using GameLib::Framework;
-
     // if (!alive)
     //    return;
 
-    point direction(0,0);
+	movePlayer(state);
+
+	using GameLib::Framework;
+	Framework f = Framework::instance();
+
+	if (f.isKeyOn('B')) {
+		// 성공할 경우만. 줄인다. (서버 응답 대기필요.. 추가 B는 홀딩해야되는데 어렵네)
+		installBoom(state);
+	}
+}
+
+void Player::setPosition(point& position)
+{
+	mPosition = position*mBlockSize;
+}
+
+point Player::getPosition() const
+{
+	point pt = mPosition + mBlockSize/2;
+	return pt / mBlockSize;
+}
+
+vector<bool> Player::PathMoveStatus(State const * const state, point prev, point next) const
+{
+	using std::copy_if;
+	using std::for_each;
+	using std::transform;
+	using std::back_inserter;
+
+	vector<point> playerBoundary = getBoundary(next);
+	auto convertToBlock = [&](point i) { return i / mBlockSize; };
+
+	transform(playerBoundary.begin(), playerBoundary.end(),
+				playerBoundary.begin(), convertToBlock);
+
+	vector<bool> result = isObstacle(state, playerBoundary);
+
+	point sz = mBlockSize-point(1,1);
+	point prevCenter = prev + sz/2;
+	point currentBlock = convertToBlock(prevCenter);
+
+	vector<bool> sameAsCurentBlock;
+	for (int i = 0; i < playerBoundary.size(); i++)
+		sameAsCurentBlock.push_back(playerBoundary[i] == currentBlock);
+
+	vector<bool> resultOr;
+	for (int i = 0; i < result.size(); i++)
+		resultOr.push_back(result[i] | sameAsCurentBlock[i]);
+
+	return resultOr;
+}
+
+bool Player::isPath(State const * const state, point prev, point next) const
+{
+	vector<bool> result = PathMoveStatus(state, prev, next);
+
+	// 북 동 남 서
+	point testIndices[4] = { point(0, 1), point(1, 2), point(2,3), point(3,0) };
+
+	point direction = next - prev;
+
+	bool ret = true;
+
+	if (direction.y < 0) {
+		ret &= result[testIndices[0].x];
+		ret &= result[testIndices[0].y];
+	} else if (direction.y > 0) {
+		ret &= result[testIndices[2].x];
+		ret &= result[testIndices[2].y];
+	}
+
+	if (direction.x > 0) {
+		ret &= result[testIndices[1].x];
+		ret &= result[testIndices[1].y];
+	} else if (direction.x < 0) {
+		ret &= result[testIndices[3].x];
+		ret &= result[testIndices[3].y];
+	}
+
+	return ret;
+}
+
+void Player::movePlayer(State* state)
+{
+	using GameLib::Framework;
+	using std::for_each;
+
+	point direction(0, 0);
 
 	Framework f = Framework::instance();
 
@@ -67,37 +167,17 @@ void Player::update(State* state)
     else if (f.isKeyOn('d'))
         direction += point(+1,0);
 
-
-	auto isPossibleToMove = [&](std::vector<point>& nextPositions)
-		-> std::vector<bool>
-	{
-		std::vector<bool> ret;
-
-		std::for_each(nextPositions.begin(), nextPositions.end(),
-			[&](point& i) { ret.push_back(state->isPossibleToMove(i)); });
-
-		return ret;
-	};
-
-	auto canMove = [&](point i) -> bool {
-		auto result = isPossibleToMove(getBound(i));
-		bool ret = true;
-		std::for_each(result.begin(), result.end(),
-			[&](bool i) { ret &= i; });
-		return ret;
-	};
-
 	point newDirection = mPosition+direction;
 
     // 해당 방향으로 update 가능한지 조사.
-    if (canMove(newDirection))
+    if (isPath(state, mPosition, newDirection))
 		mPosition = newDirection;
 
 	// 양쪽 입력 중 하나라도 가능한지 조사 후 move!
 	else if (std::abs(direction.x) + std::abs(direction.y) > 1) {
-		if (canMove(mPosition + point(direction.x, 0)))
+		if (isPath(state, mPosition, mPosition+point(direction.x, 0)))
 			mPosition = mPosition + point(direction.x, 0);
-		else if (canMove(mPosition + point(0, direction.y)))
+		else if (isPath(state, mPosition, mPosition+point(0, direction.y)))
 			mPosition = mPosition + point(0, direction.y);
 	}
 
@@ -111,18 +191,18 @@ void Player::update(State* state)
 
 		auto sum = [] (point i) { return i.x + i.y; };
 		const point test = point(-1, 1);
-		auto bound = getBound(mPosition+OneWay);
-		auto pass = isPossibleToMove(bound);
+
+		vector<bool> pass = PathMoveStatus(state, mPosition, mPosition+OneWay);
 
 		point testIndices[4] = { point(0, 1), point(3, 2), point(0,3), point(1,2) };
-		const std::vector<point> testIndex(&testIndices[0], &testIndices[4]);
+		vector<point> testIndex(&testIndices[0], &testIndices[4]);
 
 		// 동시 입력 가능성 없음. 이동하지 않는 경우는 이미 걸러짐.
 		const int index = (direction.y<0)*0 + (direction.y>0)*1 + (direction.x<0)*2 + (direction.x>0)*3;
 
-		point indexPoint = testIndex[index];
-		point someResult = point(pass[indexPoint.x], pass[indexPoint.y]);
-		int sign = sum(someResult * point(-1, 1));
+		const point indexPoint = testIndex[index];
+		const point someResult = point(pass[indexPoint.x], pass[indexPoint.y]);
+		const int sign = sum(someResult * point(-1, 1));
 
 		mPosition += sign * (index < 2 ? point(1, 0) : point(0, 1));
 	}
@@ -130,7 +210,7 @@ void Player::update(State* state)
 
 void Player::draw(const State* state)
 {
-    state->draw(mPosition.x, mPosition.y, State::MAP_PLAYER);
+	state->draw(mPosition.x, mPosition.y, Map::MAP_PLAYER);
 }
 
 } // namespace SoloGame

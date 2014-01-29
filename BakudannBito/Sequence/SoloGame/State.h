@@ -1,9 +1,13 @@
 #pragma once
 
+#include <vector>
+
 #include "file.h"
 #include "point.h"
 #include "image.h"
 #include "Array2D.h"
+#include "Boom.h"
+#include "Map.h"
 
 namespace Sequence {
 namespace SoloGame {
@@ -11,27 +15,27 @@ namespace SoloGame {
 class Parent;
 class Player;
 
+using Map::MAP_INFO;
+using std::vector;
+
+Interface IMapManage
+{
+	virtual bool isObstacle(point nextPosition) const = 0;
+	virtual bool isPossibleToInstallBoom(point position) = 0;
+};
+
 class State
 {
 public:
-    enum MAP_INFO {
-        MAP_NONE,
-        MAP_BLOCK,
-        MAP_BOX,
-        MAP_PLAYER,
-        MAP_MONSTER,
-        MAP_BOOM,
-        MAP_BOOM_ADD,
-        MAP_BOOM_RANGE_UP,
-    };
-
 	static State* initalizeWithStage(int stage);
-	~State();
+	virtual ~State();
+	int generateID();
     void draw() const;
-    void draw(int x, int y, MAP_INFO type) const;
+	void draw(int x, int y, MAP_INFO type, bool inBlockDim=false) const;
     void update(Parent* parent);
-	bool isPossibleToMove(point nextPosition);
-	bool isPossibleToMove(std::vector<point>& nextPositions);
+	bool installBoom(int ID, point position, int range, int delay);
+	bool isObstacle(point nextPosition) const;
+	bool isPossibleToInstallBoom(point position);
 
 private:
 	static point findOutMapSize(buffer_type& buffer);
@@ -46,8 +50,8 @@ private:
     int mX;
     int mY;
 	Image mImage;
-    Array2D<MAP_INFO> map;
-
+    Array2D<MAP_INFO> mMap;
+	std::vector<Map::Boom> mBoomList;
 	Player* mPlayer;
 };
 

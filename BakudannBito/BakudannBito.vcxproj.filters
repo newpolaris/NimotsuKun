@@ -89,6 +89,15 @@
     <ClInclude Include="Sequence\SoloGame\Player.h">
       <Filter>Source Files\Sequence\SoloGame</Filter>
     </ClInclude>
+    <ClInclude Include="time.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Boom.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="file.cpp">
@@ -150,6 +159,12 @@
     </ClCompile>
     <ClCompile Include="Sequence\SoloGame\Player.cpp">
       <Filter>Source Files\Sequence\SoloGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Boom.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

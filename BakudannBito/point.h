@@ -57,6 +57,11 @@ struct point
 
 		return *this;
     }
+	
+	bool operator!=(const point& po)
+	{
+		return po.x == x && po.y == y;
+	}
     
 	int x;
 	int y;
