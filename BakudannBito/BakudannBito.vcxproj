@@ -27,6 +27,7 @@
     <ClInclude Include="Sequence\Game\Parent.h" />
     <ClInclude Include="Sequence\Game\Pause.h" />
     <ClInclude Include="Sequence\Game\Ready.h" />
+    <ClInclude Include="Sequence\IState.h" />
     <ClInclude Include="Sequence\SoloGame\Clear.h" />
     <ClInclude Include="Sequence\SoloGame\Fail.h" />
     <ClInclude Include="Sequence\SoloGame\Parent.h" />

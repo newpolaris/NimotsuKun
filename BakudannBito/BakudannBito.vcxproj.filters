@@ -98,6 +98,7 @@
     <ClInclude Include="Map.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sequence\IState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="file.cpp">

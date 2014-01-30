@@ -120,6 +120,10 @@ bool State::isPossibleToInstallBoom(point position)
 	if (info == Map::MAP_BLOCK || info == Map::MAP_BOX || info == Map::MAP_BOOM)
         return false;
 
+	for (int i = 0; i < mBoomList.size(); i++)
+		if (mBoomList[i].mPosition == position)
+			return false;
+
     return true;
 }
 
@@ -132,7 +136,8 @@ void State::update(Parent* parent)
      *            Box 제거(Remove)시 State에게 알려야 한다.
      *            Position, Animation 진행을 위한 update 수행.
      */
-    // for (int i = 0; i < boomList.size(); ++i)
+    for (int i = 0; i < mBoomList.size(); ++i)
+		mBoomList[i].update(this);
 
 	if (mPlayer)
 		mPlayer->update(this);
@@ -160,6 +165,11 @@ void State::draw(int x, int y, MAP_INFO type, bool inBlockDim) const
     case MAP_BOX:       src=point(2,0); break;
     case MAP_PLAYER:    src=point(0,0); break;
     case MAP_MONSTER:   src=point(2,1); break;
+	case MAP_BOOM:		src=point(2,0); break;
+	case MAP_BOOM_BLAST_CENTER:		src=point(3,2); break;
+	case MAP_BOOM_BLAST_HORIZENTAL: src=point(0,1); break;
+	case MAP_BOOM_BLAST_VERTICAL:	src=point(1,1); break;
+	case MAP_BOOM_FIRING:		src=point(3,0); break;
     }
 
 	point pt = inBlockDim ? point(x*mSrcW, y*mSrcH) : point(x, y);
@@ -170,7 +180,7 @@ void State::draw() const
 {
     for (int j=0; j < mY; j++)
     for (int i=0; i < mX; i++)
-        draw(i*mSrcW, j*mSrcH, mMap(i,j));
+        draw(i*mSrcW, j*mSrcH, mMap(i,j), false);
 
 	for (auto i = 0; i < mBoomList.size(); i++) {
 		mBoomList[i].draw(this);

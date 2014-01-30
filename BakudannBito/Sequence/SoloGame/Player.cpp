@@ -33,6 +33,7 @@ void Player::BoomCountUp()
 	mBoomCountMax++;
 }
 
+namespace {
 vector<bool> isObstacle(const State* const state, vector<point>& nextPositions)
 {
 	using std::for_each;
@@ -43,6 +44,7 @@ vector<bool> isObstacle(const State* const state, vector<point>& nextPositions)
 
 	return ret;
 };
+} // namespace {
 
 vector<point> Player::getBoundary(point position) const
 {
@@ -58,7 +60,7 @@ vector<point> Player::getBoundary(point position) const
 
 void Player::installBoom(State* state)
 {
-	if (state->installBoom(mID, getPosition(),mBoomRange, 3))
+	if (state->installBoom(mID, getPosition(), mBoomRange, 3))
 		mBoomCount--;
 }
 
@@ -73,7 +75,7 @@ void Player::update(State* state)
 	Framework f = Framework::instance();
 
 	if (f.isKeyOn('B')) {
-		// 성공할 경우만. 줄인다. (서버 응답 대기필요.. 추가 B는 홀딩해야되는데 어렵네)
+		// 성공할 경우만. 줄인다. (서버 응답 대기필요.. B는 홀딩해야되는데 어렵네)
 		installBoom(state);
 	}
 }
@@ -210,7 +212,7 @@ void Player::movePlayer(State* state)
 
 void Player::draw(const State* state)
 {
-	state->draw(mPosition.x, mPosition.y, Map::MAP_PLAYER);
+	state->draw(mPosition.x, mPosition.y, Map::MAP_PLAYER, false);
 }
 
 } // namespace SoloGame

@@ -10,6 +10,10 @@ namespace Map {
         MAP_BOOM,
         MAP_BOOM_ADD,
         MAP_BOOM_RANGE_UP,
+		MAP_BOOM_BLAST_CENTER,
+		MAP_BOOM_BLAST_HORIZENTAL,
+		MAP_BOOM_BLAST_VERTICAL,
+		MAP_BOOM_FIRING,
     };
 
 } // namespace Map

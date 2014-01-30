@@ -8,6 +8,7 @@
 #include "Array2D.h"
 #include "Boom.h"
 #include "Map.h"
+#include "Sequence\IState.h"
 
 namespace Sequence {
 namespace SoloGame {
@@ -18,20 +19,14 @@ class Player;
 using Map::MAP_INFO;
 using std::vector;
 
-Interface IMapManage
-{
-	virtual bool isObstacle(point nextPosition) const = 0;
-	virtual bool isPossibleToInstallBoom(point position) = 0;
-};
-
-class State
+class State : public IMapManager, public IMapObjectRequest
 {
 public:
 	static State* initalizeWithStage(int stage);
 	virtual ~State();
 	int generateID();
     void draw() const;
-	void draw(int x, int y, MAP_INFO type, bool inBlockDim=false) const;
+	void draw(int x, int y, MAP_INFO type, bool inBlockDim=true) const;
     void update(Parent* parent);
 	bool installBoom(int ID, point position, int range, int delay);
 	bool isObstacle(point nextPosition) const;
@@ -51,7 +46,7 @@ private:
     int mY;
 	Image mImage;
     Array2D<MAP_INFO> mMap;
-	std::vector<Map::Boom> mBoomList;
+	vector<Map::Boom> mBoomList;
 	Player* mPlayer;
 };
 
